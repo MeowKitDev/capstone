@@ -52,7 +52,7 @@ export default function LoginAdminPage() {
   return (
     <div className='flex h-screen w-full items-center justify-center bg-[url("/src/assets/images/background.png")] bg-cover bg-center bg-no-repeat'>
       <div className='w-full max-w-lg rounded-2xl bg-white p-8 shadow'>
-        <h2 className='text-center text-2xl font-bold uppercase text-black'>Login STRIP</h2>
+        <h2 className='text-center text-2xl font-bold uppercase text-black'>Login</h2>
         <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
           <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-2'>
             <CustomTextFieldWithLabel
