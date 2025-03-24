@@ -1,4 +1,5 @@
 export type AuthLoginREQ = {
-  email: string;
+  username: string;
   password: string;
+  rememberMe: boolean;
 };

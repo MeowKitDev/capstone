@@ -15,7 +15,6 @@ export function FileName({ name, percentage = 0, onDelete }: FileNameProps) {
   const { t: tCommon } = useTranslation('common');
 
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-
   const isReady = useMemo(() => percentage === 100, [percentage]);
 
   return (

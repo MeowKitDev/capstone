@@ -1,3 +1,3 @@
 export type AuthLoginRESP = {
-  accessToken: string;
+  id_token: string;
 };

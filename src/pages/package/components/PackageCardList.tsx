@@ -1,8 +1,9 @@
-import CirclePlusIcon from '@/components/icons/CirclePlusIcon';
-import { Button } from 'antd';
-import { useState } from 'react';
-import CreatePakageModal from './CreatePakageModal';
-import PackageCard from './PackageCard';
+import CustomTablePagination from '@/components/table/CustomTablePagination';
+import { TableBuilder } from '@/components/table/TableBuilder';
+import { PackageDTO } from '@/data/package/dto/package.dto';
+import { PARAM_FIELD } from '@/utils/enum/param-field.enum';
+import { PackageColumn } from '../column/PackageColumn';
+import PackageFilter from './PackageFilter';
 
 const PACKAGE_DATA = [
   {
@@ -29,27 +30,15 @@ const PACKAGE_DATA = [
 ];
 
 export default function PackageCardList() {
-  const [isModalCreatePackageOpen, setIsModalCreatePackageOpen] = useState(false);
-
   return (
-    <div className='flex flex-col gap-4'>
-      <div className='flex justify-end'>
-        <Button
-          type='primary'
-          icon={<CirclePlusIcon className='size-5 text-white' />}
-          className='flex items-center gap-2'
-          onClick={() => setIsModalCreatePackageOpen(true)}>
-          Create Package
-        </Button>
-      </div>
-      <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-        {PACKAGE_DATA.map((packageData) => (
-          <PackageCard key={packageData.id} packageData={packageData} />
-        ))}
-      </div>
-      {isModalCreatePackageOpen && (
-        <CreatePakageModal open={isModalCreatePackageOpen} setOpen={setIsModalCreatePackageOpen} />
-      )}
+    <div className='flex flex-col gap-5'>
+      <PackageFilter />
+      <TableBuilder<PackageDTO> rowKey='id' columns={PackageColumn()} data={PACKAGE_DATA} isLoading={false} />
+      <CustomTablePagination
+        totalItems={PACKAGE_DATA?.length || 1}
+        queryKey={PARAM_FIELD.CURRENT_PAGE}
+        isScrollAfterPageChange
+      />
     </div>
   );
 }

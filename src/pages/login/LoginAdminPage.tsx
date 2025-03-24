@@ -1,12 +1,16 @@
 import CustomTextFieldWithLabel from '@/components/form-related/CustomTextFieldWithLabel';
 import { RootState } from '@/data';
+import { useLoginMutation } from '@/data/auth/auth.api';
 import { AuthState, setStatus } from '@/data/auth/auth.slice';
+import { loginThunk } from '@/data/auth/auth.thunk';
 import { LoginAdminInput } from '@/helpers/form-schemas/login/login.input';
 import { loginAdminSchema } from '@/helpers/form-schemas/login/login.schema';
 import { MY_ROUTE } from '@/helpers/router/route.constant';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
+import { getErrorMessage } from '@/utils/common.helper';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Checkbox } from 'antd';
+import { enqueueSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -30,17 +34,22 @@ export default function LoginAdminPage() {
     defaultValues: loginAdminSchema.getDefault(),
   });
 
-  const onSubmit: SubmitHandler<LoginAdminInput> = async ({ email, password }: LoginAdminInput) => {
-    if ((email === 'admin' || email === 'staff') && password === 'strip@123') {
-      // const loginData = {
-      //   accessToken:
-      //     'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMDIiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDE3OTU1MjAsImV4cCI6MTg5OTU4MDI4MH0.b4GnVE0pbdc8RjtNCPvRdwcRtr5lhHap1XJMRzACrrAU6Z5_8hEhzI6_ML9EtJiC6F0jySpWUSAvc2l4v4jmwg',
-      //   keepLoggedIn,
-      // };
-      // dispatch(loginThunk(loginData));
-      dispatch(setStatus('in-app'));
-      return;
-    }
+  //handle api
+  const [login, { isLoading: isLogging }] = useLoginMutation();
+
+  const onSubmit: SubmitHandler<LoginAdminInput> = async ({ username, password }: LoginAdminInput) => {
+    await login({ username, password, rememberMe: keepLoggedIn })
+      .unwrap()
+      .then((dto) => {
+        if (dto) {
+          const loginData = { ...dto, rememberMe: keepLoggedIn };
+          dispatch(loginThunk(loginData));
+        }
+      })
+      .catch((error) => {
+        const message = getErrorMessage(error);
+        enqueueSnackbar({ message, variant: 'error' });
+      });
   };
 
   useEffect(() => {
@@ -56,7 +65,7 @@ export default function LoginAdminPage() {
         <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
           <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-2'>
             <CustomTextFieldWithLabel
-              name='email'
+              name='username'
               control={control}
               label={'Username'}
               required

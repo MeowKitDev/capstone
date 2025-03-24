@@ -14,16 +14,8 @@ export const baseSchema = {
 export const allFormSchema = {
   username: yup.string().default('').required('required.username'),
   email: yup.string().default('').required('required.email'),
-  password: yup
-    .string()
-    .default('')
-    .matches(PASSWORD_REGEX, { message: 'matches.password' })
-    .required('required.password'),
-  newPassword: yup
-    .string()
-    .default('')
-    .matches(PASSWORD_REGEX, { message: 'matches.password' })
-    .required('required.new_password'),
+  password: yup.string().default('').required('required.password'),
+  newPassword: yup.string().default('').required('required.new_password'),
   confirmPassword: yup
     .string()
     .default('')

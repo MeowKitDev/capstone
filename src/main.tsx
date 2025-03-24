@@ -17,12 +17,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           theme={{
             token: {
               colorPrimary: '#ff8904',
-              colorPrimaryBg: '#EBEEF6',
+              colorPrimaryBg: '#FFF8F1',
               colorPrimaryBgHover: '#ff8904',
             },
             components: {
               Select: {
-                optionActiveBg: '#E1EFFE',
+                optionActiveBg: '#FEECDC',
               },
             },
           }}>

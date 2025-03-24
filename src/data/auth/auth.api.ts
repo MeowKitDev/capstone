@@ -1,6 +1,5 @@
 import { apiBaseUrl, TAG_TYPES } from '@/utils/constants/shared.constant';
 import { HTTP_METHOD } from '@/utils/enum/http-method.enum';
-import { BaseResponse } from '@/utils/types/response.type';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { CRMApi } from '../CRMApi.api';
 import { AuthLoginDTO } from './dto/auth-login.dto';
@@ -19,13 +18,13 @@ export const authApi = createApi({
   endpoints: (build) => ({
     login: build.mutation<AuthLoginDTO, AuthLoginREQ>({
       query: (body) => ({
-        url: 'admin/public/login',
+        url: 'authenticate',
         method: HTTP_METHOD.POST,
         body,
       }),
-      transformResponse: ({ data }: BaseResponse<AuthLoginRESP>) => {
+      transformResponse: ({ id_token }: AuthLoginRESP) => {
         return {
-          accessToken: data.accessToken,
+          accessToken: id_token,
         } as AuthLoginDTO;
       },
       async onQueryStarted(_, { dispatch, queryFulfilled }) {

@@ -71,8 +71,8 @@ export const CensorDriverRequestColumn = (): ColumnsType<CensorDriverDTO> => {
       },
     },
     {
-      title: () => <TableHeaderCell key='role' label={'Role'} />,
-      key: 'role',
+      title: () => <TableHeaderCell key='time' label={'Time'} />,
+      key: 'Time',
       render: ({ ...props }: CensorDriverDTO) => {
         return <div className='capitalize'>{props?.packageBuy}</div>;
       },

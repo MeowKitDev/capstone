@@ -1,14 +1,11 @@
-import LoadingPageBanner from '@/components/common/LoadingPageBanner';
 import { RootState } from '@/data';
 import { AuthState } from '@/data/auth/auth.slice';
-import { setUserInfo } from '@/data/global/global.slice';
 import { DEFAULT_ROUTE } from '@/helpers/router/route.constant';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { safeString } from '@/utils/parser.helper';
 import { Empty } from 'antd';
 import { useEffect } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { useGetUserInfoQuery } from '../data/user/user.api';
 import FullScreenLayout from './FullScreenLayout';
 
 export default function ProtectedRoute() {
