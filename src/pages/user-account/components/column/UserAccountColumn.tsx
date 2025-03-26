@@ -13,28 +13,28 @@ export const UserAccountColumn = (): ColumnsType<UserAccountDTO> => {
 
   return [
     {
-      title: () => <TableHeaderCell key='id' label={'ID'} />,
+      title: () => <TableHeaderCell key='id' label={'ID'} sortKey='id' />,
       key: 'id',
       render: ({ ...props }: UserAccountDTO) => {
         return <div>{props?.id}</div>;
       },
     },
     {
-      title: () => <TableHeaderCell key='name' label={'Full Name'} />,
+      title: () => <TableHeaderCell key='name' label={'Full Name'} sortKey='name' />,
       key: 'name',
       render: ({ ...props }: UserAccountDTO) => {
         return <div>{props?.name}</div>;
       },
     },
     {
-      title: () => <TableHeaderCell key='phone' label={'Phone Number'} />,
+      title: () => <TableHeaderCell key='phone' label={'Phone Number'} sortKey='phone' />,
       key: 'phone',
       render: ({ ...props }: UserAccountDTO) => {
         return <div>{formatPhoneNumber(props?.phone)}</div>;
       },
     },
     {
-      title: () => <TableHeaderCell key='email' label={'Email'} />,
+      title: () => <TableHeaderCell key='email' label={'Email'} sortKey='email' />,
       key: 'email',
       render: ({ ...props }: UserAccountDTO) => {
         return <div>{props?.email}</div>;
@@ -48,7 +48,7 @@ export const UserAccountColumn = (): ColumnsType<UserAccountDTO> => {
       },
     },
     {
-      title: () => <TableHeaderCell key='status' label={'Status'} />,
+      title: () => <TableHeaderCell key='status' label={'Status'} sortKey='status' />,
       key: 'status',
       render: ({ ...props }: UserAccountDTO) => {
         return (

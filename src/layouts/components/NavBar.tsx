@@ -15,7 +15,7 @@ export default function NavBar() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { userInfo }: GlobalState = useAppSelector((state: RootState) => state.global);
-
+  console.log('userInfo', userInfo);
   const contentPopover = (
     <div className='flex w-[150px] flex-col gap-2'>
       <button
@@ -54,8 +54,16 @@ export default function NavBar() {
         </div>
         <div className='flex cursor-pointer items-center gap-5'>
           <Popover placement='bottom' content={contentPopover} className='flex cursor-pointer items-center gap-2'>
-            <UserCircleIcon />
-            <p className='font-bold text-gray-900'>{userInfo?.name || 'N.Q.Thai'}</p>
+            {userInfo?.userImage ? (
+              <img
+                src={`data:image/png;base64, ${userInfo?.userImage}`}
+                alt='User Image'
+                className='h-7 w-7 rounded-full border border-gray-200 object-cover'
+              />
+            ) : (
+              <UserCircleIcon />
+            )}
+            <p className='font-bold text-gray-900'>{userInfo?.firstName[0] + '. ' + userInfo?.lastName}</p>
           </Popover>
           <Popover placement='bottom' content={contentPopoverBell} className='flex cursor-pointer items-center gap-2'>
             <div className='relative'>

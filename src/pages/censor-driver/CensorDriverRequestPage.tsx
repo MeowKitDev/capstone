@@ -1,10 +1,13 @@
+import { TableUtilProvider } from '@/components/table/TableContextUtil';
 import DefaultContainer from '@/layouts/DefaultContainer';
 import CensorDriverRequestList from './components/CensorDriverRequestList';
 
 export default function CensorDriverRequestPage() {
   return (
-    <DefaultContainer title='Censor Driver Request'>
-      <CensorDriverRequestList />
-    </DefaultContainer>
+    <TableUtilProvider>
+      <DefaultContainer title='Censor Driver Request'>
+        <CensorDriverRequestList />
+      </DefaultContainer>
+    </TableUtilProvider>
   );
 }

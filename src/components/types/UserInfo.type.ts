@@ -1,10 +1,11 @@
-import { UserRole } from './UserRole';
-
 export type UserInfo = {
-  id: number;
-  name: string;
+  login: string;
   email: string;
-  phoneNumber: string;
-  lastLoginDate: null;
-  role: UserRole;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  gender: string;
+  address: string;
+  dob: string;
+  userImage: string;
 };

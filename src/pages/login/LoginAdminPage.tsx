@@ -101,7 +101,7 @@ export default function LoginAdminPage() {
               <Button
                 htmlType='submit'
                 className='w-full bg-[#F18D45CF] py-6 text-sm font-semibold text-white ease-linear'
-                loading={false}>
+                loading={isLogging}>
                 {tLogin('button.login')}
               </Button>
             </div>
