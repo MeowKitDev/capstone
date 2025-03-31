@@ -11,7 +11,7 @@ type CensorVehicleModalProps = {
 
 export default function CensorVehicleModal({ open, setOpen, data }: CensorVehicleModalProps) {
   return (
-    <CustomModal title='Censor Driver Detail' open={open} setOpen={setOpen} className='!w-[1020px]'>
+    <CustomModal title='Censor Vehicle Detail' open={open} setOpen={setOpen} className='!w-[1020px]'>
       <div>
         <div className='flex w-full gap-4'>
           <Image
