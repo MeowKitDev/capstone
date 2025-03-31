@@ -84,11 +84,11 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
           <div>
             <h3 className='text-2xl font-bold'>Driver Information</h3>
             <div className='flex items-center gap-4'>
-              <figure className='dark:border-jacarta-600 relative h-40 w-40 rounded-xl border-[5px] border-white'>
+              <figure className='relative h-40 w-40 rounded-xl border-[5px] border-white'>
                 <img
                   src={`https://ui-avatars.com/api/?name=${data?.name}&background=6366f1&color=fff&size=24`}
                   alt={'avatar'}
-                  className='dark:border-jacarta-600 h-full w-full rounded-xl border-[5px] border-white object-contain'
+                  className='h-full w-full rounded-xl border-[5px] border-white object-contain'
                 />
               </figure>
               <div className='mt-4 grid grid-cols-2 gap-4'>
@@ -104,7 +104,9 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                 label='Driver License'
                 value={
                   <img
-                    src={'https://lawnet.vn/uploads/image/2023/05/11/023234521.jpg'}
+                    src={
+                      'https://www.shutterstock.com/image-vector/driver-license-plastic-card-photo-260nw-2216933107.jpg'
+                    }
                     alt='driver license'
                     className='h-[200px] w-[300px] object-contain'
                   />
@@ -142,20 +144,6 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
               <InfoItem label='Vehicle License Plate' value={'1234567890'} />
             </div>
             <div className='mt-4'>
-              <InfoItem
-                label='Vehicle Registration Certificate'
-                value={
-                  <Image
-                    src={
-                      'https://tnclerks.zendesk.com/hc/article_attachments/4409967522708/Combined_month_and_year_decal.PNG'
-                    }
-                    alt='vehicle'
-                    width={100}
-                    height={100}
-                    className='object-contain'
-                  />
-                }
-              />
               <div className='grid grid-cols-2 gap-4'>
                 <InfoItem
                   label='Car Insurance'
@@ -184,6 +172,20 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                   }
                 />
               </div>
+              <InfoItem
+                label='Vehicle Registration Certificate'
+                value={
+                  <Image
+                    src={
+                      'https://tnclerks.zendesk.com/hc/article_attachments/4409967522708/Combined_month_and_year_decal.PNG'
+                    }
+                    alt='vehicle'
+                    width={100}
+                    height={100}
+                    className='object-contain'
+                  />
+                }
+              />
             </div>
           </div>
         </div>

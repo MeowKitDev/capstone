@@ -8,30 +8,9 @@ export default function UserAccountFilter() {
   return (
     <div>
       <div className='flex flex-wrap items-center justify-start gap-5'>
-        <CustomSearchInputQueryWithLabel label={'Search'} searchParamName={PARAM_FIELD.SEARCH_KEYWORD} />
-        <CustomSelectQueryWithLabel
-          label={'Search by'}
-          queryKey={PARAM_FIELD.SEARCH_BY}
-          options={[
-            {
-              label: 'ID',
-              value: 'id',
-            },
-            {
-              label: 'Name',
-              value: 'name',
-            },
-            {
-              label: 'Email',
-              value: 'email',
-            },
-            {
-              label: 'Phone',
-              value: 'phone',
-            },
-          ]}
-          className='w-40'
-        />
+        <CustomSearchInputQueryWithLabel label={'Full Name'} searchParamName={PARAM_FIELD.FULL_NAME} />
+        <CustomSearchInputQueryWithLabel label={'Phone'} searchParamName={PARAM_FIELD.PHONE} />
+        <CustomSearchInputQueryWithLabel label={'Email'} searchParamName={PARAM_FIELD.EMAIL} />
         <CustomSelectQueryWithLabel
           label={'Gender'}
           queryKey={PARAM_FIELD.SEARCH_BY}

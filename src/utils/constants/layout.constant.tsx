@@ -2,6 +2,7 @@ import AccountIcon from '@/components/icons/AccountIcon';
 import CardIdIcon from '@/components/icons/CardIdIcon';
 import CarIcon from '@/components/icons/CarIcon';
 import ChartPieIcon from '@/components/icons/ChartPieIcon';
+import ClipBoardIcon from '@/components/icons/ClipBoardIcon';
 import CommentIcon from '@/components/icons/CommentIcon';
 import CubeIcon from '@/components/icons/CubeIcon';
 import ListCheckIcon from '@/components/icons/ListCheckIcon';
@@ -21,6 +22,7 @@ export const LAYOUT_SIDEBAR_GROUP_TEMPLATES: SideBarGroupTemplate[] = [
     ],
   },
   { title: 'trip', icon: <CarIcon /> },
+  { title: 'censor-vehicle', icon: <ClipBoardIcon /> },
   {
     title: 'feedback',
     icon: <CommentIcon />,

@@ -2,7 +2,7 @@
 import { NOTISTACK_DURATION } from '@/utils/constants/shared.constant';
 import { SnackbarContent, closeSnackbar } from 'notistack';
 import React from 'react';
-import XCircleOutlineIcon from '../icons/CheckCircleOutlineIcon';
+import XCircleOutlineIcon from '../icons/XCircleOutlineIcon';
 import XIcon from '../icons/XIcon';
 import { CustomNotiStackProps } from './notistack.type';
 

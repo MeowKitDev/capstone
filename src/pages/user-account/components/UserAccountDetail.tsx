@@ -13,18 +13,18 @@ export const UserAccountDetail = () => {
       <div className='mb-4 grid gap-4 sm:grid-cols-2 sm:gap-8 lg:gap-16'>
         <div className='space-y-4'>
           <div className='flex space-x-4'>
-            <figure className='dark:border-jacarta-600 relative h-24 w-24 rounded-xl border-[5px] border-white'>
+            <figure className='relative h-24 w-24 rounded-xl border-[5px] border-white'>
               <img
                 src={`https://ui-avatars.com/api/?name=${dataAccount?.name}&background=6366f1&color=fff&size=24`}
                 alt={'avatar'}
-                className='dark:border-jacarta-600 h-full w-full rounded-xl border-[5px] border-white object-contain'
+                className='h-full w-full rounded-xl border-[5px] border-white object-contain'
               />
             </figure>
             <div>
-              <span className='mb-2 inline-block rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300'>
+              <span className='mb-2 inline-block rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800'>
                 Gold Package
               </span>
-              <h2 className='flex items-center text-xl font-bold leading-none text-gray-900 sm:text-2xl dark:text-white'>
+              <h2 className='flex items-center text-xl font-bold leading-none text-gray-900 sm:text-2xl'>
                 {dataAccount?.name}
               </h2>
             </div>

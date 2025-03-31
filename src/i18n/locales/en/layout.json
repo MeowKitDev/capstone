@@ -11,7 +11,8 @@
       "package": "Package",
       "wallet": "Wallet",
       "report": "Report",
-      "transaction-history": "Transaction History"
+      "transaction-history": "Transaction History",
+      "censor-vehicle": "Censor Vehicle"
     }
   }
 }

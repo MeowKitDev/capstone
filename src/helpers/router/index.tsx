@@ -3,10 +3,12 @@ import MainLayout from '@/layouts/MainLayout';
 import ProtectedRoute from '@/layouts/ProtectedRoute';
 import PublicRoute from '@/layouts/PublicRoute';
 import CensorDriverRequestPage from '@/pages/censor-driver/CensorDriverRequestPage';
+import CensorVehiclePage from '@/pages/censor-vehicle/CensorVehiclePage';
 import DashboardPage from '@/pages/dashboard/DashboardPage';
 import ForgotPasswordPage from '@/pages/forgot-password/ForgotPasswordPage';
 import LoginAdminPage from '@/pages/login/LoginAdminPage';
 import PackagePage from '@/pages/package/PackagePage';
+import TransactionHistoryPage from '@/pages/transaction-history/TransactionHistoryPage';
 import { UserAccountDetailPage } from '@/pages/user-account/UserAccountDetailPage';
 import UserAccountPage from '@/pages/user-account/UserAccountPage';
 import WalletPage from '@/pages/wallet/WalletPage';
@@ -66,7 +68,11 @@ const router = createBrowserRouter(
             },
             {
               path: MY_ROUTE.TRANSACTION_HISTORY.self,
-              element: <>Transaction History</>,
+              element: <TransactionHistoryPage />,
+            },
+            {
+              path: MY_ROUTE.CENSOR_VEHICLE.self,
+              element: <CensorVehiclePage />,
             },
           ],
         },

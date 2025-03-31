@@ -8,8 +8,6 @@ export default function TransactionFilter() {
     <div>
       <div className='flex flex-wrap items-center justify-start gap-5'>
         <CustomSearchInputQueryWithLabel label={'Full Name'} searchParamName={PARAM_FIELD.FULL_NAME} />
-        <CustomSearchInputQueryWithLabel label={'Phone'} searchParamName={PARAM_FIELD.PHONE} />
-        <CustomSearchInputQueryWithLabel label={'Email'} searchParamName={PARAM_FIELD.EMAIL} />
         <CustomSelectQueryWithLabel
           label={'Payment Method'}
           queryKey={PARAM_FIELD.PAYMENT_METHOD}

@@ -1,8 +1,8 @@
 import { ImgHTMLAttributes, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twJoin } from 'tailwind-merge';
-import XCircleOutlineIcon from '../icons/CheckCircleOutlineIcon';
 import FilePenOutlineIcon from '../icons/PenOutlineIcon';
+import XCircleOutlineIcon from '../icons/XCircleOutlineIcon';
 import CustomConfirmModal from '../modal/CustomConfirmModal';
 
 type FileNameProps = ImgHTMLAttributes<HTMLImageElement> & {
