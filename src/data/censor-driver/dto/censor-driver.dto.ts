@@ -8,5 +8,7 @@ export interface CensorDriverDTO {
   email: string;
   gender: USER_ACCOUNT_GENDER;
   status: CENSOR_DRIVER_STATUS;
-  packageBuy: string;
+  dob?: string;
+  packageBuy?: string;
+  address?: string;
 }

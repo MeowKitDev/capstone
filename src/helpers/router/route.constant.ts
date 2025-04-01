@@ -45,9 +45,11 @@ export const MY_ROUTE = {
   },
   TRIP: {
     self: `/${ROUTE_NAME.TRIP}`,
+    detail: (id: string) => `/${ROUTE_NAME.TRIP}/${id}`,
   },
   FEEDBACK: {
     self: `/${ROUTE_NAME.FEEDBACK}`,
+    detail: (id: string) => `/${ROUTE_NAME.FEEDBACK}/${id}`,
   },
   PACKAGE: {
     self: `/${ROUTE_NAME.PACKAGE}`,

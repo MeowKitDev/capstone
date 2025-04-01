@@ -5,10 +5,13 @@ import PublicRoute from '@/layouts/PublicRoute';
 import CensorDriverRequestPage from '@/pages/censor-driver/CensorDriverRequestPage';
 import CensorVehiclePage from '@/pages/censor-vehicle/CensorVehiclePage';
 import DashboardPage from '@/pages/dashboard/DashboardPage';
+import FeedbackPage from '@/pages/feedback/FeedbackPage';
 import ForgotPasswordPage from '@/pages/forgot-password/ForgotPasswordPage';
 import LoginAdminPage from '@/pages/login/LoginAdminPage';
 import PackagePage from '@/pages/package/PackagePage';
 import TransactionHistoryPage from '@/pages/transaction-history/TransactionHistoryPage';
+import TripDetailPage from '@/pages/trip/TripDetailPage';
+import TripPage from '@/pages/trip/TripPage';
 import { UserAccountDetailPage } from '@/pages/user-account/UserAccountDetailPage';
 import UserAccountPage from '@/pages/user-account/UserAccountPage';
 import WalletPage from '@/pages/wallet/WalletPage';
@@ -48,11 +51,15 @@ const router = createBrowserRouter(
             },
             {
               path: MY_ROUTE.TRIP.self,
-              element: <>Trip</>,
+              element: <TripPage />,
+            },
+            {
+              path: MY_ROUTE.TRIP.detail(':id'),
+              element: <TripDetailPage />,
             },
             {
               path: MY_ROUTE.FEEDBACK.self,
-              element: <>Feedback</>,
+              element: <FeedbackPage />,
             },
             {
               path: MY_ROUTE.PACKAGE.self,

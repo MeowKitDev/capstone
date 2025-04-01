@@ -20,4 +20,7 @@ export enum PARAM_FIELD {
   VEHICLE_PLATE = 'vehiclePlate',
   VEHICLE_NAME = 'vehicleName',
   NUMBER_INSEAD = 'numberInsead',
+  NAME = 'name',
+  LOCATION = 'location',
+  TRIP_ID = 'tripId',
 }

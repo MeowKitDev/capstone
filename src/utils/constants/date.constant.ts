@@ -21,5 +21,5 @@ export const DATE_TIME_SHORT_24H_FORMAT = 'YYYY-MM-DD HH:mm';
 //time.constant.ts
 export const TIME_12H_FORMAT = 'A hh:mm';
 export const TIME_12H_PICKER_FORMAT = 'hh:mm A';
-export const TIME_24H_FORMAT = 'H:m';
+export const TIME_24H_FORMAT = 'HH:mm';
 export const TIME_LEFT_SMALL_FORMAT = 'mm:ss'; //usually small time < 1 hour
