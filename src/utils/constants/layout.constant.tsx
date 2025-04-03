@@ -8,6 +8,7 @@ import CubeIcon from '@/components/icons/CubeIcon';
 import ListCheckIcon from '@/components/icons/ListCheckIcon';
 import MemberIcon from '@/components/icons/MemberIcon';
 import MoneyCheckIcon from '@/components/icons/MoneyCheckIcon';
+import RatingIcon from '@/components/icons/RatingIcon';
 import WalletIcon from '@/components/icons/WalletIcon';
 import { SideBarGroupTemplate } from '@/layouts/types/SideBarGroupTemplate.type';
 
@@ -34,6 +35,10 @@ export const LAYOUT_SIDEBAR_GROUP_TEMPLATES: SideBarGroupTemplate[] = [
   {
     title: 'wallet',
     icon: <WalletIcon />,
+  },
+  {
+    title: 'rate-driver',
+    icon: <RatingIcon />,
   },
   {
     title: 'report',

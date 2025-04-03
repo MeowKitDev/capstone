@@ -12,7 +12,8 @@
       "wallet": "Wallet",
       "report": "Report",
       "transaction-history": "Transaction History",
-      "censor-vehicle": "Censor Vehicle"
+      "censor-vehicle": "Censor Vehicle",
+      "rate-driver": "Rate Driver"
     }
   }
 }

@@ -9,4 +9,5 @@ export type SideBarGroupTitleCode =
   | 'wallet'
   | 'report'
   | 'transaction-history'
-  | 'censor-vehicle';
+  | 'censor-vehicle'
+  | 'rate-driver';

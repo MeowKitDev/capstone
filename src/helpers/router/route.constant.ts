@@ -17,6 +17,7 @@ export enum ROUTE_NAME {
   REPORT = 'report',
   TRANSACTION_HISTORY = 'transaction-history',
   CENSOR_VEHICLE = 'censor-vehicle',
+  RATE_DRIVER = 'rate-driver',
 }
 
 export const MY_ROUTE = {
@@ -66,6 +67,10 @@ export const MY_ROUTE = {
   CENSOR_VEHICLE: {
     self: `/${ROUTE_NAME.CENSOR_VEHICLE}`,
     detail: (id: string) => `/${ROUTE_NAME.CENSOR_VEHICLE}/${id}`,
+  },
+  RATE_DRIVER: {
+    self: `/${ROUTE_NAME.RATE_DRIVER}`,
+    detail: (id: string) => `/${ROUTE_NAME.RATE_DRIVER}/${id}`,
   },
 };
 

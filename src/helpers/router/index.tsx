@@ -9,6 +9,7 @@ import FeedbackPage from '@/pages/feedback/FeedbackPage';
 import ForgotPasswordPage from '@/pages/forgot-password/ForgotPasswordPage';
 import LoginAdminPage from '@/pages/login/LoginAdminPage';
 import PackagePage from '@/pages/package/PackagePage';
+import RatingPage from '@/pages/rating/RatingPage';
 import TransactionHistoryPage from '@/pages/transaction-history/TransactionHistoryPage';
 import TripDetailPage from '@/pages/trip/TripDetailPage';
 import TripPage from '@/pages/trip/TripPage';
@@ -80,6 +81,10 @@ const router = createBrowserRouter(
             {
               path: MY_ROUTE.CENSOR_VEHICLE.self,
               element: <CensorVehiclePage />,
+            },
+            {
+              path: MY_ROUTE.RATE_DRIVER.self,
+              element: <RatingPage />,
             },
           ],
         },
