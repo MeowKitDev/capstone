@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientConfig } from "react-query";
+import { QueryClient, QueryClientConfig } from 'react-query';
 
 const queryClientConf: QueryClientConfig = {
   defaultOptions: {
@@ -14,7 +14,7 @@ const queryClientConf: QueryClientConfig = {
       // suspense = true. it will has problem with option enabled.
       // https://tanstack.com/query/v4/docs/guides/suspense. It said:
       // NOTE: Suspense mode for React Query is experimental, same as Suspense for data fetching itself. These APIs WILL change and should not be used in production unless you lock both your React and React Query versions to patch-level versions that are compatible with each other
-    suspense: false,
+      suspense: false,
     },
     mutations: {
       // onError: queryErrorHandler

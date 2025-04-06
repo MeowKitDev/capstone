@@ -1,6 +1,5 @@
-import { AxiosResponse } from "axios";
-import axiosClient from "../../axiosClient";
-import { PackageGetAllDTO } from "@/@types/dto/packageDTO";
+import axiosClient from '../../axiosClient';
+import { PackageGetAllDTO } from '@/@types/dto/packageDTO';
 
 // export interface PagedResponse<T> {
 //   data: T[];
@@ -14,19 +13,14 @@ export const packageApi = {
   //   });
 
   getAll: async () => {
-    const token = localStorage.getItem("token"); // hoặc lấy từ Redux/Zustand
+    const token = localStorage.getItem('token'); // hoặc lấy từ Redux/Zustand
 
-  const response = await axiosClient.get<PackageGetAllDTO[]>(
-    "/mobile/user/view/allpackages",
-    {
+    const response = await axiosClient.get<PackageGetAllDTO[]>('/mobile/user/view/allpackages', {
       headers: {
-        Authorization: `Bearer ${token}`, 
+        Authorization: `Bearer ${token}`,
       },
-    }
-  );
+    });
 
-  return response;
+    return response;
   },
-
-  
 };

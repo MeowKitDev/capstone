@@ -4,12 +4,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { ConfigProvider } from 'antd';
+import { QueryClientProvider } from 'react-query';
 import App from './App.tsx';
 import { store } from './data/index.ts';
+import queryClient from './data/services/queryClient.ts';
 import MySnackBarProvider from './providers/MySnackbarProvider.tsx';
 import ReduxProvider from './providers/ReduxProvider.tsx';
-import { QueryClientProvider } from 'react-query';
-import queryClient from './data/services/queryClient.ts';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -19,17 +19,16 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <ConfigProvider
             theme={{
               token: {
-                colorPrimary: "#ff8904",
-                colorPrimaryBg: "#FFF8F1",
-                colorPrimaryBgHover: "#ff8904",
+                colorPrimary: '#ff8904',
+                colorPrimaryBg: '#FFF8F1',
+                colorPrimaryBgHover: '#ff8904',
               },
               components: {
                 Select: {
-                  optionActiveBg: "#FEECDC",
+                  optionActiveBg: '#FEECDC',
                 },
               },
-            }}
-          >
+            }}>
             <App />
           </ConfigProvider>
         </MySnackBarProvider>

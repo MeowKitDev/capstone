@@ -1,5 +1,5 @@
-import { useQuery } from "react-query";
-import { packageApi } from "./package.api";
+import { useQuery } from 'react-query';
+import { packageApi } from './package.api';
 
 const usePackageData = () => {
   // const [pagination, setPagination] = useState<PaginationState>({
@@ -22,17 +22,17 @@ const usePackageData = () => {
   };
 
   // TODO: use debounce technique to prevent many calls at a short time
-  const queryKey = ["packages"];
+  const queryKey = ['packages'];
 
-  const { data: PackageData, refetch: refreshPackageData, ...rest } = useQuery(
-    queryKey,
-    fetchUserDataFunction,
-    {
-      onError: (err) => console.log("error at hook", err),
-    }
-  );
+  const {
+    data: PackageData,
+    refetch: refreshPackageData,
+    ...rest
+  } = useQuery(queryKey, fetchUserDataFunction, {
+    onError: (err) => console.log('error at hook', err),
+  });
 
-  return ({
+  return {
     PackageData,
     refreshPackageData,
     // setSortState,
@@ -42,8 +42,7 @@ const usePackageData = () => {
     // keyword,
     // totalRows,
     ...rest,
-  }
-  )
-}
+  };
+};
 
 export default usePackageData;

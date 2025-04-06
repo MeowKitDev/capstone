@@ -1,9 +1,5 @@
 import { UserGetAllDTO } from '@/@types/dto/userDTO';
-import CustomTableActionsButton from '@/components/table/CustomTableActionsButton';
 import { TableHeaderCell } from '@/components/table/TableHeaderCell';
-import { MY_ROUTE } from '@/helpers/router/route.constant';
-import { USER_ACCOUNT_STATUS } from '@/utils/enum/user-account/user-account.enum';
-import { formatPhoneNumber } from '@/utils/string.helper';
 import { ColumnsType } from 'antd/es/table';
 import { useNavigate } from 'react-router-dom';
 
@@ -66,7 +62,7 @@ export const UserColumn = (): ColumnsType<UserGetAllDTO> => {
       title: () => <TableHeaderCell key='active' label={'Active'} />,
       key: 'active',
       render: ({ ...props }: UserGetAllDTO) => {
-        return <div className='capitalize'>{props?.active ? "True" : "False"}</div>;
+        return <div className='capitalize'>{props?.active ? 'True' : 'False'}</div>;
       },
     },
     // {

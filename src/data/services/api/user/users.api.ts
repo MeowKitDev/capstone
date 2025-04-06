@@ -1,7 +1,5 @@
-import { AxiosResponse } from "axios";
-import axiosClient from "../../axiosClient";
-import { UserDTO } from "@/data/user-account/dto/user-account.dto";
-import { UserGetAllDTO } from "@/@types/dto/userDTO";
+import axiosClient from '../../axiosClient';
+import { UserGetAllDTO } from '@/@types/dto/userDTO';
 
 // export interface PagedResponse<T> {
 //   data: T[];
@@ -15,10 +13,10 @@ export const userApi = {
   //   });
 
   getAll: async () => {
-    const response: UserGetAllDTO[] = await axiosClient.get("/manager/GetAllUsers", {
+    const response: UserGetAllDTO[] = await axiosClient.get('/manager/GetAllUsers', {
       // params: { page, size },
     });
 
-   return response;
+    return response;
   },
 };
