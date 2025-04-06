@@ -2,6 +2,7 @@ import logo from '@/assets/images/logo.png';
 import BellIcon from '@/components/icons/BellIcon';
 import BracketRightIcon from '@/components/icons/BracketRightIcon';
 import UserCircleIcon from '@/components/icons/UserCircleIcon';
+import UserOutlineIcon from '@/components/icons/UserOutlineIcon';
 import UserPenIcon from '@/components/icons/UserPenIcon';
 import { RootState } from '@/data';
 import { logoutThunk } from '@/data/auth/auth.thunk';
@@ -15,9 +16,16 @@ export default function NavBar() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { userInfo }: GlobalState = useAppSelector((state: RootState) => state.global);
-  console.log('userInfo', userInfo);
+
   const contentPopover = (
     <div className='flex w-[150px] flex-col gap-2'>
+      <button
+        className='flex w-full items-center justify-between rounded-md px-1.5 py-2 hover:bg-gray-100'
+        onClick={() => navigate(MY_ROUTE.PROFILE)}>
+        <span className='text-xs font-semibold text-gray-900'>Profile</span>
+        <UserOutlineIcon className='size-3 cursor-pointer text-gray-900 lg:size-4' />
+      </button>
+      <div className='h-px w-full bg-gray-200' />
       <button
         className='flex w-full items-center justify-between rounded-md px-1.5 py-2 hover:bg-gray-100'
         onClick={() => navigate(MY_ROUTE.CHANGE_PASSWORD)}>
@@ -54,9 +62,9 @@ export default function NavBar() {
         </div>
         <div className='flex cursor-pointer items-center gap-5'>
           <Popover placement='bottom' content={contentPopover} className='flex cursor-pointer items-center gap-2'>
-            {userInfo?.userImage ? (
+            {userInfo?.userImageUrl ? (
               <img
-                src={`data:image/png;base64, ${userInfo?.userImage}`}
+                src={userInfo?.userImageUrl}
                 alt='User Image'
                 className='h-7 w-7 rounded-full border border-gray-200 object-cover'
               />

@@ -19,21 +19,21 @@ export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
       },
     },
     {
-      title: () => <TableHeaderCell key='packageID' label={'packageID'} sortKey='packageID' />,
+      title: () => <TableHeaderCell key='packageID' label={'Package ID'} sortKey='packageID' />,
       key: 'packageID',
       render: ({ ...props }: PackageGetAllDTO) => {
         return <div>{props?.packageID}</div>;
       },
     },
     {
-      title: () => <TableHeaderCell key='price' label={'price'} sortKey='price' />,
+      title: () => <TableHeaderCell key='price' label={'Price'} sortKey='price' />,
       key: 'price',
       render: ({ ...props }: PackageGetAllDTO) => {
         return <div>{props?.price}</div>;
       },
     },
     {
-      title: () => <TableHeaderCell key='description' label={'description'} sortKey='description' />,
+      title: () => <TableHeaderCell key='description' label={'Description'} sortKey='description' />,
       key: 'description',
       render: ({ ...props }: PackageGetAllDTO) => {
         return <div>{props?.description}</div>;
@@ -42,6 +42,7 @@ export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
     {
       title: () => <TableHeaderCell key='time' label={'time'} sortKey='time' />,
       key: 'time',
+      width: 100,
       render: ({ ...props }: PackageGetAllDTO) => {
         return <div>{props?.time}</div>;
       },
@@ -49,6 +50,7 @@ export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
     {
       title: () => <TableHeaderCell key='bonus' label={'bonus'} sortKey='bonus' />,
       key: 'bonus',
+      width: 100,
       render: ({ ...props }: PackageGetAllDTO) => {
         return <div>{props?.bonus}</div>;
       },
@@ -56,6 +58,7 @@ export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
     {
       title: () => <TableHeaderCell key='status' label={'status'} sortKey='status' />,
       key: 'status',
+      width: 120,
       render: ({ ...props }: PackageGetAllDTO) => {
         return <div>{props?.status}</div>;
       },
@@ -63,15 +66,23 @@ export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
     {
       title: () => <TableHeaderCell key='payments' label={'payments'} sortKey='payments' />,
       key: 'payments',
+      width: 120,
       render: ({ ...props }: PackageGetAllDTO) => {
-        return <div>{props?.payments ? "todo": "null"}</div>;
+        return <div>{props?.payments ? 'todo' : 'null'}</div>;
       },
     },
     {
-      title: () => <TableHeaderCell key='driverPackageSubscriptions' label={'driverPackageSubscriptions'} sortKey='driverPackageSubscriptions' />,
+      title: () => (
+        <TableHeaderCell
+          key='driverPackageSubscriptions'
+          label={'Driver Package Subscriptions'}
+          sortKey='driverPackageSubscriptions'
+        />
+      ),
+      width: 300,
       key: 'driverPackageSubscriptions',
       render: ({ ...props }: PackageGetAllDTO) => {
-        return <div>{props?.driverPackageSubscriptions ? "todo": "null"}</div>;
+        return <div>{props?.driverPackageSubscriptions ? 'todo' : 'null'}</div>;
       },
     },
     // {

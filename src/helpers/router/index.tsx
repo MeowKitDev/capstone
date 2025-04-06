@@ -4,17 +4,20 @@ import ProtectedRoute from '@/layouts/ProtectedRoute';
 import PublicRoute from '@/layouts/PublicRoute';
 import CensorDriverRequestPage from '@/pages/censor-driver/CensorDriverRequestPage';
 import CensorVehiclePage from '@/pages/censor-vehicle/CensorVehiclePage';
+import ChangePasswordPage from '@/pages/change-password/ChangePasswordPage';
 import DashboardPage from '@/pages/dashboard/DashboardPage';
 import FeedbackPage from '@/pages/feedback/FeedbackPage';
 import ForgotPasswordPage from '@/pages/forgot-password/ForgotPasswordPage';
 import LoginAdminPage from '@/pages/login/LoginAdminPage';
 import PackagePage from '@/pages/package/PackagePage';
 import RatingPage from '@/pages/rating/RatingPage';
+import ReportPage from '@/pages/report/ReportPage';
 import TransactionHistoryPage from '@/pages/transaction-history/TransactionHistoryPage';
 import TripDetailPage from '@/pages/trip/TripDetailPage';
 import TripPage from '@/pages/trip/TripPage';
 import { UserAccountDetailPage } from '@/pages/user-account/UserAccountDetailPage';
 import UserAccountPage from '@/pages/user-account/UserAccountPage';
+import ProfilePage from '@/pages/user/ProfilePage';
 import WalletPage from '@/pages/wallet/WalletPage';
 
 import { createBrowserRouter, Navigate } from 'react-router-dom';
@@ -72,7 +75,7 @@ const router = createBrowserRouter(
             },
             {
               path: MY_ROUTE.REPORT.self,
-              element: <>Report</>,
+              element: <ReportPage />,
             },
             {
               path: MY_ROUTE.TRANSACTION_HISTORY.self,
@@ -85,6 +88,14 @@ const router = createBrowserRouter(
             {
               path: MY_ROUTE.RATE_DRIVER.self,
               element: <RatingPage />,
+            },
+            {
+              path: MY_ROUTE.CHANGE_PASSWORD,
+              element: <ChangePasswordPage />,
+            },
+            {
+              path: MY_ROUTE.PROFILE,
+              element: <ProfilePage />,
             },
           ],
         },

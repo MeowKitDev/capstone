@@ -28,7 +28,7 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
         if (sortKey) handleOnChangeOrderField(sortKey);
       }}>
       <div className='relative inline-block'>
-        <span className={twMerge('font-semibold leading-[18px] text-white', labelClassName)}>{label}</span>
+        <span className={twMerge('font-semibold capitalize leading-[18px] text-white', labelClassName)}>{label}</span>
         {Boolean(sortKey) && (
           <div className='absolute left-full top-0'>
             {sortOrder === SORT_DIRECTION.ASC ? (

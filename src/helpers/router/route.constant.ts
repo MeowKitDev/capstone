@@ -6,6 +6,7 @@ export enum ROUTE_NAME {
   RESET_PASSWORD = 'reset-password',
   FORGOT_PASSWORD = 'forgot-password',
   CHANGE_PASSWORD = 'change-password',
+  PROFILE = 'profile',
   DASHBOARD = 'dashboard',
   USER = 'user',
   VIEW_USER_ACCOUNT = 'view-user-account',
@@ -29,6 +30,7 @@ export const MY_ROUTE = {
   SIGNUP: ROUTE_NAME.SIGN_UP,
   NOT_FOUND: ROUTE_NAME.NOT_FOUND,
   CHANGE_PASSWORD: ROUTE_NAME.CHANGE_PASSWORD,
+  PROFILE: ROUTE_NAME.PROFILE,
   FORGOT_PASSWORD: {
     self: `/${ROUTE_NAME.FORGOT_PASSWORD}`,
     success: `/${ROUTE_NAME.FORGOT_PASSWORD}/success`,
