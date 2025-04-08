@@ -9,6 +9,7 @@ import ListCheckIcon from '@/components/icons/ListCheckIcon';
 import MemberIcon from '@/components/icons/MemberIcon';
 import MoneyCheckIcon from '@/components/icons/MoneyCheckIcon';
 import RatingIcon from '@/components/icons/RatingIcon';
+import UserGroupIcon from '@/components/icons/UserGroupIcon';
 import WalletIcon from '@/components/icons/WalletIcon';
 import { SideBarGroupTemplate } from '@/layouts/types/SideBarGroupTemplate.type';
 
@@ -16,10 +17,11 @@ export const LAYOUT_SIDEBAR_GROUP_TEMPLATES: SideBarGroupTemplate[] = [
   { title: 'dashboard', icon: <ChartPieIcon /> },
   {
     title: 'user',
-    icon: <MemberIcon />,
+    icon: <UserGroupIcon />,
     items: [
       { title: 'view-user-account', icon: <AccountIcon /> },
       { title: 'censor-driver-request', icon: <CardIdIcon /> },
+      { title: 'staff', icon: <MemberIcon /> },
     ],
   },
   { title: 'trip', icon: <CarIcon /> },

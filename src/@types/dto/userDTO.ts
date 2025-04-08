@@ -1,11 +1,11 @@
 export interface UserGetAllDTO {
-  userId: number;
+  userId: string;
   username: string;
-  firstName: string | null;
-  lastName: string | null;
+  firstName: string;
+  lastName: string;
   email: string;
-  gender: string | null;
-  phoneNumber: string | null;
+  gender: string;
+  phoneNumber: string;
   active: boolean;
   roles: string[];
 }
