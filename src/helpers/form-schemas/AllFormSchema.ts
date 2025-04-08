@@ -21,7 +21,7 @@ export const allFormSchema = {
     .string()
     .default('')
     .required('required.confirm_password')
-    .oneOf([yup.ref('password')], 'test.confirm_password'),
+    .oneOf([yup.ref('newPassword')], 'test.confirm_password'),
   fullname: yup.string().default('').required('required.name'),
   phoneNumber: yup.string().default('').required('required.phone_number').matches(PHONE_NUMBER_REGEX, {
     message: 'matches.phone_number',
