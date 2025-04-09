@@ -16,6 +16,7 @@ export const TAG_TYPES = {
   NOTIFICATION_SETTING: 'setting_notification',
   ADMIN: 'admin',
   TRIP: 'trip',
+  STAFF: 'staff',
 };
 
 export const apiBaseUrl = import.meta.env.VITE_API_ENDPOINT;

@@ -10,6 +10,7 @@ export const baseSchema = {
   yupString: yup.string().default(''),
   yupRequiredString: yup.string().default('').required('required.default'),
   yupNumber: yup.number(),
+  yupArray: yup.array().default([]),
 };
 
 export const allFormSchema = {
@@ -23,9 +24,7 @@ export const allFormSchema = {
     .required('required.confirm_password')
     .oneOf([yup.ref('newPassword')], 'test.confirm_password'),
   fullname: yup.string().default('').required('required.name'),
-  phoneNumber: yup.string().default('').required('required.phone_number').matches(PHONE_NUMBER_REGEX, {
-    message: 'matches.phone_number',
-  }),
+  phoneNumber: yup.string().default('').required('required.phone_number'),
   birthday: yup.string().default('').required('required.birthday'),
   packageName: yup.string().default('').required('required.package_name'),
   packageTime: yup

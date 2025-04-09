@@ -1,9 +1,5 @@
-import HomeIcon from '@/components/icons/HomeIcon';
-import { MY_ROUTE } from '@/helpers/router/route.constant';
-import { Breadcrumb } from 'antd';
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
 type BreadcrumbItem = {
@@ -37,7 +33,7 @@ export default function DefaultContainer({
       )}>
       <div className='flex items-center justify-between'>
         <div className='w-full'>
-          <Breadcrumb
+          {/* <Breadcrumb
             className='text-primary-500'
             items={
               breadcrumbs
@@ -70,10 +66,10 @@ export default function DefaultContainer({
                     },
                   ]
             }
-          />
+          /> */}
           {button ? (
             <div className='flex w-full items-center justify-between'>
-              <h1 className='mt-5 text-3xl font-bold text-primary-500'>{title}</h1>
+              <h1 className='text-3xl font-bold text-primary-500'>{title}</h1>
               {button}
             </div>
           ) : (

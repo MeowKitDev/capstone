@@ -1,4 +1,3 @@
-import { MEMBER_SEARCH_BY } from '@/pages/members/types/MemberSearch.type';
 import { WithOptional } from '@/utils/types/generic.type';
 import { PagingREQ } from '@/utils/types/paging.type';
 
@@ -10,17 +9,21 @@ export type UserInfoREQ = {
 };
 
 export type UpdateUserInfoREQ = {
-  fullName: string;
-  email: string;
-  phoneNumber: string;
-  birthday: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  address: string;
+  dob: string;
+  gender: string;
+  userImage: string[];
+  userImageContentType: string;
 };
 
 export type GetUserFilter = WithOptional<
   {
     pageSize: number;
     currentPage: number;
-    searchBy: MEMBER_SEARCH_BY;
+    searchBy: number;
     searchKeyword: string;
   },
   'pageSize' | 'currentPage' | 'searchBy' | 'searchKeyword'

@@ -1,6 +1,6 @@
 import CustomTextFieldWithLabel from '@/components/form-related/CustomTextFieldWithLabel';
 import CustomModal from '@/components/modal/CustomModal';
-import { UserDTO } from '@/data/user-account/dto/user-account.dto';
+import { StaffDTO } from '@/data/staff/dto/staff.dto';
 import { StaffInput } from '@/helpers/form-schemas/staff/staff.input';
 import { staffSchema } from '@/helpers/form-schemas/staff/staff.schema';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form';
 type StaffUpdateModalProps = {
   open: boolean;
   setOpen: (open: boolean) => void;
-  data: UserDTO;
+  data: StaffDTO;
 };
 
 export const StaffUpdateModal = ({ open, setOpen, data }: StaffUpdateModalProps) => {
