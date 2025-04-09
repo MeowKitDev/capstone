@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { loginThunk, logoutThunk } from './auth.thunk';
+import { UserGetMeDTO } from '@/@types/dto/userDTO';
 
 type AuthStatus = 'before-login' | 'in-app' | 'after-logout' | 'out-session' | 'freshdesk';
 
 export interface AuthState {
   status: AuthStatus;
+  // userInfo?: UserGetMeDTO;
 }
 
 const initialState: AuthState = {
@@ -20,18 +22,27 @@ export const authSlice = createSlice({
     setStatus: (state, { payload }: PayloadAction<AuthStatus>) => {
       state.status = payload;
     },
+
+    // setUserInfo: (state, { payload }: PayloadAction<UserGetMeDTO>) => {
+    //   state.userInfo = payload;
+    // },
   },
-  extraReducers: (builder) => [
+  extraReducers: (builder) => {
     builder.addCase(loginThunk.fulfilled, (state) => {
       state.status = 'in-app';
-    }),
+    });
 
     builder.addCase(logoutThunk.fulfilled, (state) => {
       state.status = 'after-logout';
-    }),
-  ],
+      // state.userInfo = undefined; 
+    });
+  },
 });
 
-export const { resetState, setStatus } = authSlice.actions;
+export const { 
+  resetState, 
+  setStatus, 
+  // setUserInfo 
+} = authSlice.actions;
 
 export default authSlice.reducer;

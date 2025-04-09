@@ -9,6 +9,6 @@ export type UserInfo = {
   gender: USER_ACCOUNT_GENDER;
   address: string;
   dob: string;
-  userImageUrl: string;
+  userImage: string;
   roles: string[];
 };

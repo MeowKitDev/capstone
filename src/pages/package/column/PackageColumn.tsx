@@ -1,8 +1,13 @@
 import { PackageGetAllDTO } from '@/@types/dto/packageDTO';
+import CustomTableActionsButton from '@/components/table/CustomTableActionsButton';
 import { TableHeaderCell } from '@/components/table/TableHeaderCell';
+import { Button } from 'antd';
 import { ColumnsType } from 'antd/es/table';
+import { useState } from 'react';
 
 export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
+    const [isModalDetailOpen, setIsModalDetailOpen] = useState<number | null>(null);
+  
   return [
     {
       title: () => <TableHeaderCell key='id' label={'ID'} sortKey='id' />,
@@ -18,13 +23,13 @@ export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
         return <div>{props?.name}</div>;
       },
     },
-    {
-      title: () => <TableHeaderCell key='packageID' label={'Package ID'} sortKey='packageID' />,
-      key: 'packageID',
-      render: ({ ...props }: PackageGetAllDTO) => {
-        return <div>{props?.packageID}</div>;
-      },
-    },
+    // {
+    //   title: () => <TableHeaderCell key='packageID' label={'Package ID'} sortKey='packageID' />,
+    //   key: 'packageID',
+    //   render: ({ ...props }: PackageGetAllDTO) => {
+    //     return <div>{props?.packageID}</div>;
+    //   },
+    // },
     {
       title: () => <TableHeaderCell key='price' label={'Price'} sortKey='price' />,
       key: 'price',
@@ -85,6 +90,25 @@ export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
         return <div>{props?.driverPackageSubscriptions ? 'todo' : 'null'}</div>;
       },
     },
+    {
+          title: () => <TableHeaderCell key='action' label={'Action'} />,
+          key: 'action',
+          render: ({ ...props }: PackageGetAllDTO) => (
+            <>
+              <div className='flex w-full justify-start'>
+                <Button>Inactive</Button>
+                {/* <CustomTableActionsButton label={'Inactive'} onClick={() => setIsModalDetailOpen(props.id ?? null)} /> */}
+              </div>
+              {/* {isModalDetailOpen === props.id && (
+                <CensorDriverDetailModal
+                  open={isModalDetailOpen === props.id}
+                  setOpen={() => setIsModalDetailOpen(null)}
+                  data={props}
+                />
+              )} */}
+            </>
+          ),
+        },
     // {
     //   title: () => <TableHeaderCell key='packageName' label={'Package Name'} sortKey='packageName' />,
     //   key: 'packageName',

@@ -108,7 +108,7 @@ export const UserColumn = (): ColumnsType<UserGetAllDTO> => {
     //   title: () => <TableHeaderCell key='action' label={'Action'} />,
     //   key: 'action',
     //   render: ({ ...props }: UserGetAllDTO) => (
-    //     <div className='flex justify-start w-full'>
+    //     <div className='flex w-full justify-start'>
     //       <CustomTableActionsButton
     //         label={'See Details'}
     //         onClick={() => navigate(MY_ROUTE.USER.VIEW_USER_ACCOUNT.detail(props?.id.toString()))}

@@ -9,3 +9,16 @@ export interface UserGetAllDTO {
   active: boolean;
   roles: string[];
 }
+
+export interface UserGetMeDTO {
+  login?:        string;
+  email?:        string;
+  firstName?:    string;
+  lastName?:     string;
+  phone?:        string;
+  gender?:       string;
+  address?:      string;
+  dob?:          Date;
+  userImageUrl?: string;
+  roles?:        string[];
+}
