@@ -12,3 +12,8 @@ export type GetTripListFilter = WithOptional<
 >;
 
 export type GetTripListREQ = GetTripListFilter & PagingREQ;
+
+export type PutRejectTripREQ = {
+  tripId: string;
+  reason: string;
+};

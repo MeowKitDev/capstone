@@ -1,6 +1,10 @@
 import InfoItem from '@/components/common/InfoItem';
 import LoadingPageBanner from '@/components/common/LoadingPageBanner';
-import { useGetTripDetailQuery } from '@/data/trip/trip.api';
+import CustomTextFieldWithLabel from '@/components/form-related/CustomTextFieldWithLabel';
+import CustomConfirmModal from '@/components/modal/CustomConfirmModal';
+import CustomModal from '@/components/modal/CustomModal';
+import { useGetTripDetailQuery, usePutAcceptTripMutation, usePutRejectTripMutation } from '@/data/trip/trip.api';
+import { baseSchema } from '@/helpers/form-schemas/AllFormSchema';
 import {
   DATE_FORMAT,
   DATE_FORMAT_DOT,
@@ -10,14 +14,62 @@ import {
 import { GENDER } from '@/utils/enum/common.enum';
 import { TRIP_STATUS } from '@/utils/enum/trip/trip-status.enum';
 import { formatPhoneNumber } from '@/utils/string.helper';
-import { Divider, Image, Tag } from 'antd';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, Divider, Image, Tag } from 'antd';
 import dayjs from 'dayjs';
+import { enqueueSnackbar } from 'notistack';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
+import * as yup from 'yup';
+
+const reasonSchema = yup.object().shape({
+  reason: baseSchema.yupString,
+});
 
 export default function TripDetail() {
   const { id } = useParams();
+  const [isAccept, setIsAccept] = useState(false);
+  const [isReject, setIsReject] = useState(false);
 
   const { data, isLoading } = useGetTripDetailQuery(id as string);
+  const [putAcceptTrip, { isLoading: isLoadingAccept }] = usePutAcceptTripMutation();
+  const [putRejectTrip, { isLoading: isLoadingReject }] = usePutRejectTripMutation();
+  const { handleSubmit, control } = useForm({
+    resolver: yupResolver(reasonSchema),
+    defaultValues: reasonSchema.getDefault(),
+  });
+
+  const handleAcceptTrip = async () => {
+    try {
+      await putAcceptTrip(id as string).unwrap();
+      enqueueSnackbar('Chấp nhận chuyến đi thành công', {
+        variant: 'success',
+        autoHideDuration: 2000,
+      });
+      setIsAccept(false);
+    } catch (error) {
+      console.error('Error accepting trip:', error);
+    }
+  };
+
+  const onSubmit = (data: any) => {
+    putRejectTrip({ tripId: id as string, reason: data.reason })
+      .unwrap()
+      .then(() => {
+        enqueueSnackbar('Từ chối chuyến đi thành công', {
+          variant: 'success',
+          autoHideDuration: 2000,
+        });
+        setIsReject(false);
+      })
+      .catch(() => {
+        enqueueSnackbar('Từ chối chuyến đi thất bại', {
+          variant: 'error',
+          autoHideDuration: 2000,
+        });
+      });
+  };
 
   return (
     <>
@@ -26,8 +78,26 @@ export default function TripDetail() {
       ) : (
         <div className='space-y-5'>
           <div>
-            <h3 className='text-xl font-bold text-primary-500'>Thông tin chuyến đi</h3>
-            <span className='text-sm font-normal text-gray-500'>(Thông tin chi tiết chuyến đi)</span>
+            <div className='flex items-center justify-between'>
+              <div>
+                <h3 className='text-xl font-bold text-primary-500'>Thông tin chuyến đi</h3>
+                <span className='text-sm font-normal text-gray-500'>(Thông tin chi tiết chuyến đi)</span>
+              </div>
+
+              <div>
+                {data?.tripStatus === TRIP_STATUS.CONFIRMING && (
+                  <Button
+                    className='float-right mr-2 bg-blue-500 text-white'
+                    onClick={() => setIsAccept(true)}
+                    loading={isLoadingAccept}>
+                    Chấp nhận
+                  </Button>
+                )}
+                <Button className='float-right mr-2 bg-red-500 text-white' onClick={() => setIsReject(true)}>
+                  Từ chối
+                </Button>
+              </div>
+            </div>
             <Divider className='mt-1' />
             <div className='mt-4 grid grid-cols-3 gap-4'>
               <InfoItem label='Điểm đón' value={data?.startLocation} />
@@ -110,7 +180,7 @@ export default function TripDetail() {
             <div className='flex items-center gap-4'>
               <figure className='relative h-40 w-40 rounded-xl border-[5px] border-white'>
                 <img
-                  src={`https://ui-avatars.com/api/?name=${data?.driver?.firstName + ' ' + data?.driver.lastName}&background=6366f1&color=fff&size=24`}
+                  src={data?.driver?.avatarUrl}
                   alt={'avatar'}
                   className='h-full w-full rounded-xl border-[5px] border-white object-contain'
                 />
@@ -203,6 +273,34 @@ export default function TripDetail() {
           </div>
         </div>
       )}
+      <CustomConfirmModal
+        open={isAccept}
+        title='Xác nhận chuyến đi'
+        message='Bạn có chắc chắn muốn chấp nhận chuyến đi này không?'
+        setOpen={setIsAccept}
+        onConfirm={handleAcceptTrip}
+        okText='Chấp nhận'
+        cancelText='Hủy'
+      />
+      <CustomModal title='Từ chối chuyến đi' open={isReject} setOpen={() => setIsReject(false)} className='!w-[520px]'>
+        <form className='mt-10 space-y-4' onSubmit={handleSubmit(onSubmit)}>
+          <CustomTextFieldWithLabel
+            name='reason'
+            type='textarea'
+            control={control}
+            rows={4}
+            label='Lý do từ chối'
+            placeholder='Nhập lý do từ chối'
+            className='w-full'
+          />
+          <div className='mt-6 flex justify-end gap-3'>
+            <Button onClick={() => setIsReject(false)}>Hủy</Button>
+            <Button type='primary' className='border-none' htmlType='submit' loading={isLoadingReject}>
+              Từ chối
+            </Button>
+          </div>
+        </form>
+      </CustomModal>
     </>
   );
 }

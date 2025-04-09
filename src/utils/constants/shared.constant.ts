@@ -16,6 +16,7 @@ export const TAG_TYPES = {
   NOTIFICATION_SETTING: 'setting_notification',
   ADMIN: 'admin',
   TRIP: 'trip',
+  TRIP_DETAIL: 'trip_detail',
   STAFF: 'staff',
 };
 

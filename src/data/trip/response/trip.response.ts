@@ -54,6 +54,7 @@ export type DriverInfo = {
   driverLicenseUrl: string;
   identityCardFaceUpUrl: string;
   identityCardFaceDownUrl: string;
+  avatarUrl: string;
 };
 
 export type VehicleInfo = {
