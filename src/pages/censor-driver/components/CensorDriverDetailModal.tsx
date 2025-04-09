@@ -1,3 +1,4 @@
+import { CensorDriverRequestDTO } from '@/@types/dto/censorDriverRequestDTO';
 import InfoItem from '@/components/common/InfoItem';
 import CustomTextFieldWithLabel from '@/components/form-related/CustomTextFieldWithLabel';
 import CustomModal from '@/components/modal/CustomModal';
@@ -11,7 +12,7 @@ import * as yup from 'yup';
 type CensorDriverDetailModalProps = {
   open: boolean;
   setOpen: (open: boolean) => void;
-  data: CensorDriverDTO;
+  data: CensorDriverRequestDTO;
 };
 
 type ReasonModalProps = {
@@ -86,17 +87,17 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
             <div className='flex items-center gap-4'>
               <figure className='relative h-40 w-40 rounded-xl border-[5px] border-white'>
                 <img
-                  src={`https://ui-avatars.com/api/?name=${data?.name}&background=6366f1&color=fff&size=24`}
+                  src={`https://ui-avatars.com/api/?name=${data?.firstName}&background=6366f1&color=fff&size=24`}
                   alt={'avatar'}
                   className='h-full w-full rounded-xl border-[5px] border-white object-contain'
                 />
               </figure>
               <div className='mt-4 grid grid-cols-2 gap-4'>
-                <InfoItem label='Name' value={data?.name} />
+                <InfoItem label='Name' value={data?.firstName + " " + data?.lastName} />
                 <InfoItem label='Phone' value={data?.phone} />
                 <InfoItem label='Email' value={data?.email} />
-                <InfoItem label='Package Buy' value={'Gold Package'} />
-                <InfoItem label='Payment Method' value={'Bank Transfer'} />
+                {/* <InfoItem label='Package Buy' value={'Gold Package'} />
+                <InfoItem label='Payment Method' value={'Bank Transfer'} /> */}
               </div>
             </div>
             <div className='space-y-4'>
@@ -104,9 +105,7 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                 label='Driver License'
                 value={
                   <img
-                    src={
-                      'https://www.shutterstock.com/image-vector/driver-license-plastic-card-photo-260nw-2216933107.jpg'
-                    }
+                    src={data?.driverLicenseUrl ?? "https://www.shutterstock.com/image-vector/driver-license-plastic-card-photo-260nw-2216933107.jpg"}
                     alt='driver license'
                     className='h-[200px] w-[300px] object-contain'
                   />
@@ -116,32 +115,43 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                 label='ID Card'
                 value={
                   <img
-                    src={'https://tayho.hanoi.gov.vn/Medias/1/35/2024/6/30/a5456b6e-5530-4ee1-9b65-99450249205d.jpg'}
+                    src={data?.identityCardFaceUpUrl ??'https://tayho.hanoi.gov.vn/Medias/1/35/2024/6/30/a5456b6e-5530-4ee1-9b65-99450249205d.jpg'}
                     alt='id card'
                     className='h-[200px] w-[300px] object-contain'
                   />
                 }
               />
+              {/* identityCardFaceDownUrl */}
+              {/* <InfoItem
+                label='ID Card'
+                value={
+                  <img
+                    src={data?.identityCardFaceDownUrl ??'https://tayho.hanoi.gov.vn/Medias/1/35/2024/6/30/a5456b6e-5530-4ee1-9b65-99450249205d.jpg'}
+                    alt='id card'
+                    className='h-[200px] w-[300px] object-contain'
+                  />
+                }
+              /> */}
             </div>
           </div>
           <div>
             <h3 className='text-2xl font-bold'>Vehicle Information</h3>
             <Image
-              src={'https://vinfast-auto-vn.net/wp-content/uploads/2022/08/VinFast-VF-8-mau-Xanh-Luc.png'}
+              src={data?.vehicle?.vehicleImageUrl}
               alt='vehicle'
               width={400}
               height={250}
               className='object-contain'
             />
             <div className='mt-4 grid grid-cols-2 gap-4'>
-              <InfoItem label='Vehicle Type' value={'Car'} />
-              <InfoItem label='Vehicle Name' value={'VinFast VF8'} />
-              <InfoItem label='Vehicle Brand' value={'VinFast'} />
-              <InfoItem label='Vehicle Model' value={'VF8'} />
-              <InfoItem label='Vehicle Color' value={'Blue'} />
-              <InfoItem label='Machine Number' value={'1234567890'} />
-              <InfoItem label='Chassis Number' value={'1234567890'} />
-              <InfoItem label='Vehicle License Plate' value={'1234567890'} />
+            {/* <InfoItem label='Vehicle Id' value={data?.vehicle?.vehicleID} /> */}
+              <InfoItem label='Vehicle Type' value={data?.vehicle?.vehicleType} />
+              <InfoItem label='Vehicle Number' value={data?.vehicle?.vehicleNumber} />
+              <InfoItem label='Vehicle Brand' value={data?.vehicle?.vehicleBrand} />
+              <InfoItem label='NumberOfSeats' value={data?.vehicle?.numberOfSeats} />
+              <InfoItem label='VehicleColor' value={data?.vehicle?.vehicleColor} />
+              <InfoItem label='Status' value={data?.vehicle?.status} />
+              
             </div>
             <div className='mt-4'>
               <div className='grid grid-cols-2 gap-4'>
@@ -149,8 +159,9 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                   label='Car Insurance'
                   value={
                     <Image
-                      src={'https://www.policybazaar.com/pblife/assets/images/pb_life_1650972275.jpg'}
-                      alt='vehicle'
+                      // src={'https://www.policybazaar.com/pblife/assets/images/pb_life_1650972275.jpg'}
+                      src={data?.vehicle?.carInsuranceUrl}
+                      alt='carInsurance'
                       width={100}
                       height={100}
                       className='object-contain'
@@ -158,6 +169,18 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                   }
                 />
                 <InfoItem
+                  label='Carregistration'
+                  value={
+                    <Image
+                      src={data?.vehicle?.carregistrationUrl}
+                      alt='carInsurance'
+                      width={100}
+                      height={100}
+                      className='object-contain'
+                    />
+                  }
+                />
+                {/* <InfoItem
                   label='Registration Certificate'
                   value={
                     <Image
@@ -170,15 +193,27 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                       className='object-contain'
                     />
                   }
-                />
+                /> */}
               </div>
-              <InfoItem
+              {/* <InfoItem
                 label='Vehicle Registration Certificate'
                 value={
                   <Image
                     src={
                       'https://tnclerks.zendesk.com/hc/article_attachments/4409967522708/Combined_month_and_year_decal.PNG'
                     }
+                    alt='vehicle'
+                    width={100}
+                    height={100}
+                    className='object-contain'
+                  />
+                }
+              /> */}
+              <InfoItem
+                label='Vehicle Inspection Certificate'
+                value={
+                  <Image
+                    src={data?.vehicle?.vehicleInspectionCertificateUrl}
                     alt='vehicle'
                     width={100}
                     height={100}

@@ -13,14 +13,7 @@ export const packageApi = {
   //   });
 
   getAll: async () => {
-    const token = localStorage.getItem('token'); // hoặc lấy từ Redux/Zustand
-
-    const response = await axiosClient.get<PackageGetAllDTO[]>('/mobile/user/view/allpackages', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    return response;
+    const response: PackageGetAllDTO[] = await axiosClient.get("/mobile/user/view/allpackages", {});
+  return response;
   },
 };

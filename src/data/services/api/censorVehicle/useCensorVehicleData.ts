@@ -1,7 +1,8 @@
 import { useQuery } from 'react-query';
-import { userApi } from './users.api';
+import { censorVehicleApi } from './censorVehicle.api';
 
-const useUsersData = () => {
+
+const useCensorVehicleData = () => {
   // const [pagination, setPagination] = useState<PaginationState>({
   //   pageIndex: 0,
   //   pageSize: 10,
@@ -10,11 +11,11 @@ const useUsersData = () => {
   // const [keyword, setKeyword] = useState<string>();
   // const [totalRows, setTotalRows] = useState<number>(0);
   // const [filter, setFilter] = useState({});
-  const fetchUserDataFunction = async () => {
+  const fetchCensorVehicleDataFunction = async () => {
     try {
-      const response = await userApi.getAll();
+      const response = await censorVehicleApi.getAll();
       // console.log(response);
-      return response?.content;
+      return response;
     } catch (e) {
       console.log(e);
       throw e;
@@ -22,19 +23,19 @@ const useUsersData = () => {
   };
 
   // TODO: use debounce technique to prevent many calls at a short time
-  const queryKey = ['users'];
+  const queryKey = ['CensorVehicles'];
 
   const {
-    data: UserData,
-    refetch: refreshUserData,
+    data: CensorVehicleData,
+    refetch: refreshCensorVehicleData,
     ...rest
-  } = useQuery(queryKey, fetchUserDataFunction, {
+  } = useQuery(queryKey, fetchCensorVehicleDataFunction, {
     onError: (err) => console.log('error at hook', err),
   });
 
   return {
-    UserData,
-    refreshUserData,
+    CensorVehicleData,
+    refreshCensorVehicleData,
     // setSortState,
     // setKeyword,
     // setPagination,
@@ -45,4 +46,4 @@ const useUsersData = () => {
   };
 };
 
-export default useUsersData;
+export default useCensorVehicleData;

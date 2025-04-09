@@ -3,6 +3,7 @@ import { RootState } from '@/data';
 import { useLoginMutation } from '@/data/auth/auth.api';
 import { AuthState, setStatus } from '@/data/auth/auth.slice';
 import { loginThunk } from '@/data/auth/auth.thunk';
+import { userApi } from '@/data/services/api/user/users.api';
 import { LoginAdminInput } from '@/helpers/form-schemas/login/login.input';
 import { loginAdminSchema } from '@/helpers/form-schemas/login/login.schema';
 import { MY_ROUTE } from '@/helpers/router/route.constant';
@@ -38,18 +39,35 @@ export default function LoginAdminPage() {
   const [login, { isLoading: isLogging }] = useLoginMutation();
 
   const onSubmit: SubmitHandler<LoginAdminInput> = async ({ username, password }: LoginAdminInput) => {
-    await login({ username, password, rememberMe: keepLoggedIn })
-      .unwrap()
-      .then((dto) => {
-        if (dto) {
-          const loginData = { ...dto, rememberMe: keepLoggedIn };
-          dispatch(loginThunk(loginData));
-        }
-      })
-      .catch((error) => {
-        const message = getErrorMessage(error);
-        enqueueSnackbar({ message, variant: 'error' });
-      });
+    try {
+      // Đăng nhập
+      const loginResponse = await login({ username, password, rememberMe: keepLoggedIn }).unwrap();
+      if (loginResponse) {
+        const loginData = { ...loginResponse, rememberMe: keepLoggedIn };
+  
+        dispatch(loginThunk(loginData));
+  
+        // const userInfoResponse = await fetch('/getme', {
+        //   method: 'GET',
+        //   headers: {
+        //     'Authorization': `Bearer ${loginData.accessToken}`, // Chắc chắn rằng bạn gửi token để xác thực
+        //   },
+        // });
+
+        // // const userInfoResponse = await userApi.getMe();
+  
+        // if (!userInfoResponse.ok) {
+        //   throw new Error('Failed to fetch user info');
+        // }
+  
+        // const userInfo = await userInfoResponse.json();
+  
+        // dispatch(setUserInfo(userInfo)); 
+      }
+    } catch (error) {
+      const message = getErrorMessage(error);
+      enqueueSnackbar({ message, variant: 'error' });
+    }
   };
 
   useEffect(() => {
