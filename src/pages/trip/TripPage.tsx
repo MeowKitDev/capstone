@@ -5,7 +5,7 @@ import TripList from './components/TripList';
 export default function TripPage() {
   return (
     <TableUtilProvider>
-      <DefaultContainer title='Trip'>
+      <DefaultContainer title='Danh sách chuyến đi' breadcrumbs={[{ title: 'Trip' }]}>
         <TripList />
       </DefaultContainer>
     </TableUtilProvider>

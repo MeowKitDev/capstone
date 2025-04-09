@@ -90,7 +90,7 @@ export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
       },
     },
     {
-      title: () => <TableHeaderCell key='action' label={'Action'} />,
+      title: () => <TableHeaderCell key='action' label={''} />,
       key: 'action',
       render: ({ ...props }: PackageGetAllDTO) => (
         <>

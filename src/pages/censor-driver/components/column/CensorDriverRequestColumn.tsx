@@ -1,9 +1,9 @@
+import { CensorDriverRequestDTO } from '@/@types/dto/censorDriverRequestDTO';
 import CustomTableActionsButton from '@/components/table/CustomTableActionsButton';
 import { TableHeaderCell } from '@/components/table/TableHeaderCell';
 import { ColumnsType } from 'antd/es/table';
 import { useState } from 'react';
 import CensorDriverDetailModal from '../CensorDriverDetailModal';
-import { CensorDriverRequestDTO } from '@/@types/dto/censorDriverRequestDTO';
 
 export const CensorDriverRequestColumn = (): ColumnsType<CensorDriverRequestDTO> => {
   const [isModalDetailOpen, setIsModalDetailOpen] = useState<string | null>(null);
@@ -83,7 +83,7 @@ export const CensorDriverRequestColumn = (): ColumnsType<CensorDriverRequestDTO>
     // },
 
     {
-      title: () => <TableHeaderCell key='action' label={'Action'} />,
+      title: () => <TableHeaderCell key='action' label={''} />,
       key: 'action',
       render: ({ ...props }: CensorDriverRequestDTO) => (
         <>

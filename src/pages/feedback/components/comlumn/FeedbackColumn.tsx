@@ -81,7 +81,7 @@ export const FeedbackColumn = (): ColumnsType<FeedbackDTO> => {
       },
     },
     {
-      title: () => <TableHeaderCell key='action' label={'Action'} />,
+      title: () => <TableHeaderCell key='action' label={''} />,
       key: 'action',
       render: ({ ...props }: FeedbackDTO) => (
         <>

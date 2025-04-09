@@ -45,7 +45,6 @@ export const StaffUpdateModal = ({ open, setOpen, data }: StaffUpdateModalProps)
   }, [data, reset, setValue]);
 
   const onSubmit: SubmitHandler<StaffInput> = async (dataInput: StaffInput) => {
-    console.log('dataInput', dayjs(data.dob).toString());
     const dataUpdateInfo: StaffUpdateREQ = {
       userId: data.userId,
       firstName: dataInput.firstName,

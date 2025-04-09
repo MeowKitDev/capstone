@@ -81,7 +81,7 @@ export const ReportColumn = (): ColumnsType<ReportDTO> => {
       },
     },
     {
-      title: () => <TableHeaderCell key='action' label={'Action'} />,
+      title: () => <TableHeaderCell key='action' label={''} />,
       key: 'action',
       render: ({ ...props }: ReportDTO) => (
         <>

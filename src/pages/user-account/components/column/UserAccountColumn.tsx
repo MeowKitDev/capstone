@@ -105,7 +105,7 @@ export const UserColumn = (): ColumnsType<UserGetAllDTO> => {
     //   },
     // },
     // {
-    //   title: () => <TableHeaderCell key='action' label={'Action'} />,
+    //   title: () => <TableHeaderCell key='action' label={''} />,
     //   key: 'action',
     //   render: ({ ...props }: UserGetAllDTO) => (
     //     <div className='flex w-full justify-start'>

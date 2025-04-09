@@ -28,4 +28,6 @@ export enum PARAM_FIELD {
   FIRST_NAME = 'firstName',
   LAST_NAME = 'lastName',
   SORT = 'sort',
+  START_LOCATION = 'startLocation',
+  END_LOCATION = 'endLocation',
 }

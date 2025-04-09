@@ -119,7 +119,7 @@ export const TransactionColumn = (): ColumnsType<WalletDTO> => {
     //   },
     // },
     // {
-    //   title: () => <TableHeaderCell key='action' label={'Action'} />,
+    //   title: () => <TableHeaderCell key='action' label={''} />,
     //   key: 'action',
     //   render: ({ ...props }: WalletDTO) => (
     //     <div className='flex justify-start w-full'>

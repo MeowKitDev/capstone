@@ -82,7 +82,7 @@ export const TransactionHistoryColumn = (): ColumnsType<TransactionHistoryDTO> =
       },
     },
     // {
-    //   title: () => <TableHeaderCell key='action' label={'Action'} />,
+    //   title: () => <TableHeaderCell key='action' label={''} />,
     //   key: 'action',
     //   render: ({ ...props }: TransactionHistoryDTO) => (
     //     <div className='flex justify-start w-full'>

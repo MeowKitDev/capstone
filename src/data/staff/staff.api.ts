@@ -33,7 +33,20 @@ export const staffApi = CRMApi.enhanceEndpoints({ addTagTypes: [TAG_TYPES.STAFF]
       }),
       invalidatesTags: [{ type: TAG_TYPES.STAFF }],
     }),
+
+    putToggleStaffStatus: build.mutation<void, string>({
+      query: (staffId: string) => ({
+        url: `admin/staff/toggle-activation/${staffId}`,
+        method: HTTP_METHOD.PUT,
+      }),
+      invalidatesTags: [{ type: TAG_TYPES.STAFF }],
+    }),
   }),
 });
 
-export const { useGetStaffListQuery, usePutUpdateStaffMutation, usePostCreateStaffMutation } = staffApi;
+export const {
+  useGetStaffListQuery,
+  usePutUpdateStaffMutation,
+  usePostCreateStaffMutation,
+  usePutToggleStaffStatusMutation,
+} = staffApi;

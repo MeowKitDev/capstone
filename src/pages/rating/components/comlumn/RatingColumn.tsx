@@ -54,7 +54,7 @@ export const RatingColumn = (): ColumnsType<RatingDTO> => {
       },
     },
     {
-      title: () => <TableHeaderCell key='action' label={'Action'} />,
+      title: () => <TableHeaderCell key='action' label={''} />,
       key: 'action',
       render: ({ ...props }: RatingDTO) => (
         <>

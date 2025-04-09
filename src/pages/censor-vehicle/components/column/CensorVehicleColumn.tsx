@@ -1,9 +1,9 @@
+import { CensorVehicleDTO } from '@/@types/dto/censorVehicleDTO';
 import CustomTableActionsButton from '@/components/table/CustomTableActionsButton';
 import { TableHeaderCell } from '@/components/table/TableHeaderCell';
 import { ColumnsType } from 'antd/es/table';
 import { useState } from 'react';
 import CensorVehicleModal from '../CensorVehicleModal';
-import { CensorVehicleDTO } from '@/@types/dto/censorVehicleDTO';
 
 export const CensorVehicleColumn = (): ColumnsType<CensorVehicleDTO> => {
   const [isModalDetailOpen, setIsModalDetailOpen] = useState<number | null>(null);
@@ -69,7 +69,7 @@ export const CensorVehicleColumn = (): ColumnsType<CensorVehicleDTO> => {
     //   },
     // },
     {
-      title: () => <TableHeaderCell key='action' label={'Action'} />,
+      title: () => <TableHeaderCell key='action' label={''} />,
       key: 'action',
       render: ({ ...props }: CensorVehicleDTO) => (
         <>
