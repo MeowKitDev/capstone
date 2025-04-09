@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
-import { userApi } from './users.api';
+import { walletApi } from './wallet.api';
 
-const useUsersData = () => {
+const useWalletData = () => {
   // const [pagination, setPagination] = useState<PaginationState>({
   //   pageIndex: 0,
   //   pageSize: 10,
@@ -10,10 +10,9 @@ const useUsersData = () => {
   // const [keyword, setKeyword] = useState<string>();
   // const [totalRows, setTotalRows] = useState<number>(0);
   // const [filter, setFilter] = useState({});
-  const fetchUserDataFunction = async () => {
+  const fetchWalletDataFunction = async () => {
     try {
-      const response = await userApi.getAll();
-      // console.log(response);
+      const response = await walletApi.getAll();
       return response?.content;
     } catch (e) {
       console.log(e);
@@ -22,19 +21,19 @@ const useUsersData = () => {
   };
 
   // TODO: use debounce technique to prevent many calls at a short time
-  const queryKey = ['users'];
+  const queryKey = ['censorDriverRequests'];
 
   const {
-    data: UserData,
-    refetch: refreshUserData,
+    data: WalletData,
+    refetch: refreshWalletData,
     ...rest
-  } = useQuery(queryKey, fetchUserDataFunction, {
+  } = useQuery(queryKey, fetchWalletDataFunction, {
     onError: (err) => console.log('error at hook', err),
   });
 
   return {
-    UserData,
-    refreshUserData,
+    WalletData,
+    refreshWalletData,
     // setSortState,
     // setKeyword,
     // setPagination,
@@ -45,4 +44,4 @@ const useUsersData = () => {
   };
 };
 
-export default useUsersData;
+export default useWalletData;
