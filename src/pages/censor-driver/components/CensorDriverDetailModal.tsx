@@ -2,7 +2,6 @@ import { CensorDriverRequestDTO } from '@/@types/dto/censorDriverRequestDTO';
 import InfoItem from '@/components/common/InfoItem';
 import CustomTextFieldWithLabel from '@/components/form-related/CustomTextFieldWithLabel';
 import CustomModal from '@/components/modal/CustomModal';
-import { CensorDriverDTO } from '@/data/censor-driver/dto/censor-driver.dto';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Image } from 'antd';
 import { useState } from 'react';
@@ -93,7 +92,7 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                 />
               </figure>
               <div className='mt-4 grid grid-cols-2 gap-4'>
-                <InfoItem label='Name' value={data?.firstName + " " + data?.lastName} />
+                <InfoItem label='Name' value={data?.firstName + ' ' + data?.lastName} />
                 <InfoItem label='Phone' value={data?.phone} />
                 <InfoItem label='Email' value={data?.email} />
                 {/* <InfoItem label='Package Buy' value={'Gold Package'} />
@@ -105,7 +104,10 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                 label='Driver License'
                 value={
                   <img
-                    src={data?.driverLicenseUrl ?? "https://www.shutterstock.com/image-vector/driver-license-plastic-card-photo-260nw-2216933107.jpg"}
+                    src={
+                      data?.driverLicenseUrl ??
+                      'https://www.shutterstock.com/image-vector/driver-license-plastic-card-photo-260nw-2216933107.jpg'
+                    }
                     alt='driver license'
                     className='h-[200px] w-[300px] object-contain'
                   />
@@ -115,7 +117,10 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                 label='ID Card'
                 value={
                   <img
-                    src={data?.identityCardFaceUpUrl ??'https://tayho.hanoi.gov.vn/Medias/1/35/2024/6/30/a5456b6e-5530-4ee1-9b65-99450249205d.jpg'}
+                    src={
+                      data?.identityCardFaceUpUrl ??
+                      'https://tayho.hanoi.gov.vn/Medias/1/35/2024/6/30/a5456b6e-5530-4ee1-9b65-99450249205d.jpg'
+                    }
                     alt='id card'
                     className='h-[200px] w-[300px] object-contain'
                   />
@@ -144,14 +149,13 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
               className='object-contain'
             />
             <div className='mt-4 grid grid-cols-2 gap-4'>
-            {/* <InfoItem label='Vehicle Id' value={data?.vehicle?.vehicleID} /> */}
+              {/* <InfoItem label='Vehicle Id' value={data?.vehicle?.vehicleID} /> */}
               <InfoItem label='Vehicle Type' value={data?.vehicle?.vehicleType} />
               <InfoItem label='Vehicle Number' value={data?.vehicle?.vehicleNumber} />
               <InfoItem label='Vehicle Brand' value={data?.vehicle?.vehicleBrand} />
               <InfoItem label='NumberOfSeats' value={data?.vehicle?.numberOfSeats} />
               <InfoItem label='VehicleColor' value={data?.vehicle?.vehicleColor} />
               <InfoItem label='Status' value={data?.vehicle?.status} />
-              
             </div>
             <div className='mt-4'>
               <div className='grid grid-cols-2 gap-4'>

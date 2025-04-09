@@ -9,18 +9,18 @@ import { CensorDriverRequestDTO } from '@/@types/dto/censorDriverRequestDTO';
 import useCensorDriverRequestData from '@/data/services/api/censorDriverRequest/useCensorDriverRequestData';
 
 export default function CensorDriverRequestList() {
-  const {CensorDriverRequestData, isLoading} = useCensorDriverRequestData();
+  const { CensorDriverRequestData, isLoading } = useCensorDriverRequestData();
 
   useEffect(() => {
-    console.table(CensorDriverRequestData)
-    }, [CensorDriverRequestData]);
-    
+    console.table(CensorDriverRequestData);
+  }, [CensorDriverRequestData]);
+
   return (
     <div className='flex flex-col gap-5'>
       <CensorDriverRequestFilter />
       <TableBuilder<CensorDriverRequestDTO>
         rowKey='userId'
-        columns={CensorDriverRequestColumn()} 
+        columns={CensorDriverRequestColumn()}
         data={CensorDriverRequestData ?? []}
         isLoading={isLoading}
       />

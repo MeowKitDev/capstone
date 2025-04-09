@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { loginThunk, logoutThunk } from './auth.thunk';
-import { UserGetMeDTO } from '@/@types/dto/userDTO';
 
 type AuthStatus = 'before-login' | 'in-app' | 'after-logout' | 'out-session' | 'freshdesk';
 
@@ -34,15 +33,15 @@ export const authSlice = createSlice({
 
     builder.addCase(logoutThunk.fulfilled, (state) => {
       state.status = 'after-logout';
-      // state.userInfo = undefined; 
+      // state.userInfo = undefined;
     });
   },
 });
 
-export const { 
-  resetState, 
-  setStatus, 
-  // setUserInfo 
+export const {
+  resetState,
+  setStatus,
+  // setUserInfo
 } = authSlice.actions;
 
 export default authSlice.reducer;

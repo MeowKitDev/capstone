@@ -1,8 +1,6 @@
-import { AxiosResponse } from "axios";
-import axiosClient from "../../axiosClient";
-import { UserDTO } from "@/data/user-account/dto/user-account.dto";
-import { UserGetAllDTO, UserGetMeDTO } from "@/@types/dto/userDTO";
-import { PagedResponse } from "@/@types/dto/pagedResponse";
+import axiosClient from '../../axiosClient';
+import { UserGetAllDTO, UserGetMeDTO } from '@/@types/dto/userDTO';
+import { PagedResponse } from '@/@types/dto/pagedResponse';
 
 // export interface PagedResponse<T> {
 //   data: T[];
@@ -24,15 +22,15 @@ export const userApi = {
   // },
 
   getAll: async (): Promise<PagedResponse<UserGetAllDTO>> => {
-    const response: PagedResponse<UserGetAllDTO> = await axiosClient.get("/manager/GetAllUsers");
+    const response: PagedResponse<UserGetAllDTO> = await axiosClient.get('/manager/GetAllUsers');
     return response;
   },
 
   getMe: async () => {
-    const response: UserGetMeDTO[] = await axiosClient.get("/getme", {
+    const response: UserGetMeDTO[] = await axiosClient.get('/getme', {
       // params: { page, size },
     });
 
-   return response;
+    return response;
   },
 };

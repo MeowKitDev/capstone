@@ -1,5 +1,6 @@
 import { WithOptional } from '@/utils/types/generic.type';
 import { PagingREQ } from '@/utils/types/paging.type';
+import { Dayjs } from 'dayjs';
 
 export type UserInfoREQ = {
   userFirstName: string;
@@ -13,10 +14,10 @@ export type UpdateUserInfoREQ = {
   lastName: string;
   phone: string;
   address: string;
-  dob: string;
+  dob: Dayjs;
   gender: string;
-  userImage: string[];
-  userImageContentType: string;
+  userImage?: string[];
+  userImageContentType?: string;
 };
 
 export type GetUserFilter = WithOptional<

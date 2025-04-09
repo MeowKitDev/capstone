@@ -15,7 +15,10 @@ export default function CensorVehicleModal({ open, setOpen, data }: CensorVehicl
       <div>
         <div className='flex w-full gap-4'>
           <Image
-            src={data?.vehicle?.vehicleImageUrl ?? 'https://vinfast-auto-vn.net/wp-content/uploads/2022/08/VinFast-VF-8-mau-Xanh-Luc.png'}
+            src={
+              data?.vehicle?.vehicleImageUrl ??
+              'https://vinfast-auto-vn.net/wp-content/uploads/2022/08/VinFast-VF-8-mau-Xanh-Luc.png'
+            }
             alt='vehicle'
             width={600}
             height={350}
@@ -40,7 +43,8 @@ export default function CensorVehicleModal({ open, setOpen, data }: CensorVehicl
             label='Vehicle Registration Certificate'
             value={
               <Image
-                src={ data?.vehicle?.vehicleInspectionCertificateUrl ??
+                src={
+                  data?.vehicle?.vehicleInspectionCertificateUrl ??
                   'https://tnclerks.zendesk.com/hc/article_attachments/4409967522708/Combined_month_and_year_decal.PNG'
                 }
                 alt='vehicle'
@@ -54,7 +58,10 @@ export default function CensorVehicleModal({ open, setOpen, data }: CensorVehicl
             label='Car Insurance'
             value={
               <Image
-                src={data?.vehicle?.carInsuranceUrl ??  'https://www.policybazaar.com/pblife/assets/images/pb_life_1650972275.jpg'}
+                src={
+                  data?.vehicle?.carInsuranceUrl ??
+                  'https://www.policybazaar.com/pblife/assets/images/pb_life_1650972275.jpg'
+                }
                 alt='vehicle'
                 width={200}
                 height={200}
@@ -66,7 +73,8 @@ export default function CensorVehicleModal({ open, setOpen, data }: CensorVehicl
             label='Registration Certificate'
             value={
               <Image
-                src={ data?.vehicle?.carregistrationUrl ?? 
+                src={
+                  data?.vehicle?.carregistrationUrl ??
                   'https://dmv.ny.gov/sites/default/files/styles/wysiwyg/public/images/2022-01/reg_sample-340x300.png?itok=HZLA63ka'
                 }
                 alt='vehicle'

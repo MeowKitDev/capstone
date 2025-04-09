@@ -3,7 +3,6 @@ import { RootState } from '@/data';
 import { useLoginMutation } from '@/data/auth/auth.api';
 import { AuthState, setStatus } from '@/data/auth/auth.slice';
 import { loginThunk } from '@/data/auth/auth.thunk';
-import { userApi } from '@/data/services/api/user/users.api';
 import { LoginAdminInput } from '@/helpers/form-schemas/login/login.input';
 import { loginAdminSchema } from '@/helpers/form-schemas/login/login.schema';
 import { MY_ROUTE } from '@/helpers/router/route.constant';
@@ -44,9 +43,9 @@ export default function LoginAdminPage() {
       const loginResponse = await login({ username, password, rememberMe: keepLoggedIn }).unwrap();
       if (loginResponse) {
         const loginData = { ...loginResponse, rememberMe: keepLoggedIn };
-  
+
         dispatch(loginThunk(loginData));
-  
+
         // const userInfoResponse = await fetch('/getme', {
         //   method: 'GET',
         //   headers: {
@@ -55,14 +54,14 @@ export default function LoginAdminPage() {
         // });
 
         // // const userInfoResponse = await userApi.getMe();
-  
+
         // if (!userInfoResponse.ok) {
         //   throw new Error('Failed to fetch user info');
         // }
-  
+
         // const userInfo = await userInfoResponse.json();
-  
-        // dispatch(setUserInfo(userInfo)); 
+
+        // dispatch(setUserInfo(userInfo));
       }
     } catch (error) {
       const message = getErrorMessage(error);

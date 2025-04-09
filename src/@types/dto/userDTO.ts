@@ -11,14 +11,14 @@ export interface UserGetAllDTO {
 }
 
 export interface UserGetMeDTO {
-  login?:        string;
-  email?:        string;
-  firstName?:    string;
-  lastName?:     string;
-  phone?:        string;
-  gender?:       string;
-  address?:      string;
-  dob?:          Date;
+  login?: string;
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
+  gender?: string;
+  address?: string;
+  dob?: Date;
   userImageUrl?: string;
-  roles?:        string[];
+  roles?: string[];
 }

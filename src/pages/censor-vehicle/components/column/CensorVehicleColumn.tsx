@@ -1,7 +1,5 @@
 import CustomTableActionsButton from '@/components/table/CustomTableActionsButton';
 import { TableHeaderCell } from '@/components/table/TableHeaderCell';
-import { CENSOR_DRIVER_STATUS } from '@/utils/enum/censor-driver/censor-driver.enum';
-import { Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { useState } from 'react';
 import CensorVehicleModal from '../CensorVehicleModal';
@@ -47,7 +45,6 @@ export const CensorVehicleColumn = (): ColumnsType<CensorVehicleDTO> => {
     //   },
     // },
 
-
     // {
     //   title: () => <TableHeaderCell key='status' label={'Status'} sortKey='status' />,
     //   key: 'status',
@@ -77,7 +74,10 @@ export const CensorVehicleColumn = (): ColumnsType<CensorVehicleDTO> => {
       render: ({ ...props }: CensorVehicleDTO) => (
         <>
           <div className='flex w-full justify-start'>
-            <CustomTableActionsButton label={'See Details'} onClick={() => setIsModalDetailOpen(props?.vehicle?.id ?? null)} />
+            <CustomTableActionsButton
+              label={'See Details'}
+              onClick={() => setIsModalDetailOpen(props?.vehicle?.id ?? null)}
+            />
           </div>
           {isModalDetailOpen === props?.vehicle?.id && (
             <CensorVehicleModal

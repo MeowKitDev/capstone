@@ -1,6 +1,6 @@
-import axios from "axios";
-import { getJwtData } from "../auth/auth.service";
-import { apiBaseUrl } from "@/utils/constants/shared.constant";
+import axios from 'axios';
+import { getJwtData } from '../auth/auth.service';
+import { apiBaseUrl } from '@/utils/constants/shared.constant';
 
 const axiosClient = axios.create({
   baseURL: apiBaseUrl,

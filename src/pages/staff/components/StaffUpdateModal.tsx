@@ -2,53 +2,71 @@ import CustomDatePickerWithLabel from '@/components/form-related/CustomDatePicke
 import CustomSelectWithLabel from '@/components/form-related/CustomSelectWithLabel';
 import CustomTextFieldWithLabel from '@/components/form-related/CustomTextFieldWithLabel';
 import CustomModal from '@/components/modal/CustomModal';
-import { StaffCreateREQ } from '@/data/staff/request/staff.request';
-import { usePostCreateStaffMutation } from '@/data/staff/staff.api';
-import { StaffCreateInput } from '@/helpers/form-schemas/staff/staff.input';
-import { staffCreateSchema } from '@/helpers/form-schemas/staff/staff.schema';
+import { StaffDTO } from '@/data/staff/dto/staff.dto';
+import { StaffUpdateREQ } from '@/data/staff/request/staff.request';
+import { usePutUpdateStaffMutation } from '@/data/staff/staff.api';
+import { StaffInput } from '@/helpers/form-schemas/staff/staff.input';
+import { staffSchema } from '@/helpers/form-schemas/staff/staff.schema';
 import { DATE_FORMAT } from '@/utils/constants/date.constant';
 import { GENDER } from '@/utils/enum/common.enum';
 import { yupResolver } from '@hookform/resolvers/yup';
 import dayjs from 'dayjs';
 import { enqueueSnackbar } from 'notistack';
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-type StaffCreateModalProps = {
+type StaffUpdateModalProps = {
   open: boolean;
   setOpen: (open: boolean) => void;
+  data: StaffDTO;
 };
 
-export const StaffCreateModal = ({ open, setOpen }: StaffCreateModalProps) => {
-  const { handleSubmit, control } = useForm<StaffCreateInput>({
-    resolver: yupResolver(staffCreateSchema),
-    defaultValues: staffCreateSchema.getDefault(),
+export const StaffUpdateModal = ({ open, setOpen, data }: StaffUpdateModalProps) => {
+  const { handleSubmit, control, reset, setValue } = useForm<StaffInput>({
+    resolver: yupResolver(staffSchema),
+    defaultValues: staffSchema.getDefault(),
   });
 
-  const [postCreateStaff, { isLoading: isLoadingCreateStaff }] = usePostCreateStaffMutation();
+  const [putUpdateStaff, { isLoading: isLoadingUpdateStaff }] = usePutUpdateStaffMutation();
 
-  const onSubmit: SubmitHandler<StaffCreateInput> = async (data: StaffCreateInput) => {
-    const dataCreateInfo: StaffCreateREQ = {
-      firstName: data.firstName,
-      password: data.newPassword,
-      login: data.username,
-      lastName: data.lastName,
-      email: data.email,
-      phone: data.phone,
-      address: data.address,
+  useEffect(() => {
+    if (!data) return;
+    if (data) {
+      setValue('firstName', data.firstName);
+      setValue('lastName', data.lastName);
+      setValue('phone', data.phone);
+      setValue('email', data.email);
+      setValue('address', data.address);
+      setValue('dob', data.dob);
+      setValue('gender', data.gender);
+    }
+
+    return () => reset();
+  }, [data, reset, setValue]);
+
+  const onSubmit: SubmitHandler<StaffInput> = async (dataInput: StaffInput) => {
+    console.log('dataInput', dayjs(data.dob).toString());
+    const dataUpdateInfo: StaffUpdateREQ = {
+      userId: data.userId,
+      firstName: dataInput.firstName,
+      lastName: dataInput.lastName,
+      email: dataInput.email,
+      phone: dataInput.phone,
+      address: dataInput.address,
       dob: dayjs(data.dob),
-      gender: data.gender,
+      gender: dataInput.gender,
     };
 
-    postCreateStaff(dataCreateInfo)
+    putUpdateStaff(dataUpdateInfo)
       .unwrap()
       .then(() => {
-        enqueueSnackbar('Thêm mới nhân viên thành công', {
+        enqueueSnackbar('Cập nhật thông tin thành công', {
           variant: 'success',
         });
         setOpen(false);
       })
       .catch(() => {
-        enqueueSnackbar('Thêm mới nhân viên thất bại', {
+        enqueueSnackbar('Cập nhật thông tin thất bại', {
           variant: 'error',
         });
       });
@@ -61,44 +79,10 @@ export const StaffCreateModal = ({ open, setOpen }: StaffCreateModalProps) => {
       setOpen={setOpen}
       className='!w-[520px]'
       onConfirm={handleSubmit(onSubmit)}
-      loading={isLoadingCreateStaff}
+      loading={isLoadingUpdateStaff}
       okText='Cập nhật'>
       <form className='mt-10 space-y-4'>
         <div className='grid grid-cols-2 gap-4'>
-          <CustomTextFieldWithLabel
-            control={control}
-            name='username'
-            label='Tên đăng nhập'
-            className='mb-4'
-            required
-            placeholder='Tên đăng nhập'
-          />
-          <CustomTextFieldWithLabel
-            control={control}
-            name='email'
-            label='Email'
-            className='mb-4'
-            required
-            placeholder='Email'
-          />
-          <CustomTextFieldWithLabel
-            control={control}
-            name='newPassword'
-            label='Mật khẩu'
-            className='mb-4'
-            required
-            type='password'
-            placeholder='Mật khẩu'
-          />
-          <CustomTextFieldWithLabel
-            control={control}
-            name='confirmPassword'
-            label='Nhập lại mật khẩu'
-            className='mb-4'
-            required
-            type='password'
-            placeholder='Nhập lại mật khẩu'
-          />
           <CustomTextFieldWithLabel
             control={control}
             name='firstName'
@@ -114,6 +98,14 @@ export const StaffCreateModal = ({ open, setOpen }: StaffCreateModalProps) => {
             className='mb-4'
             required
             placeholder='Tên'
+          />
+          <CustomTextFieldWithLabel
+            control={control}
+            name='email'
+            label='Email'
+            className='mb-4'
+            required
+            placeholder='Email'
           />
           <CustomTextFieldWithLabel
             control={control}

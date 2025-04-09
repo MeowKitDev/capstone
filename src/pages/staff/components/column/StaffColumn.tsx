@@ -1,9 +1,11 @@
 import { TableHeaderCell } from '@/components/table/TableHeaderCell';
 import { StaffDTO } from '@/data/staff/dto/staff.dto';
+import { GENDER } from '@/utils/enum/common.enum';
 import { formatPhoneNumber } from '@/utils/string.helper';
 import { Button, Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { useState } from 'react';
+import { StaffUpdateModal } from '../StaffUpdateModal';
 
 export const StaffColumn = (): ColumnsType<StaffDTO> => {
   const [isShownUdapteModal, setIsShownUdapteModal] = useState<string | null>(null);
@@ -41,7 +43,7 @@ export const StaffColumn = (): ColumnsType<StaffDTO> => {
       title: () => <TableHeaderCell key='gender' label={'Gender'} />,
       key: 'gender',
       render: ({ ...props }: StaffDTO) => {
-        return <div className='capitalize'>{props?.gender}</div>;
+        return <div className='capitalize'>{props?.gender === GENDER.MALE ? 'Nam' : 'Nữ'}</div>;
       },
     },
     {
@@ -75,11 +77,11 @@ export const StaffColumn = (): ColumnsType<StaffDTO> => {
               Cập nhật
             </Button>
           </div>
-          {/* <StaffUpdateModal
+          <StaffUpdateModal
             open={isShownUdapteModal === props?.userId}
             setOpen={() => setIsShownUdapteModal(null)}
             data={props}
-          /> */}
+          />
         </>
       ),
     },

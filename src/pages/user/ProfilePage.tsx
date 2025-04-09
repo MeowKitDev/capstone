@@ -50,10 +50,8 @@ export default function ProfilePage() {
       lastName: data.lastName,
       phone: data.phone,
       address: data.address,
-      dob: data.dob,
+      dob: dayjs(data.dob),
       gender: data.gender,
-      userImage: [userInfo?.userImageUrl ?? ''],
-      userImageContentType: 'image/png',
     };
     putUpdateInfo(dataUpdateInfo)
       .unwrap()
@@ -61,7 +59,7 @@ export default function ProfilePage() {
         enqueueSnackbar('Cập nhật thông tin thành công', {
           variant: 'success',
         });
-        // setIsUpdate(false);
+        setIsUpdate(false);
       })
       .catch(() => {
         enqueueSnackbar('Cập nhật thông tin thất bại', {
@@ -163,7 +161,7 @@ export default function ProfilePage() {
               <InfoItem label='Phone' value={userInfo?.phone} />
               <InfoItem label='Address' value={userInfo?.address} />
               <InfoItem label='Date of Birth' value={dayjs(userInfo?.dob).format(DATE_FORMAT)} />
-              <InfoItem label='Gender' value={userInfo?.gender} />
+              <InfoItem label='Gender' value={userInfo?.gender === GENDER.MALE ? 'Nam' : 'Nữ'} />
               <InfoItem
                 label='Role'
                 value={

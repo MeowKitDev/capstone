@@ -54,6 +54,7 @@ const CustomTextField = <T extends FieldValues>({
         onBlur={field.onBlur}
         placeholder={placeholder}
         suffix={suffixIcon}
+        autoComplete='off'
         className={twMerge(
           'border-1 !resize-none rounded-md border-gray-300 px-3 py-4 placeholder-gray-400 focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm',
           type === 'password' && '[&>input]:placeholder-gray-400',

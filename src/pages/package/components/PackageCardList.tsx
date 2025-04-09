@@ -5,9 +5,6 @@ import { PackageColumn } from '../column/PackageColumn';
 import PackageFilter from './PackageFilter';
 import usePackageData from '@/data/services/api/package/usePackageData';
 import { PackageGetAllDTO } from '@/@types/dto/packageDTO';
-import RoleBasedComponent from '@/components/condition/RoleBasedComponent';
-import { Role } from '@/@types/dto/entity/role';
-import { UserGetMeDTO } from '@/@types/dto/userDTO';
 import { useAppSelector } from '@/hooks/reduxHook';
 import { RootState } from '@/data';
 import { GlobalState } from '@/data/global/global.slice';
@@ -43,9 +40,8 @@ export default function PackageCardList() {
   //     (state: RootState) => state.auth.userInfo
   //   );
 
-
-    const { userInfo }: GlobalState = useAppSelector((state: RootState) => state.global);
-      console.log('userInfo', userInfo);
+  const { userInfo }: GlobalState = useAppSelector((state: RootState) => state.global);
+  console.log('userInfo', userInfo);
 
   return (
     <div className='flex flex-col gap-5'>

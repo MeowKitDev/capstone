@@ -7,7 +7,7 @@ import useCensorVehicleData from '@/data/services/api/censorVehicle/useCensorVeh
 import { CensorVehicleDTO } from '@/@types/dto/censorVehicleDTO';
 
 export default function CensorVehicleList() {
-    const {CensorVehicleData, isLoading} = useCensorVehicleData();
+  const { CensorVehicleData, isLoading } = useCensorVehicleData();
   return (
     <div className='flex flex-col gap-5'>
       <CensorVehicleFilter />

@@ -13,7 +13,7 @@ export const packageApi = {
   //   });
 
   getAll: async () => {
-    const response: PackageGetAllDTO[] = await axiosClient.get("/mobile/user/view/allpackages", {});
-  return response;
+    const response: PackageGetAllDTO[] = await axiosClient.get('/mobile/user/view/allpackages', {});
+    return response;
   },
 };

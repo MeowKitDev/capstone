@@ -1,7 +1,6 @@
 import { useQuery } from 'react-query';
 import { censorVehicleApi } from './censorVehicle.api';
 
-
 const useCensorVehicleData = () => {
   // const [pagination, setPagination] = useState<PaginationState>({
   //   pageIndex: 0,

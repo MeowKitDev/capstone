@@ -8,7 +8,7 @@ import axiosClient from '../../axiosClient';
 
 export const censorVehicleApi = {
   getAll: async () => {
-    const response: CensorVehicleDTO[] = await axiosClient.get("manager/vehicles/pending-approval", {});
-  return response;
+    const response: CensorVehicleDTO[] = await axiosClient.get('manager/vehicles/pending-approval', {});
+    return response;
   },
 };

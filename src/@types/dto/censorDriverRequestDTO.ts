@@ -7,29 +7,29 @@
 // }
 
 export interface CensorDriverRequestDTO {
-  userId?:                  string;
-  driverId?:                string;
-  firstName?:               string;
-  lastName?:                string;
-  phone?:                   string;
-  email?:                   string;
-  identityCardFaceUpUrl?:   string;
+  userId?: string;
+  driverId?: string;
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
+  email?: string;
+  identityCardFaceUpUrl?: string;
   identityCardFaceDownUrl?: string;
-  driverLicenseUrl?:        string;
-  vehicle?:                 Vehicle;
+  driverLicenseUrl?: string;
+  vehicle?: Vehicle;
 }
 
 export interface Vehicle {
-  id?:                              number;
-  vehicleID?:                       string;
-  vehicleType?:                     string;
-  vehicleImageUrl?:                 string;
-  carregistrationUrl?:              string;
+  id?: number;
+  vehicleID?: string;
+  vehicleType?: string;
+  vehicleImageUrl?: string;
+  carregistrationUrl?: string;
   vehicleInspectionCertificateUrl?: string;
-  carInsuranceUrl?:                 string;
-  vehicleNumber?:                   string;
-  numberOfSeats?:                   number;
-  vehicleColor?:                    string;
-  vehicleBrand?:                    string;
-  status?:                          string;
+  carInsuranceUrl?: string;
+  vehicleNumber?: string;
+  numberOfSeats?: number;
+  vehicleColor?: string;
+  vehicleBrand?: string;
+  status?: string;
 }

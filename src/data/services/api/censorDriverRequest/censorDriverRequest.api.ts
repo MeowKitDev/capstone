@@ -11,7 +11,7 @@ import { PagedResponse } from '@/@types/dto/pagedResponse';
 
 export const censorDriverRequestApi = {
   getAll: async (): Promise<PagedResponse<CensorDriverRequestDTO>> => {
-    const response: PagedResponse<CensorDriverRequestDTO> = await axiosClient.get("manager/drivers/confirming/getAll");
+    const response: PagedResponse<CensorDriverRequestDTO> = await axiosClient.get('manager/drivers/confirming/getAll');
     return response;
   },
 };
