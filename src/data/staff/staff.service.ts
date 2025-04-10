@@ -16,7 +16,7 @@ export const staffListRequestParamsToFilter = (searchParams: ParsedQuery<string>
     ...(!!lastName && { lastName }),
     ...(!!phone && { phone }),
     ...(!!email && { email }),
-    page: Number(page) - 1,
+    page: page ? Number(page) - 1 : initialPagingState.page,
     size: Number(size),
   };
 };

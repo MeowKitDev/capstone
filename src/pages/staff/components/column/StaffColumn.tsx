@@ -66,13 +66,13 @@ export const StaffColumn = (): ColumnsType<StaffDTO> => {
       render: ({ ...props }: StaffDTO) => {
         return (
           <div className='capitalize'>
-            {props?.status ? (
-              <Tag color='success' className='w-20 text-center'>
-                Active
+            {props?.activated ? (
+              <Tag color='success' className='w-36 text-center'>
+                Đang hoạt động
               </Tag>
             ) : (
-              <Tag color='error' className='w-20 text-center'>
-                Inactive
+              <Tag color='error' className='w-36 text-center'>
+                Ngừng hoạt động
               </Tag>
             )}
           </div>
@@ -91,9 +91,9 @@ export const StaffColumn = (): ColumnsType<StaffDTO> => {
               Cập nhật
             </Button>
             <Button
-              className={twMerge('ml-2 text-white ease-linear', props?.status ? 'bg-red-500' : 'bg-green-500')}
+              className={twMerge('ml-2 text-white ease-linear', props?.activated ? 'bg-red-500' : 'bg-green-500')}
               onClick={() => handleToggleStatus(props?.userId)}>
-              {props?.status ? 'Ngừng hoạt động' : 'Kích hoạt'}
+              {props?.activated ? 'Ngừng hoạt động' : 'Kích hoạt'}
             </Button>
           </div>
           <StaffUpdateModal

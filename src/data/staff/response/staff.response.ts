@@ -6,6 +6,6 @@ export type GetStaffRESP = {
   address: string;
   dob: string;
   gender: string;
-  status: boolean;
+  activated: boolean;
   userId: string;
 };

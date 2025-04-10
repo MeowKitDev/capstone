@@ -6,6 +6,6 @@ export type StaffDTO = {
   address: string;
   dob: string;
   gender: string;
-  status: boolean;
+  status: string;
   userId: string;
 };

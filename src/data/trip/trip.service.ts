@@ -16,7 +16,7 @@ export const tripListRequestParamsToFilter = (searchParams: ParsedQuery<string>)
     ...(!!endLocation && { endLocation }),
     ...(!!status && { status }),
     ...(!!sort && { sort: sort.split(',') }),
-    page: Number(page) - 1,
+    page: page ? Number(page) - 1 : initialPagingState.page,
     size: Number(size),
   };
 };
