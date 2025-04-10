@@ -93,9 +93,11 @@ export default function TripDetail() {
                     Chấp nhận
                   </Button>
                 )}
-                <Button className='float-right mr-2 bg-red-500 text-white' onClick={() => setIsReject(true)}>
-                  Từ chối
-                </Button>
+                {data?.tripStatus === TRIP_STATUS.CONFIRMING && (
+                  <Button className='float-right mr-2 bg-red-500 text-white' onClick={() => setIsReject(true)}>
+                    Từ chối
+                  </Button>
+                )}
               </div>
             </div>
             <Divider className='mt-1' />
