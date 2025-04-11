@@ -4,7 +4,6 @@ import { PARAM_FIELD } from '@/utils/enum/param-field.enum';
 import { Pagination } from 'antd';
 import queryString from 'query-string';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Show from '../condition/Show';
 
 type CustomTablePaginationProps = {
   totalItems: number;
@@ -27,8 +26,6 @@ export default function CustomTablePagination({
   const navigate = useNavigate();
   const params = queryString.parse(location.search);
 
-  const totalPages = Math.ceil(totalItems / pageSize);
-
   const handleChangePage = (page: number) => {
     if (isScrollAfterPageChange) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -38,18 +35,16 @@ export default function CustomTablePagination({
   };
 
   return (
-    <Show when={totalPages > 1}>
-      <div className='my-10'>
-        <Pagination
-          align='center'
-          total={totalItems}
-          current={+page || 1}
-          pageSize={pageSize}
-          onChange={(page: number) => handleChangePage(page)}
-          className={className}
-          {...props}
-        />
-      </div>
-    </Show>
+    <div className='my-10'>
+      <Pagination
+        align='center'
+        total={totalItems}
+        current={+page || 1}
+        pageSize={pageSize}
+        onChange={(page: number) => handleChangePage(page)}
+        className={className}
+        {...props}
+      />
+    </div>
   );
 }

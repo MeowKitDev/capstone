@@ -5,7 +5,7 @@ import StaffList from './components/StaffList';
 export default function StaffPage() {
   return (
     <TableUtilProvider>
-      <DefaultContainer title='Staff Account'>
+      <DefaultContainer title='Thông tin nhân viên'>
         <StaffList />
       </DefaultContainer>
     </TableUtilProvider>

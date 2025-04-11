@@ -52,7 +52,7 @@ export const StaffUpdateModal = ({ open, setOpen, data }: StaffUpdateModalProps)
       email: dataInput.email,
       phone: dataInput.phone,
       address: dataInput.address,
-      dob: dayjs(data.dob),
+      dob: dayjs(dataInput.dob),
       gender: dataInput.gender,
     };
 

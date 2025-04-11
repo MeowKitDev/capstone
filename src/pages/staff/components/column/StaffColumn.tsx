@@ -1,10 +1,12 @@
 import { TableHeaderCell } from '@/components/table/TableHeaderCell';
 import { StaffDTO } from '@/data/staff/dto/staff.dto';
 import { usePutToggleStaffStatusMutation } from '@/data/staff/staff.api';
+import { DATE_FORMAT } from '@/utils/constants/date.constant';
 import { GENDER } from '@/utils/enum/common.enum';
 import { formatPhoneNumber } from '@/utils/string.helper';
 import { Button, Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
+import dayjs from 'dayjs';
 import { enqueueSnackbar } from 'notistack';
 import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
@@ -25,13 +27,13 @@ export const StaffColumn = (): ColumnsType<StaffDTO> => {
   };
 
   return [
-    {
-      title: () => <TableHeaderCell key='userId' label={'ID'} sortKey='userId' />,
-      key: 'userId',
-      render: ({ ...props }: StaffDTO) => {
-        return <div>{props?.userId}</div>;
-      },
-    },
+    // {
+    //   title: () => <TableHeaderCell key='userId' label={'ID'} sortKey='userId' />,
+    //   key: 'userId',
+    //   render: ({ ...props }: StaffDTO) => {
+    //     return <div>{props?.userId}</div>;
+    //   },
+    // },
     {
       title: () => <TableHeaderCell key='name' label={'Tên'} sortKey='name' />,
       key: 'name',
@@ -40,7 +42,7 @@ export const StaffColumn = (): ColumnsType<StaffDTO> => {
       },
     },
     {
-      title: () => <TableHeaderCell key='phoneNumber' label={'Số điện thoại'} sortKey='phoneNumber' />,
+      title: () => <TableHeaderCell key='phoneNumber' label={'Số điện thoại'} />,
       key: 'phoneNumber',
       render: ({ ...props }: StaffDTO) => {
         return <div>{formatPhoneNumber(props?.phone)}</div>;
@@ -51,6 +53,13 @@ export const StaffColumn = (): ColumnsType<StaffDTO> => {
       key: 'email',
       render: ({ ...props }: StaffDTO) => {
         return <div>{props?.email}</div>;
+      },
+    },
+    {
+      title: () => <TableHeaderCell key='dob' label={'Ngày sinh'} />,
+      key: 'dob',
+      render: ({ ...props }: StaffDTO) => {
+        return <div>{dayjs(props?.dob).format(DATE_FORMAT)}</div>;
       },
     },
     {

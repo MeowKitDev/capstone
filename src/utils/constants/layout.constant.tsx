@@ -5,7 +5,6 @@ import ChartPieIcon from '@/components/icons/ChartPieIcon';
 import ClipBoardIcon from '@/components/icons/ClipBoardIcon';
 import CommentIcon from '@/components/icons/CommentIcon';
 import CubeIcon from '@/components/icons/CubeIcon';
-import ListCheckIcon from '@/components/icons/ListCheckIcon';
 import MemberIcon from '@/components/icons/MemberIcon';
 import MoneyCheckIcon from '@/components/icons/MoneyCheckIcon';
 import RatingIcon from '@/components/icons/RatingIcon';
@@ -42,10 +41,10 @@ export const LAYOUT_SIDEBAR_GROUP_TEMPLATES: SideBarGroupTemplate[] = [
     title: 'rate-driver',
     icon: <RatingIcon />,
   },
-  {
-    title: 'report',
-    icon: <ListCheckIcon />,
-  },
+  // {
+  //   title: 'report',
+  //   icon: <ListCheckIcon />,
+  // },
   {
     title: 'transaction-history',
     icon: <MoneyCheckIcon />,
