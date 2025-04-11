@@ -89,7 +89,7 @@ export const CensorDriverRequestColumn = (): ColumnsType<CensorDriverRequestDTO>
         <>
           <div className='flex w-full justify-start'>
             <CustomTableActionsButton
-              label={'See Details'}
+              label={'Xem chi tiết'}
               onClick={() => setIsModalDetailOpen(props.userId ?? null)}
             />
           </div>

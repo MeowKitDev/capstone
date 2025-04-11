@@ -59,7 +59,7 @@ export const RatingColumn = (): ColumnsType<RatingDTO> => {
       render: ({ ...props }: RatingDTO) => (
         <>
           <div className='flex w-full justify-start'>
-            <CustomTableActionsButton label={'See Details'} onClick={() => setIsShownDetailsModal(props?.id)} />
+            <CustomTableActionsButton label={'Xem chi tiết'} onClick={() => setIsShownDetailsModal(props?.id)} />
           </div>
           {isShownDetailsModal === props?.id && (
             <RatingDetailModal

@@ -110,7 +110,7 @@ export const UserColumn = (): ColumnsType<UserGetAllDTO> => {
     //   render: ({ ...props }: UserGetAllDTO) => (
     //     <div className='flex w-full justify-start'>
     //       <CustomTableActionsButton
-    //         label={'See Details'}
+    //         label={'Xem chi tiết'}
     //         onClick={() => navigate(MY_ROUTE.USER.VIEW_USER_ACCOUNT.detail(props?.id.toString()))}
     //       />
     //     </div>

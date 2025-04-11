@@ -32,6 +32,8 @@ export type GetTripDetailRESP = {
   stoplocation: StopLocation[];
 };
 
+export type TripDetailDTO = GetTripDetailRESP;
+
 export type StopLocation = {
   stopLocaID: string;
   stopLoca: string;
@@ -43,6 +45,7 @@ export type StopLocation = {
 };
 
 export type DriverInfo = {
+  userId?: string;
   driverId: string;
   firstName: string;
   lastName: string;

@@ -75,7 +75,7 @@ export const CensorVehicleColumn = (): ColumnsType<CensorVehicleDTO> => {
         <>
           <div className='flex w-full justify-start'>
             <CustomTableActionsButton
-              label={'See Details'}
+              label={'Xem chi tiết'}
               onClick={() => setIsModalDetailOpen(props?.vehicle?.id ?? null)}
             />
           </div>

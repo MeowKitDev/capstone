@@ -73,7 +73,7 @@ export default function DefaultContainer({
               {button}
             </div>
           ) : (
-            <h1 className='mt-5 text-3xl font-bold text-primary-500'>{title}</h1>
+            <h1 className='text-3xl font-bold text-primary-500'>{title}</h1>
           )}
         </div>
         {icon}

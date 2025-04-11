@@ -124,7 +124,7 @@ export const TransactionColumn = (): ColumnsType<WalletDTO> => {
     //   render: ({ ...props }: WalletDTO) => (
     //     <div className='flex justify-start w-full'>
     //       <CustomTableActionsButton
-    //         label={'See Details'}
+    //         label={'Xem chi tiết'}
     //         onClick={() => navigate(MY_ROUTE.USER.CENSOR_DRIVER_REQUEST.detail(props?.id.toString()))}
     //       />
     //     </div>
