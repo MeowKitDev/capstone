@@ -1,5 +1,7 @@
 import { UserGetAllDTO } from '@/@types/dto/userDTO';
+import CustomTableActionsButton from '@/components/table/CustomTableActionsButton';
 import { TableHeaderCell } from '@/components/table/TableHeaderCell';
+import { MY_ROUTE } from '@/helpers/router/route.constant';
 import { Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { useNavigate } from 'react-router-dom';
@@ -104,17 +106,17 @@ export const UserColumn = (): ColumnsType<UserGetAllDTO> => {
     //     return <div className='capitalize'>{props?.role}</div>;
     //   },
     // },
-    // {
-    //   title: () => <TableHeaderCell key='action' label={''} />,
-    //   key: 'action',
-    //   render: ({ ...props }: UserGetAllDTO) => (
-    //     <div className='flex w-full justify-start'>
-    //       <CustomTableActionsButton
-    //         label={'Xem chi tiết'}
-    //         onClick={() => navigate(MY_ROUTE.USER.VIEW_USER_ACCOUNT.detail(props?.id.toString()))}
-    //       />
-    //     </div>
-    //   ),
-    // },
+    {
+      title: () => <TableHeaderCell key='action' label={''} />,
+      key: 'action',
+      render: ({ ...props }: UserGetAllDTO) => (
+        <div className='flex w-full justify-start'>
+          <CustomTableActionsButton
+            label={'Xem chi tiết'}
+            onClick={() => navigate(MY_ROUTE.USER.VIEW_USER_ACCOUNT.detail(props?.userId.toString()))}
+          />
+        </div>
+      ),
+    },
   ];
 };

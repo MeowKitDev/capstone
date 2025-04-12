@@ -8,10 +8,20 @@ export default function UserAccountFilter() {
   return (
     <div>
       <div className='flex flex-wrap items-center justify-start gap-5'>
-        <CustomSearchInputQueryWithLabel label={'Full Name'} searchParamName={PARAM_FIELD.FULL_NAME} />
+      <CustomSearchInputQueryWithLabel
+        label='Họ'
+        searchParamName={PARAM_FIELD.FIRST_NAME}
+        placeholder='Nhập họ'
+      />
+      <CustomSearchInputQueryWithLabel
+        label='Tên'
+        searchParamName={PARAM_FIELD.LAST_NAME}
+        placeholder='Nhập tên'
+      />
+        {/* <CustomSearchInputQueryWithLabel label={'Full Name'} searchParamName={PARAM_FIELD.FULL_NAME} />
         <CustomSearchInputQueryWithLabel label={'Phone'} searchParamName={PARAM_FIELD.PHONE} />
-        <CustomSearchInputQueryWithLabel label={'Email'} searchParamName={PARAM_FIELD.EMAIL} />
-        <CustomSelectQueryWithLabel
+        <CustomSearchInputQueryWithLabel label={'Email'} searchParamName={PARAM_FIELD.EMAIL} /> */}
+        {/* <CustomSelectQueryWithLabel
           label={'Gender'}
           queryKey={PARAM_FIELD.SEARCH_BY}
           options={[
@@ -55,7 +65,7 @@ export default function UserAccountFilter() {
             },
           ]}
           className='w-40'
-        />
+        /> */}
       </div>
     </div>
   );

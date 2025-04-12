@@ -1,5 +1,5 @@
 import axiosClient from '../../axiosClient';
-import { UserGetAllDTO, UserGetMeDTO } from '@/@types/dto/userDTO';
+import { UserDetailDTO, UserGetAllDTO, UserGetMeDTO } from '@/@types/dto/userDTO';
 import { PagedResponse } from '@/@types/dto/pagedResponse';
 
 // export interface PagedResponse<T> {
@@ -21,10 +21,24 @@ export const userApi = {
   //   return response;
   // },
 
-  getAll: async (): Promise<PagedResponse<UserGetAllDTO>> => {
-    const response: PagedResponse<UserGetAllDTO> = await axiosClient.get('/manager/GetAllUsers');
+  getAll: async (params?: {
+    firstName?: string;
+    lastName?: string;
+  }): Promise<PagedResponse<UserGetAllDTO>> => {
+    const response: PagedResponse<UserGetAllDTO> = await axiosClient.get('/manager/GetAllUsers', { params });
     return response;
   },
+
+  getDetail: async (
+		id: string,
+	): Promise<UserDetailDTO> => {
+		const response:UserDetailDTO = await axiosClient.get(
+			`manager/details/${id}`,
+			{},
+		);
+		return response;
+	},
+  
 
   getMe: async () => {
     const response: UserGetMeDTO[] = await axiosClient.get('/getme', {
