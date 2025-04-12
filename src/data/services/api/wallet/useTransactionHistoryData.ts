@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import { walletApi } from './wallet.api';
 import queryString from 'query-string';
 
-const useWalletData = () => {
+const useTransactionHistoryData = () => {
   // const [pagination, setPagination] = useState<PaginationState>({
   //   pageIndex: 0,
   //   pageSize: 10,
@@ -12,9 +12,9 @@ const useWalletData = () => {
   // const [totalRows, setTotalRows] = useState<number>(0);
   // const [filter, setFilter] = useState({});
   const params = queryString.parse(location.search);
-  const fetchWalletDataFunction = async () => {
+  const fetchTransactionHistoryDataFunction = async () => {
     try {
-      const response = await walletApi.getAll({
+      const response = await walletApi.getTransactionhistory({
         walletType: params.walletType as string,
       });
       return response?.content;
@@ -25,19 +25,19 @@ const useWalletData = () => {
   };
 
   // TODO: use debounce technique to prevent many calls at a short time
-  const queryKey = ['walletData', params.walletType as string];
+  const queryKey = ['TransactionHistory', params.walletType as string];
 
   const {
-    data: WalletData,
-    refetch: refreshWalletData,
+    data: TransactionHistoryData,
+    refetch: refreshTransactionHistoryData,
     ...rest
-  } = useQuery(queryKey, fetchWalletDataFunction, {
+  } = useQuery(queryKey, fetchTransactionHistoryDataFunction, {
     onError: (err) => console.log('error at hook', err),
   });
 
   return {
-    WalletData,
-    refreshWalletData,
+    TransactionHistoryData,
+    refreshTransactionHistoryData,
     // setSortState,
     // setKeyword,
     // setPagination,
@@ -48,4 +48,4 @@ const useWalletData = () => {
   };
 };
 
-export default useWalletData;
+export default useTransactionHistoryData;
