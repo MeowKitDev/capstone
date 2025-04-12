@@ -25,7 +25,7 @@ export const FeedbackColumn = (): ColumnsType<FeedbackDTO> => {
       key: 'feedbackDate',
       width: 180,
       render: ({ ...props }: FeedbackDTO) => {
-        return <div>{dayjs().format(DATE_TIME_SHORT_24H_FORMAT)}</div>;
+        return <div>{dayjs(props?.feedbackTime).format(DATE_TIME_SHORT_24H_FORMAT)}</div>;
       },
     },
     {
@@ -42,9 +42,9 @@ export const FeedbackColumn = (): ColumnsType<FeedbackDTO> => {
         return (
           <div className='capitalize'>
             {props?.feedbackStatus === FEEDBACK_STATUS.WAITING ? (
-              <Tag color='processing'>Đang chờ phản hồi</Tag>
+              <Tag color='processing'>Chưa xử lý</Tag>
             ) : (
-              <Tag color='success'>Đã phản hồi</Tag>
+              <Tag color='success'>Đã xử lý</Tag>
             )}
           </div>
         );

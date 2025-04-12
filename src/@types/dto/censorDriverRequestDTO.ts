@@ -16,6 +16,7 @@ export interface CensorDriverRequestDTO {
   identityCardFaceUpUrl?: string;
   identityCardFaceDownUrl?: string;
   driverLicenseUrl?: string;
+  rating?: number;
   vehicle?: Vehicle;
 }
 

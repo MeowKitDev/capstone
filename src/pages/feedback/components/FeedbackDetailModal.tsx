@@ -40,7 +40,7 @@ export default function FeedbackDetailModal({ open, setOpen, data }: FeedbackDet
               label='Đánh giá'
               value={
                 <div className='flex gap-1'>
-                  {data?.feedbackRating + '/5'}
+                  {data?.feedbackRating}
                   <StarIcon className='size-5 text-yellow-300' />
                 </div>
               }
@@ -66,6 +66,15 @@ export default function FeedbackDetailModal({ open, setOpen, data }: FeedbackDet
               <InfoItem label='Địa chỉ' value={data?.driver?.address} />
               <InfoItem label='Ngày sinh' value={dayjs(data?.driver?.dob).format(DATE_FORMAT_DOT)} />
               <InfoItem label='Giới tính' value={data?.driver.gender === GENDER.MALE ? 'Nam' : 'Nữ'} />
+              <InfoItem
+                label='Uy tín'
+                value={
+                  <div className='flex gap-1'>
+                    {data?.driver.rating}
+                    <StarIcon className='size-5 text-yellow-300' />
+                  </div>
+                }
+              />
             </div>
           </div>
         </div>

@@ -1,11 +1,14 @@
 import { CensorDriverRequestDTO } from '@/@types/dto/censorDriverRequestDTO';
 import InfoItem from '@/components/common/InfoItem';
 import CustomTextFieldWithLabel from '@/components/form-related/CustomTextFieldWithLabel';
+import StarIcon from '@/components/icons/StarIcon';
 import CustomModal from '@/components/modal/CustomModal';
+import { MY_ROUTE } from '@/helpers/router/route.constant';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Image } from 'antd';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 
 type CensorDriverDetailModalProps = {
@@ -92,51 +95,26 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                 />
               </figure>
               <div className='mt-4 grid grid-cols-2 gap-4'>
-                <InfoItem label='Name' value={data?.firstName + ' ' + data?.lastName} />
-                <InfoItem label='Phone' value={data?.phone} />
+                <InfoItem label='Họ và tên' value={data?.firstName + ' ' + data?.lastName} />
+                <InfoItem label='Số điện thoại' value={data?.phone} />
                 <InfoItem label='Email' value={data?.email} />
-                {/* <InfoItem label='Package Buy' value={'Gold Package'} />
-                <InfoItem label='Payment Method' value={'Bank Transfer'} /> */}
+                <InfoItem
+                  label='Uy tín'
+                  value={
+                    <div className='flex gap-1'>
+                      {data?.rating}
+                      <StarIcon className='size-5 text-yellow-300' />
+                    </div>
+                  }
+                />
               </div>
             </div>
-            <div className='space-y-4'>
-              <InfoItem
-                label='Driver License'
-                value={
-                  <img
-                    src={
-                      data?.driverLicenseUrl ??
-                      'https://www.shutterstock.com/image-vector/driver-license-plastic-card-photo-260nw-2216933107.jpg'
-                    }
-                    alt='driver license'
-                    className='h-[200px] w-[300px] object-contain'
-                  />
-                }
-              />
-              <InfoItem
-                label='ID Card'
-                value={
-                  <img
-                    src={
-                      data?.identityCardFaceUpUrl ??
-                      'https://tayho.hanoi.gov.vn/Medias/1/35/2024/6/30/a5456b6e-5530-4ee1-9b65-99450249205d.jpg'
-                    }
-                    alt='id card'
-                    className='h-[200px] w-[300px] object-contain'
-                  />
-                }
-              />
-              {/* identityCardFaceDownUrl */}
-              {/* <InfoItem
-                label='ID Card'
-                value={
-                  <img
-                    src={data?.identityCardFaceDownUrl ??'https://tayho.hanoi.gov.vn/Medias/1/35/2024/6/30/a5456b6e-5530-4ee1-9b65-99450249205d.jpg'}
-                    alt='id card'
-                    className='h-[200px] w-[300px] object-contain'
-                  />
-                }
-              /> */}
+            <div>
+              <Link
+                to={`${MY_ROUTE.TRIP.self}?driverId=${data?.driverId}`}
+                className='mt-4 flex w-fit items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-primary-500'>
+                <span>Lịch sử chuyến đi</span>
+              </Link>
             </div>
           </div>
           <div>

@@ -7,6 +7,7 @@ export interface FeedbackDTO {
   feedbackStatus: FEEDBACK_STATUS;
   feedbackDescription: string;
   feedbackRating: number;
+  feedbackTime: string;
   trip: TripDetailDTO;
   driver: DriverInfo;
   user: UserDTO;
