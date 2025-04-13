@@ -1,7 +1,5 @@
-import CustomSearchInputQueryWithLabel from '@/components/form-related/CustomSearchInputQueryWithLabel';
 import CustomSelectQueryWithLabel from '@/components/form-related/CustomSelectQueryWithLabel';
 import { PARAM_FIELD } from '@/utils/enum/param-field.enum';
-import { TRANSACTION_STATUS } from '@/utils/enum/transaction/transaction.enum';
 import { WALLET_TYPE } from '@/utils/enum/wallet/wallet-type.enum';
 
 const WalletTypeList = [
@@ -61,20 +59,19 @@ const WalletTypeList = [
     label: 'SYSTEM_REFUND_TO_PASSENGER',
     value: WALLET_TYPE.SYSTEM_REFUND_TO_PASSENGER,
   },
-]
+];
 
 export default function TransactionFilter() {
   return (
     <div>
       <div className='flex flex-wrap items-center justify-start gap-5'>
         <CustomSelectQueryWithLabel
-                  label={'Loại'}
-                  queryKey={PARAM_FIELD.WALLET_TYPE}
-                  placeholder='Chọn loại'
-                  options={WalletTypeList}
-                  className='w-100'
-                />
-        
+          label={'Loại'}
+          queryKey={PARAM_FIELD.WALLET_TYPE}
+          placeholder='Chọn loại'
+          options={WalletTypeList}
+          className='w-100'
+        />
       </div>
     </div>
   );

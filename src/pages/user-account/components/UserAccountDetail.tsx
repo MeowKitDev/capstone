@@ -9,12 +9,17 @@ import dayjs from 'dayjs';
 
 export const UserAccountDetail = () => {
   const { id } = useParams();
-  const {userDetailData } = useUserDetailData(id);
+  const { userDetailData } = useUserDetailData(id);
   const dataAccount = useMemo(() => UserAccountData.find((item) => item.id === Number(id)), [id]);
 
   return (
     <div className='space-y-4'>
-      <button onClick={()=> {console.table(userDetailData?.vehicles)}}>ssss</button>
+      <button
+        onClick={() => {
+          console.table(userDetailData?.vehicles);
+        }}>
+        ssss
+      </button>
       <div className='mb-4 grid gap-4 sm:grid-cols-2 sm:gap-8 lg:gap-16'>
         <div className='space-y-4'>
           <div className='flex space-x-4'>
@@ -38,7 +43,7 @@ export const UserAccountDetail = () => {
           <InfoItem label='Phone Number' value={userDetailData?.phone} />
         </div>
         <div className='space-y-4'>
-          <InfoItem label='Tên' value={userDetailData?.firstName +" "+ userDetailData?.lastName} />
+          <InfoItem label='Tên' value={userDetailData?.firstName + ' ' + userDetailData?.lastName} />
           <InfoItem label='Ngày Sinh' value={dayjs(userDetailData?.dob)?.format(DATE_FORMAT)} />
           <InfoItem label='Email' value={userDetailData?.email} />
           <InfoItem label='Địa chỉ' value={userDetailData?.address} />
@@ -54,7 +59,10 @@ export const UserAccountDetail = () => {
           <div>
             <div className='flex w-full gap-4'>
               <Image
-                src={userDetailData?.vehicles?.[0]?.vehicleImageUrl??'https://vinfast-auto-vn.net/wp-content/uploads/2022/08/VinFast-VF-8-mau-Xanh-Luc.png'}
+                src={
+                  userDetailData?.vehicles?.[0]?.vehicleImageUrl ??
+                  'https://vinfast-auto-vn.net/wp-content/uploads/2022/08/VinFast-VF-8-mau-Xanh-Luc.png'
+                }
                 alt='vehicle'
                 width={600}
                 height={350}
@@ -78,7 +86,8 @@ export const UserAccountDetail = () => {
                 label='Vehicle Registration Certificate'
                 value={
                   <Image
-                    src={ userDetailData?.vehicles?.[0]?.vehicleInspectionCertificateUrl??
+                    src={
+                      userDetailData?.vehicles?.[0]?.vehicleInspectionCertificateUrl ??
                       'https://tnclerks.zendesk.com/hc/article_attachments/4409967522708/Combined_month_and_year_decal.PNG'
                     }
                     alt='vehicle'
@@ -92,8 +101,10 @@ export const UserAccountDetail = () => {
                 label='Car Insurance'
                 value={
                   <Image
-                    src={userDetailData?.vehicles?.[0]?.carInsuranceUrl ??
-                      'https://www.policybazaar.com/pblife/assets/images/pb_life_1650972275.jpg'}
+                    src={
+                      userDetailData?.vehicles?.[0]?.carInsuranceUrl ??
+                      'https://www.policybazaar.com/pblife/assets/images/pb_life_1650972275.jpg'
+                    }
                     alt='vehicle'
                     width={200}
                     height={200}
@@ -105,7 +116,8 @@ export const UserAccountDetail = () => {
                 label='Registration Certificate'
                 value={
                   <Image
-                    src={ userDetailData?.vehicles?.[0]?.carRegistrationUrl ??
+                    src={
+                      userDetailData?.vehicles?.[0]?.carRegistrationUrl ??
                       'https://dmv.ny.gov/sites/default/files/styles/wysiwyg/public/images/2022-01/reg_sample-340x300.png?itok=HZLA63ka'
                     }
                     alt='vehicle'

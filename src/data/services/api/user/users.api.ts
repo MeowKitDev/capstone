@@ -1,6 +1,6 @@
-import axiosClient from '../../axiosClient';
-import { UserDetailDTO, UserGetAllDTO, UserGetMeDTO } from '@/@types/dto/userDTO';
 import { PagedResponse } from '@/@types/dto/pagedResponse';
+import { UserDetailDTO, UserGetAllDTO, UserGetMeDTO } from '@/@types/dto/userDTO';
+import axiosClient from '../../axiosClient';
 
 // export interface PagedResponse<T> {
 //   data: T[];
@@ -21,26 +21,17 @@ export const userApi = {
   //   return response;
   // },
 
-  getAll: async (params?: {
-    firstName?: string;
-    lastName?: string;
-  }): Promise<PagedResponse<UserGetAllDTO>> => {
+  getAll: async (params?: { firstName?: string; lastName?: string }): Promise<PagedResponse<UserGetAllDTO>> => {
     const response: PagedResponse<UserGetAllDTO> = await axiosClient.get('/manager/GetAllUsers', { params });
     return response;
   },
 
-  getDetail: async (
-		id: string,
-	): Promise<UserDetailDTO> => {
-		const response:UserDetailDTO = await axiosClient.get(
-			`manager/details/${id}`,
-			{},
-		);
-		return response;
-	},
-  
+  getDetail: async (id: string): Promise<UserDetailDTO> => {
+    const response: UserDetailDTO = await axiosClient.get(`manager/details/${id}`, {});
+    return response;
+  },
 
-  getMe: async () => {
+  getMe: async (): Promise<UserGetMeDTO[]> => {
     const response: UserGetMeDTO[] = await axiosClient.get('/getme', {
       // params: { page, size },
     });

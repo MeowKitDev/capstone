@@ -1,13 +1,11 @@
 import { TableBuilder } from '@/components/table/TableBuilder';
-import { TransactionHistoryColumn } from './column/TransactionHistoryColumn';
-import { TransactionHistoryData } from './mocks/TransactionHistoryData';
 import TransactionFilter from '@/pages/wallet/components/TransactionFilter';
 import useTransactionHistoryData from '@/data/services/api/wallet/useTransactionHistoryData';
 import { WalletDTO } from '@/@types/dto/walletDTO';
 import { TransactionColumn } from '@/pages/wallet/components/column/TransactionColumn';
 
 export default function TransactionHistoryList() {
-  const {TransactionHistoryData, isLoading} = useTransactionHistoryData();
+  const { TransactionHistoryData, isLoading } = useTransactionHistoryData();
   return (
     <div className='flex max-w-full flex-col gap-5'>
       <TransactionFilter />

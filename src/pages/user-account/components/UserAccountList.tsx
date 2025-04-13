@@ -12,12 +12,7 @@ export default function UserAccountList() {
   return (
     <div className='flex flex-col gap-5'>
       <UserAccountFilter />
-      <TableBuilder<UserGetAllDTO> 
-        rowKey='userId' 
-        columns={UserColumn()} 
-        data={UserData ?? []} 
-        isLoading={isLoading} 
-      />
+      <TableBuilder<UserGetAllDTO> rowKey='userId' columns={UserColumn()} data={UserData ?? []} isLoading={isLoading} />
       <CustomTablePagination
         totalItems={UserData?.length || 1}
         queryKey={PARAM_FIELD.CURRENT_PAGE}
