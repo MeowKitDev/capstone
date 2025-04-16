@@ -8,19 +8,40 @@ export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
 
   return [
     {
-      title: () => <TableHeaderCell key='id' label={'ID'} sortKey='id' />,
-      key: 'id',
-      render: ({ ...props }: PackageGetAllDTO) => {
-        return <div>{props?.id}</div>;
-      },
-    },
-    {
       title: () => <TableHeaderCell key='name' label={'name'} sortKey='name' />,
       key: 'name',
       render: ({ ...props }: PackageGetAllDTO) => {
         return <div>{props?.name}</div>;
       },
     },
+    {
+      title: () => <TableHeaderCell key='price' label={'price'} sortKey='price' />,
+      key: 'price',
+      render: ({ ...props }: PackageGetAllDTO) => {
+        return <div>{props?.price}</div>;
+      },
+    },
+    {
+      title: () => <TableHeaderCell key='time' label={'Package Time'} sortKey='time' />,
+      key: 'time',
+      render: ({ ...props }: PackageGetAllDTO) => {
+        return <div>{props?.time}</div>;
+      },
+    },
+    {
+      title: () => <TableHeaderCell key='bonus' label={'Package Bonus Time'} sortKey='bonus' />,
+      key: 'bonus',
+      render: ({ ...props }: PackageGetAllDTO) => {
+        return <div>{props?.bonus}</div>;
+      },
+    },
+    // {
+    //   title: () => <TableHeaderCell key='id' label={'ID'} sortKey='id' />,
+    //   key: 'id',
+    //   render: ({ ...props }: PackageGetAllDTO) => {
+    //     return <div>{props?.id}</div>;
+    //   },
+    // },
     // {
     //   title: () => <TableHeaderCell key='packageID' label={'Package ID'} sortKey='packageID' />,
     //   key: 'packageID',
