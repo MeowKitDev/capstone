@@ -16,25 +16,25 @@ export const TransactionColumn = (): ColumnsType<WalletDTO> => {
     //     return <div>{props?.transactionId }</div>;
     //   },
     // },
-    {
-      title: () => <TableHeaderCell key='type' label={'Type'} sortKey='type' />,
-      key: 'type',
-      render: ({ ...props }: WalletDTO) => {
-        return <div>{props?.type}</div>;
-      },
-    },
-    {
-      title: () => <TableHeaderCell key='amount' label={'amount'} sortKey='amount' />,
-      key: 'amount',
-      render: ({ ...props }: WalletDTO) => {
-        return <div>{props?.amount}</div>;
-      },
-    },
+    // {
+    //   title: () => <TableHeaderCell key='type' label={'Type'} sortKey='type' />,
+    //   key: 'type',
+    //   render: ({ ...props }: WalletDTO) => {
+    //     return <div>{props?.type}</div>;
+    //   },
+    // },
     {
       title: () => <TableHeaderCell key='fromOwner' label={'fromOwner'} sortKey='fromOwner' />,
       key: 'fromOwner',
       render: ({ ...props }: WalletDTO) => {
         return <div>{props?.fromOwner}</div>;
+      },
+    },
+    {
+      title: () => <TableHeaderCell key='amount' label={'amount (vnd)'} sortKey='amount' />,
+      key: 'amount',
+      render: ({ ...props }: WalletDTO) => {
+        return <div>{props?.amount}</div>;
       },
     },
     {

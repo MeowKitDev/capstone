@@ -1,23 +1,21 @@
 import { useQuery } from 'react-query';
 import { walletApi } from './wallet.api';
 import queryString from 'query-string';
+import { useLocation } from 'react-router-dom';
+import { PAGE_SIZE } from '@/utils/constants/shared.constant';
 
 const useWalletData = () => {
-  // const [pagination, setPagination] = useState<PaginationState>({
-  //   pageIndex: 0,
-  //   pageSize: 10,
-  // });
-  // const [sortState, setSortState] = useState<SortingState>([]);
-  // const [keyword, setKeyword] = useState<string>();
-  // const [totalRows, setTotalRows] = useState<number>(0);
-  // const [filter, setFilter] = useState({});
+  const location = useLocation();
   const params = queryString.parse(location.search);
+  const page = +(params.page ?? 1);
   const fetchWalletDataFunction = async () => {
     try {
       const response = await walletApi.getAll({
         walletType: params.walletType as string,
+        page: page - 1,
+        size: PAGE_SIZE,
       });
-      return response?.content;
+      return response;
     } catch (e) {
       console.log(e);
       throw e;
@@ -25,7 +23,7 @@ const useWalletData = () => {
   };
 
   // TODO: use debounce technique to prevent many calls at a short time
-  const queryKey = ['walletData', params.walletType as string];
+  const queryKey = ['walletData', params.walletType as string, page];
 
   const {
     data: WalletData,

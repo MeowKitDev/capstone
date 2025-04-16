@@ -1,20 +1,21 @@
 import { useQuery } from 'react-query';
 import { censorDriverRequestApi } from './censorDriverRequest.api';
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string';
+import { PAGE_SIZE } from '@/utils/constants/shared.constant';
 
 const useCensorDriverRequestData = () => {
-  // const [pagination, setPagination] = useState<PaginationState>({
-  //   pageIndex: 0,
-  //   pageSize: 10,
-  // });
-  // const [sortState, setSortState] = useState<SortingState>([]);
-  // const [keyword, setKeyword] = useState<string>();
-  // const [totalRows, setTotalRows] = useState<number>(0);
-  // const [filter, setFilter] = useState({});
+  const location = useLocation();
+  const params = queryString.parse(location.search);
+  const page = +(params.page ?? 1);
   const fetchCensorDriverRequestDataFunction = async () => {
     try {
-      const response = await censorDriverRequestApi.getAll();
+      const response = await censorDriverRequestApi.getAll({
+        page: page - 1,
+        size: PAGE_SIZE,
+      });
       // console.log(response?.content);
-      return response?.content;
+      return response;
     } catch (e) {
       console.log(e);
       throw e;

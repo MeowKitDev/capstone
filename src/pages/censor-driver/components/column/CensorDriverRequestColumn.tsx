@@ -83,7 +83,7 @@ export const CensorDriverRequestColumn = (): ColumnsType<CensorDriverRequestDTO>
     // },
 
     {
-      title: () => <TableHeaderCell key='action' label={''} />,
+      title: () => <TableHeaderCell key='action' label={'Action'} />,
       key: 'action',
       render: ({ ...props }: CensorDriverRequestDTO) => (
         <>
