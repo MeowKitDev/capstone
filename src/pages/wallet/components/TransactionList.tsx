@@ -4,6 +4,8 @@ import { TransactionColumn } from './column/TransactionColumn';
 import TransactionFilter from './TransactionFilter';
 import useWalletData from '@/data/services/api/wallet/useWalletData';
 import { WalletDTO } from '@/@types/dto/walletDTO';
+import { PARAM_FIELD } from '@/utils/enum/param-field.enum';
+import CustomTablePagination from '@/components/table/CustomTablePagination';
 
 export default function TransactionList() {
   const { WalletData, isLoading } = useWalletData();
@@ -14,9 +16,14 @@ export default function TransactionList() {
       <TableBuilder<WalletDTO>
         rowKey='transactionId'
         columns={TransactionColumn()}
-        data={WalletData ?? []}
+        data={WalletData?.content ?? []}
         isLoading={isLoading}
       />
+      <CustomTablePagination
+        totalItems={WalletData?.totalElements || 1}
+        queryKey={PARAM_FIELD.PAGE}
+        isScrollAfterPageChange
+      />  
     </div>
   );
 }

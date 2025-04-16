@@ -3,6 +3,7 @@ import InfoItem from '@/components/common/InfoItem';
 import CustomTextFieldWithLabel from '@/components/form-related/CustomTextFieldWithLabel';
 import StarIcon from '@/components/icons/StarIcon';
 import CustomModal from '@/components/modal/CustomModal';
+import { censorDriverRequestApi } from '@/data/services/api/censorDriverRequest/censorDriverRequest.api';
 import { MY_ROUTE } from '@/helpers/router/route.constant';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Image } from 'antd';
@@ -75,10 +76,21 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
         className='!w-[1020px]'
         footer={
           <div className='mt-6 flex justify-end gap-3'>
-            <Button onClick={() => setIsShownReasonModal(true)} className='bg-red-600 text-white'>
-              Decline
+            <Button 
+                onClick={ async() => {
+                  await censorDriverRequestApi.rejectDriver(data?.driverId ?? '')
+                setOpen(false)
+                  // setIsShownReasonModal(true)
+                }} 
+              className='bg-red-600 text-white'>
+              Reject
             </Button>
-            <Button type='primary' className='border-none' onClick={() => setOpen(false)}>
+            <Button 
+              onClick={ async() => {
+                await censorDriverRequestApi.approveDriver(data?.driverId ?? '')
+                setOpen(false);
+              }}
+             className='bg-green-500 text-white border-none'>
               Approve
             </Button>
           </div>
@@ -99,7 +111,7 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                 <InfoItem label='Số điện thoại' value={data?.phone} />
                 <InfoItem label='Email' value={data?.email} />
                 <InfoItem
-                  label='Uy tín'
+                  label='Đánh Giá'
                   value={
                     <div className='flex gap-1'>
                       {data?.rating}

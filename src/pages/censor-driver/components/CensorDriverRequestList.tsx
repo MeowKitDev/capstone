@@ -11,21 +11,17 @@ import useCensorDriverRequestData from '@/data/services/api/censorDriverRequest/
 export default function CensorDriverRequestList() {
   const { CensorDriverRequestData, isLoading } = useCensorDriverRequestData();
 
-  useEffect(() => {
-    console.table(CensorDriverRequestData);
-  }, [CensorDriverRequestData]);
-
   return (
     <div className='flex flex-col gap-5'>
       <CensorDriverRequestFilter />
       <TableBuilder<CensorDriverRequestDTO>
         rowKey='userId'
         columns={CensorDriverRequestColumn()}
-        data={CensorDriverRequestData ?? []}
+        data={CensorDriverRequestData?.content ?? []}
         isLoading={isLoading}
       />
       <CustomTablePagination
-        totalItems={CensorDriverRequestData?.length || 1}
+        totalItems={CensorDriverRequestData?.totalElements || 1}
         queryKey={PARAM_FIELD.CURRENT_PAGE}
         isScrollAfterPageChange
       />

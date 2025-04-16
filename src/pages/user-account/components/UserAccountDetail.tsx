@@ -14,12 +14,12 @@ export const UserAccountDetail = () => {
 
   return (
     <div className='space-y-4'>
-      <button
+      {/* <button
         onClick={() => {
           console.table(userDetailData?.vehicles);
         }}>
         ssss
-      </button>
+      </button> */}
       <div className='mb-4 grid gap-4 sm:grid-cols-2 sm:gap-8 lg:gap-16'>
         <div className='space-y-4'>
           <div className='flex space-x-4'>
@@ -77,7 +77,7 @@ export const UserAccountDetail = () => {
                   <InfoItem label='Vehicle Status' value={userDetailData?.vehicles?.[0]?.status} />
                   <InfoItem label='Number of Seats' value={userDetailData?.vehicles?.[0]?.numberOfSeats} />
                   <InfoItem label='Vehicle Number' value={userDetailData?.vehicles?.[0]?.vehicleNumber} />
-                  <InfoItem label='sssssss' value={userDetailData?.vehicles?.[0]?.status} />
+                  {/* <InfoItem label='sssssss' value={userDetailData?.vehicles?.[0]?.status} /> */}
                 </div>
               </div>
             </div>
