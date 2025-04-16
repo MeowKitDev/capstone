@@ -14,6 +14,13 @@ export const TripColumn = (): ColumnsType<TripDTO> => {
 
   return [
     {
+      title: () => <TableHeaderCell key='stt' label={'STT'} />,
+      key: 'stt',
+      render: ({ ...props }: TripDTO) => {
+        return <div>{props?.index}</div>;
+      },
+    },
+    {
       title: () => <TableHeaderCell key='startLocation' label={'Điểm khởi hành'} />,
       key: 'startLocation',
       render: ({ ...props }: TripDTO) => {

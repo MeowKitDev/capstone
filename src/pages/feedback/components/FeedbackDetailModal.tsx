@@ -67,7 +67,7 @@ export default function FeedbackDetailModal({ open, setOpen, data }: FeedbackDet
               <InfoItem label='Ngày sinh' value={dayjs(data?.driver?.dob).format(DATE_FORMAT_DOT)} />
               <InfoItem label='Giới tính' value={data?.driver.gender === GENDER.MALE ? 'Nam' : 'Nữ'} />
               <InfoItem
-                label='Uy tín'
+                label='Đánh giá'
                 value={
                   <div className='flex gap-1'>
                     {data?.driver.rating}
@@ -146,7 +146,7 @@ export default function FeedbackDetailModal({ open, setOpen, data }: FeedbackDet
                 )
               }
             />
-            {data?.trip?.cancelReason && (
+            {data?.trip?.cancelReason && data?.trip?.tripStatus === TRIP_STATUS.CANCEL && (
               <InfoItem
                 label='Lý do hủy chuyến'
                 value={<span className='text-red-500'>{data?.trip?.cancelReason}</span>}

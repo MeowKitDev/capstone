@@ -99,7 +99,7 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                 <InfoItem label='Số điện thoại' value={data?.phone} />
                 <InfoItem label='Email' value={data?.email} />
                 <InfoItem
-                  label='Uy tín'
+                  label='Đánh giá'
                   value={
                     <div className='flex gap-1'>
                       {data?.rating}

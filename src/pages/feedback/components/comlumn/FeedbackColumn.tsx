@@ -1,3 +1,4 @@
+import StarIcon from '@/components/icons/StarIcon';
 import CustomTableActionsButton from '@/components/table/CustomTableActionsButton';
 import { TableHeaderCell } from '@/components/table/TableHeaderCell';
 import { FeedbackDTO } from '@/data/feedback/dto/feedback.dto';
@@ -13,6 +14,13 @@ export const FeedbackColumn = (): ColumnsType<FeedbackDTO> => {
   const [isShownDetailsModal, setIsShownDetailsModal] = useState<string | null>(null);
 
   return [
+    {
+      title: () => <TableHeaderCell key='stt' label={'STT'} />,
+      key: 'stt',
+      render: ({ ...props }: FeedbackDTO) => {
+        return <div>{props?.index}</div>;
+      },
+    },
     {
       title: () => <TableHeaderCell key='name' label={'Tên người phản hồi'} sortKey='name' />,
       key: 'name',
@@ -33,6 +41,18 @@ export const FeedbackColumn = (): ColumnsType<FeedbackDTO> => {
       key: 'driverName',
       render: ({ ...props }: FeedbackDTO) => {
         return <div>{props?.driver.firstName + ' ' + props?.driver.lastName}</div>;
+      },
+    },
+    {
+      title: () => <TableHeaderCell key='rating' label={'Đánh giá'} />,
+      key: 'rating',
+      render: ({ ...props }: FeedbackDTO) => {
+        return (
+          <div className='flex gap-1'>
+            {props?.feedbackRating}
+            <StarIcon className='size-5 text-yellow-300' />
+          </div>
+        );
       },
     },
     {

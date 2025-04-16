@@ -27,13 +27,13 @@ export const StaffColumn = (): ColumnsType<StaffDTO> => {
   };
 
   return [
-    // {
-    //   title: () => <TableHeaderCell key='userId' label={'ID'} sortKey='userId' />,
-    //   key: 'userId',
-    //   render: ({ ...props }: StaffDTO) => {
-    //     return <div>{props?.userId}</div>;
-    //   },
-    // },
+    {
+      title: () => <TableHeaderCell key='stt' label={'STT'} />,
+      key: 'stt',
+      render: ({ ...props }: StaffDTO) => {
+        return <div>{props?.index}</div>;
+      },
+    },
     {
       title: () => <TableHeaderCell key='name' label={'Tên'} sortKey='name' />,
       key: 'name',

@@ -5,6 +5,7 @@ import { StaffDTO } from '@/data/staff/dto/staff.dto';
 import { useGetStaffListQuery } from '@/data/staff/staff.api';
 import { staffListRequestParamsToFilter } from '@/data/staff/staff.service';
 import { PARAM_FIELD } from '@/utils/enum/param-field.enum';
+import { initialPagingState } from '@/utils/types/paging.type';
 import { Button } from 'antd';
 import queryString from 'query-string';
 import { useMemo, useState } from 'react';
@@ -17,6 +18,11 @@ export default function StaffList() {
   const location = useLocation();
   const params = queryString.parse(location.search);
   const [isShownCreateModal, setIsShownCreateModal] = useState(false);
+
+  const page = useMemo(() => {
+    const page = params[PARAM_FIELD.PAGE] || initialPagingState.page;
+    return Number(page);
+  }, [params]);
 
   const { staffListFilter } = useMemo(() => {
     const staffListFilter = staffListRequestParamsToFilter(params);
@@ -40,7 +46,9 @@ export default function StaffList() {
       <TableBuilder<StaffDTO>
         rowKey='userId'
         columns={StaffColumn()}
-        data={staffListData?.content ?? []}
+        data={
+          staffListData?.content.map((item, idx) => ({ ...item, index: page * staffListFilter.size + idx + 1 })) ?? []
+        }
         isLoading={isLoading || isFetching}
       />
       <CustomTablePagination

@@ -1,4 +1,5 @@
 export type StaffDTO = {
+  index: number;
   firstName: string;
   lastName: string;
   email: string;

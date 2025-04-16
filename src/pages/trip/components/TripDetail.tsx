@@ -170,7 +170,7 @@ export default function TripDetail() {
                   )
                 }
               />
-              {data?.cancelReason && (
+              {data?.cancelReason && data?.tripStatus === TRIP_STATUS.CANCEL && (
                 <InfoItem label='Lý do hủy chuyến' value={<span className='text-red-500'>{data?.cancelReason}</span>} />
               )}
             </div>

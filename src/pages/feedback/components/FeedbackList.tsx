@@ -4,6 +4,7 @@ import { FeedbackDTO } from '@/data/feedback/dto/feedback.dto';
 import { useGetFeedbackListQuery } from '@/data/feedback/feedback.api';
 import { feedbackListRequestParamsToFilter } from '@/data/feedback/feedback.service';
 import { PARAM_FIELD } from '@/utils/enum/param-field.enum';
+import { initialPagingState } from '@/utils/types/paging.type';
 import queryString from 'query-string';
 import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -19,6 +20,11 @@ export default function FeedbackList() {
     return { feedbackListFilter };
   }, [params]);
 
+  const page = useMemo(() => {
+    const page = params[PARAM_FIELD.PAGE] || initialPagingState.page;
+    return Number(page);
+  }, [params]);
+
   const { data, isLoading, isFetching } = useGetFeedbackListQuery(feedbackListFilter);
 
   return (
@@ -27,7 +33,7 @@ export default function FeedbackList() {
       <TableBuilder<FeedbackDTO>
         rowKey='feedbackID'
         columns={FeedbackColumn()}
-        data={data?.content ?? []}
+        data={data?.content.map((item, idx) => ({ ...item, index: page * feedbackListFilter.size + idx + 1 })) ?? []}
         isLoading={isLoading || isFetching}
       />
       <CustomTablePagination

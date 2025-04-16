@@ -7,7 +7,6 @@ import CommentIcon from '@/components/icons/CommentIcon';
 import CubeIcon from '@/components/icons/CubeIcon';
 import MemberIcon from '@/components/icons/MemberIcon';
 import MoneyCheckIcon from '@/components/icons/MoneyCheckIcon';
-import RatingIcon from '@/components/icons/RatingIcon';
 import UserGroupIcon from '@/components/icons/UserGroupIcon';
 import WalletIcon from '@/components/icons/WalletIcon';
 import { SideBarGroupTemplate } from '@/layouts/types/SideBarGroupTemplate.type';
@@ -37,10 +36,10 @@ export const LAYOUT_SIDEBAR_GROUP_TEMPLATES: SideBarGroupTemplate[] = [
     title: 'wallet',
     icon: <WalletIcon />,
   },
-  {
-    title: 'rate-driver',
-    icon: <RatingIcon />,
-  },
+  // {
+  //   title: 'rate-driver',
+  //   icon: <RatingIcon />,
+  // },
   // {
   //   title: 'report',
   //   icon: <ListCheckIcon />,
@@ -75,10 +74,10 @@ export const LAYOUT_SIDEBAR_GROUP_TEMPLATES_STAFF: SideBarGroupTemplate[] = [
     title: 'wallet',
     icon: <WalletIcon />,
   },
-  {
-    title: 'rate-driver',
-    icon: <RatingIcon />,
-  },
+  // {
+  //   title: 'rate-driver',
+  //   icon: <RatingIcon />,
+  // },
   // {
   //   title: 'report',
   //   icon: <ListCheckIcon />,
