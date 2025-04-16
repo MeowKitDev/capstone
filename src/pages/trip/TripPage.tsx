@@ -7,7 +7,6 @@ import TripList from './components/TripList';
 export default function TripPage() {
   const location = useLocation();
   const params = queryString.parse(location.search);
-  console.log(params.driverId);
 
   return (
     <TableUtilProvider>

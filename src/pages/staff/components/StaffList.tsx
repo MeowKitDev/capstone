@@ -21,6 +21,7 @@ export default function StaffList() {
 
   const page = useMemo(() => {
     const page = params[PARAM_FIELD.PAGE] || initialPagingState.page;
+    if (page !== 0) return Number(page) - 1;
     return Number(page);
   }, [params]);
 
