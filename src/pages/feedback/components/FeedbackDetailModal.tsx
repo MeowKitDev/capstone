@@ -107,7 +107,7 @@ export default function FeedbackDetailModal({ open, setOpen, data }: FeedbackDet
               value={`${data?.trip?.totalDistance && data?.trip?.totalDistance + ' km'}`}
             />
             <InfoItem label='Mô tả' value={data?.trip?.description} />
-            <InfoItem label='Luật lệ của chuyến đi' value={data?.trip?.condition} />
+            {data?.trip?.condition && <InfoItem label='Yêu cầu' value={data?.trip?.condition} />}
             <InfoItem
               label='Trạng thái'
               value={

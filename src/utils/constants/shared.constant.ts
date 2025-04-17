@@ -6,7 +6,7 @@ export const STORAGE = {
   RECENTLY_LOGGED_IN: 'recentlyLoggedIn',
 };
 
-export const PAGE_SIZE = 10;
+export const PAGE_SIZE = 8;
 
 export const NOTISTACK_DURATION = 5000;
 

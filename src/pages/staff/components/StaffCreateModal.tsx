@@ -59,7 +59,7 @@ export const StaffCreateModal = ({ open, setOpen }: StaffCreateModalProps) => {
       title='Cập nhật thông tin nhân viên'
       open={open}
       setOpen={setOpen}
-      className='!w-[520px]'
+      className='!w-[850px]'
       onConfirm={handleSubmit(onSubmit)}
       loading={isLoadingCreateStaff}
       okText='Cập nhật'>
@@ -115,21 +115,6 @@ export const StaffCreateModal = ({ open, setOpen }: StaffCreateModalProps) => {
             required
             placeholder='Tên'
           />
-          <CustomTextFieldWithLabel
-            control={control}
-            name='phone'
-            label='Số điện thoại'
-            className='mb-4'
-            required
-            placeholder='Số điện thoại'
-          />
-          <CustomTextFieldWithLabel
-            control={control}
-            name='address'
-            label='Địa chỉ'
-            className='mb-4'
-            placeholder='Địa chỉ'
-          />
           <CustomDatePickerWithLabel
             control={control}
             name='dob'
@@ -157,6 +142,21 @@ export const StaffCreateModal = ({ open, setOpen }: StaffCreateModalProps) => {
                 value: GENDER.FEMALE,
               },
             ]}
+          />
+          <CustomTextFieldWithLabel
+            control={control}
+            name='phone'
+            label='Số điện thoại'
+            className='mb-4'
+            required
+            placeholder='Số điện thoại'
+          />
+          <CustomTextFieldWithLabel
+            control={control}
+            name='address'
+            label='Địa chỉ'
+            className='mb-4'
+            placeholder='Địa chỉ'
           />
         </div>
       </form>

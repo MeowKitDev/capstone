@@ -1,6 +1,7 @@
 import InfoItem from '@/components/common/InfoItem';
 import LoadingPageBanner from '@/components/common/LoadingPageBanner';
 import CustomTextFieldWithLabel from '@/components/form-related/CustomTextFieldWithLabel';
+import StarIcon from '@/components/icons/StarIcon';
 import CustomConfirmModal from '@/components/modal/CustomConfirmModal';
 import CustomModal from '@/components/modal/CustomModal';
 import { useGetTripDetailQuery, usePutAcceptTripMutation, usePutRejectTripMutation } from '@/data/trip/trip.api';
@@ -78,27 +79,9 @@ export default function TripDetail() {
       ) : (
         <div className='space-y-5'>
           <div>
-            <div className='flex items-center justify-between'>
-              <div>
-                <h3 className='text-xl font-bold text-primary-500'>Thông tin chuyến đi</h3>
-                <span className='text-sm font-normal text-gray-500'>(Thông tin chi tiết chuyến đi)</span>
-              </div>
-
-              <div>
-                {data?.tripStatus === TRIP_STATUS.CONFIRMING && (
-                  <Button
-                    className='float-right mr-2 bg-blue-500 text-white'
-                    onClick={() => setIsAccept(true)}
-                    loading={isLoadingAccept}>
-                    Chấp nhận
-                  </Button>
-                )}
-                {data?.tripStatus === TRIP_STATUS.CONFIRMING && (
-                  <Button className='float-right mr-2 bg-red-500 text-white' onClick={() => setIsReject(true)}>
-                    Từ chối
-                  </Button>
-                )}
-              </div>
+            <div>
+              <h3 className='text-xl font-bold text-primary-500'>Thông tin chuyến đi</h3>
+              <span className='text-sm font-normal text-gray-500'>(Thông tin chi tiết chuyến đi)</span>
             </div>
             <Divider className='mt-1' />
             <div className='mt-4 grid grid-cols-3 gap-4'>
@@ -131,7 +114,7 @@ export default function TripDetail() {
                 }
               />
               <InfoItem label='Mô tả' value={data?.description} />
-              <InfoItem label='Luật lệ của chuyến đi' value={data?.condition} />
+              {data?.condition && <InfoItem label='Yêu cầu' value={data?.condition} />}
               <InfoItem
                 label='Trạng thái'
                 value={
@@ -179,21 +162,24 @@ export default function TripDetail() {
             <h3 className='text-xl font-bold text-primary-500'>Thông tin tài xế</h3>
             <span className='text-sm font-normal text-gray-500'>(Thông tin tài xế sẽ thực hiện chuyến đi này)</span>
             <Divider className='mt-1' />
-            <div className='flex items-center gap-4'>
-              <figure className='relative h-40 w-40 rounded-xl border-[5px] border-white'>
-                <img
-                  src={data?.driver?.avatarUrl}
-                  alt={'avatar'}
-                  className='h-full w-full rounded-xl border-[5px] border-white object-contain'
-                />
-              </figure>
-              <div className='mt-4 grid grid-cols-3 gap-x-10 gap-y-5'>
+            <div className='flex flex-col gap-4'>
+              <Image src={data?.driver?.avatarUrl} alt='avatar' width={150} height={150} />
+              <div className='mt-4 grid grid-cols-3 gap-4'>
                 <InfoItem label='Họ và Tên' value={data?.driver?.firstName + ' ' + data?.driver.lastName} />
                 <InfoItem label='Số điện thoại' value={formatPhoneNumber(data?.driver?.phone || '')} />
                 <InfoItem label='Email' value={data?.driver?.email} />
                 <InfoItem label='Địa chỉ' value={data?.driver?.address} />
                 <InfoItem label='Ngày sinh' value={dayjs(data?.driver?.dob).format(DATE_FORMAT_DOT)} />
                 <InfoItem label='Giới tính' value={data?.driver.gender === GENDER.MALE ? 'Nam' : 'Nữ'} />
+                <InfoItem
+                  label='Đánh Giá'
+                  value={
+                    <div className='flex gap-1'>
+                      {data?.driver?.rating}
+                      <StarIcon className='size-5 text-yellow-300' />
+                    </div>
+                  }
+                />
               </div>
             </div>
           </div>
@@ -202,38 +188,26 @@ export default function TripDetail() {
             <h3 className='text-xl font-bold text-primary-500'>Thông tin xe</h3>
             <span className='text-sm font-normal text-gray-500'>(Xe sẽ được sử dụng cho chuyến đi này)</span>
             <Divider className='mt-1' />
-            <div>
-              <div className='flex w-full gap-4'>
-                <Image
-                  src={data?.vehicle?.vehicleImageUrl}
-                  alt='vehicle'
-                  width={400}
-                  height={250}
-                  className='w-1/3 object-contain'
+            <div className='flex flex-col gap-4'>
+              <Image src={data?.vehicle?.vehicleImageUrl} alt='vehicle' width={150} height={150} />
+              <div className='mt-4 grid grid-cols-3 gap-4'>
+                <InfoItem label='Loại xe' value={data?.vehicle?.vehicleType} />
+                <InfoItem label='Hãng xe' value={data?.vehicle?.vehicleBrand} />
+                <InfoItem label='Biển số xe' value={data?.vehicle?.vehicleNumber} />
+                <InfoItem label='Số chỗ ngồi' value={data?.vehicle?.numberOfSeats} />
+                <InfoItem label='Màu xe' value={data?.vehicle.vehicleColor} />
+                <InfoItem
+                  label='Trạng thái'
+                  value={
+                    data?.vehicle?.status === 'ACTIVE' ? (
+                      <span className='text-green-500'>Đang hoạt động</span>
+                    ) : data?.vehicle?.status === 'PENDING' ? (
+                      <span className='text-blue-500'>Đang chờ duyệt</span>
+                    ) : (
+                      <span className='text-red-500'>Ngừng hoạt động</span>
+                    )
+                  }
                 />
-                <div className='max-w-2/3 w-full'>
-                  <div className='mt-4 grid grid-cols-2 gap-4'>
-                    <InfoItem label='Loại xe' value={data?.vehicle?.vehicleType} />
-                    <InfoItem label='Hãng xe' value={data?.vehicle?.vehicleBrand} />
-                    <InfoItem label='Biển số xe' value={data?.vehicle?.vehicleNumber} />
-                    <InfoItem label='Số chỗ ngồi' value={data?.vehicle?.numberOfSeats} />
-                    <InfoItem label='Màu xe' value={data?.vehicle.vehicleColor} />
-                    <InfoItem
-                      label='Trạng thái'
-                      value={
-                        data?.vehicle?.status === 'ACTIVE' ? (
-                          <span className='text-green-500'>Đang hoạt động</span>
-                        ) : data?.vehicle?.status === 'PENDING' ? (
-                          <span className='text-blue-500'>Đang chờ duyệt</span>
-                        ) : (
-                          <span className='text-red-500'>Ngừng hoạt động</span>
-                        )
-                      }
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='mt-4 flex justify-between gap-5'>
                 <InfoItem
                   label='Cavet xe'
                   value={
@@ -273,6 +247,19 @@ export default function TripDetail() {
               </div>
             </div>
           </div>
+          {data?.tripStatus === TRIP_STATUS.CONFIRMING && (
+            <div className='mt-4'>
+              <Button className='float-right mr-2 bg-red-500 text-white' onClick={() => setIsReject(true)}>
+                Từ chối
+              </Button>
+              <Button
+                className='float-right mr-2 bg-blue-500 text-white'
+                onClick={() => setIsAccept(true)}
+                loading={isLoadingAccept}>
+                Chấp nhận
+              </Button>
+            </div>
+          )}
         </div>
       )}
       <CustomConfirmModal

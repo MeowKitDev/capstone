@@ -2,7 +2,7 @@ import StarIcon from '@/components/icons/StarIcon';
 import CustomTableActionsButton from '@/components/table/CustomTableActionsButton';
 import { TableHeaderCell } from '@/components/table/TableHeaderCell';
 import { FeedbackDTO } from '@/data/feedback/dto/feedback.dto';
-import { DATE_TIME_SHORT_24H_FORMAT } from '@/utils/constants/date.constant';
+import { DATE_FORMAT_DOT, TIME_24H_FORMAT } from '@/utils/constants/date.constant';
 import { FEEDBACK_STATUS } from '@/utils/enum/feedback/feedback-status.enum';
 import { Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
@@ -33,7 +33,13 @@ export const FeedbackColumn = (): ColumnsType<FeedbackDTO> => {
       key: 'feedbackDate',
       width: 180,
       render: ({ ...props }: FeedbackDTO) => {
-        return <div>{dayjs(props?.feedbackTime).format(DATE_TIME_SHORT_24H_FORMAT)}</div>;
+        return (
+          <div>
+            {dayjs(props?.feedbackTime).format(DATE_FORMAT_DOT) +
+              ' - ' +
+              dayjs(props?.feedbackTime).format(TIME_24H_FORMAT)}
+          </div>
+        );
       },
     },
     {

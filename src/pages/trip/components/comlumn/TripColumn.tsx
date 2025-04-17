@@ -35,43 +35,46 @@ export const TripColumn = (): ColumnsType<TripDTO> => {
       },
     },
     {
-      title: () => <TableHeaderCell key='startDay' label={'Ngày khởi hành'} />,
+      title: () => <TableHeaderCell key='startDay' label={'Ngày và thời gian khởi hành'} />,
       key: 'startDay',
-      width: 180,
       render: ({ ...props }: TripDTO) => {
-        return <div>{dayjs(props?.startDay).format(DATE_FORMAT_DOT)}</div>;
+        return (
+          <div>
+            {dayjs(props?.startDay).format(DATE_FORMAT_DOT) + ' - ' + dayjs(props?.startDay).format(TIME_24H_FORMAT)}
+          </div>
+        );
       },
     },
-    {
-      title: () => <TableHeaderCell key='endDay' label={'Ngày tới'} />,
-      key: 'endDay',
-      width: 150,
-      render: ({ ...props }: TripDTO) => {
-        return <div>{dayjs(props?.endDay).format(DATE_FORMAT_DOT)}</div>;
-      },
-    },
-    {
-      title: () => <TableHeaderCell key='startTime' label={'Thời gian khởi hành'} />,
-      key: 'startTime',
-      render: ({ ...props }: TripDTO) => {
-        return <div>{dayjs(props?.startDay).format(TIME_24H_FORMAT)}</div>;
-      },
-    },
-    {
-      title: () => <TableHeaderCell key='endTime' label={'Thời gian đến'} />,
-      key: 'endTime',
-      width: 130,
-      render: ({ ...props }: TripDTO) => {
-        return <div>{dayjs(props?.endDay).format(TIME_24H_FORMAT)}</div>;
-      },
-    },
+    // {
+    //   title: () => <TableHeaderCell key='endDay' label={'Ngày tới'} />,
+    //   key: 'endDay',
+    //   width: 150,
+    //   render: ({ ...props }: TripDTO) => {
+    //     return <div>{dayjs(props?.endDay).format(DATE_FORMAT_DOT)}</div>;
+    //   },
+    // },
+    // {
+    //   title: () => <TableHeaderCell key='startTime' label={'Thời gian khởi hành'} />,
+    //   key: 'startTime',
+    //   render: ({ ...props }: TripDTO) => {
+    //     return <div>{dayjs(props?.startDay).format(TIME_24H_FORMAT)}</div>;
+    //   },
+    // },
+    // {
+    //   title: () => <TableHeaderCell key='endTime' label={'Thời gian đến'} />,
+    //   key: 'endTime',
+    //   width: 130,
+    //   render: ({ ...props }: TripDTO) => {
+    //     return <div>{dayjs(props?.endDay).format(TIME_24H_FORMAT)}</div>;
+    //   },
+    // },
     {
       title: () => <TableHeaderCell key='price' label={'Giá (VNĐ)'} />,
       key: 'price',
       width: 100,
       render: ({ ...props }: TripDTO) => {
         return (
-          <div>
+          <div className='text-right'>
             {props?.price.toLocaleString('vi-VN', {
               minimumFractionDigits: 0,
               maximumFractionDigits: 0,
@@ -80,20 +83,20 @@ export const TripColumn = (): ColumnsType<TripDTO> => {
         );
       },
     },
-    {
-      title: () => <TableHeaderCell key='totalTime' label={'Thời gian'} />,
-      key: 'totalTime',
-      width: 150,
-      render: ({ ...props }: TripDTO) => {
-        return (
-          <div>
-            {props?.totalTime > 120
-              ? `${Math.floor(props?.totalTime / 60)} giờ ${props?.totalTime % 60} phút`
-              : `${props?.totalTime} phút`}
-          </div>
-        );
-      },
-    },
+    // {
+    //   title: () => <TableHeaderCell key='totalTime' label={'Thời gian'} />,
+    //   key: 'totalTime',
+    //   width: 150,
+    //   render: ({ ...props }: TripDTO) => {
+    //     return (
+    //       <div>
+    //         {props?.totalTime > 120
+    //           ? `${Math.floor(props?.totalTime / 60)} giờ ${props?.totalTime % 60} phút`
+    //           : `${props?.totalTime} phút`}
+    //       </div>
+    //     );
+    //   },
+    // },
     {
       title: () => <TableHeaderCell key='status' label={'Status'} />,
       key: 'status',

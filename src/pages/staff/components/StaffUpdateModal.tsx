@@ -76,7 +76,7 @@ export const StaffUpdateModal = ({ open, setOpen, data }: StaffUpdateModalProps)
       title='Cập nhật thông tin nhân viên'
       open={open}
       setOpen={setOpen}
-      className='!w-[520px]'
+      className='!w-[850px]'
       onConfirm={handleSubmit(onSubmit)}
       loading={isLoadingUpdateStaff}
       okText='Cập nhật'>
@@ -98,40 +98,6 @@ export const StaffUpdateModal = ({ open, setOpen, data }: StaffUpdateModalProps)
             required
             placeholder='Tên'
           />
-          <CustomTextFieldWithLabel
-            control={control}
-            name='email'
-            label='Email'
-            className='mb-4'
-            required
-            placeholder='Email'
-          />
-          <CustomTextFieldWithLabel
-            control={control}
-            name='phone'
-            label='Số điện thoại'
-            className='mb-4'
-            required
-            placeholder='Số điện thoại'
-          />
-          <CustomTextFieldWithLabel
-            control={control}
-            name='address'
-            label='Địa chỉ'
-            className='mb-4'
-            placeholder='Địa chỉ'
-          />
-          <CustomDatePickerWithLabel
-            control={control}
-            name='dob'
-            label='Ngày sinh'
-            className='mb-4'
-            required
-            placeholder='Ngày sinh'
-            format={DATE_FORMAT}
-            showTime={false}
-            use12Hours={false}
-          />
           <CustomSelectWithLabel
             name='gender'
             control={control}
@@ -149,7 +115,41 @@ export const StaffUpdateModal = ({ open, setOpen, data }: StaffUpdateModalProps)
               },
             ]}
           />
+          <CustomDatePickerWithLabel
+            control={control}
+            name='dob'
+            label='Ngày sinh'
+            className='mb-4'
+            required
+            placeholder='Ngày sinh'
+            format={DATE_FORMAT}
+            showTime={false}
+            use12Hours={false}
+          />
+          <CustomTextFieldWithLabel
+            control={control}
+            name='phone'
+            label='Số điện thoại'
+            className='mb-4'
+            required
+            placeholder='Số điện thoại'
+          />
+          <CustomTextFieldWithLabel
+            control={control}
+            name='email'
+            label='Email'
+            className='mb-4'
+            required
+            placeholder='Email'
+          />
         </div>
+        <CustomTextFieldWithLabel
+          control={control}
+          name='address'
+          label='Địa chỉ'
+          className='mb-4'
+          placeholder='Địa chỉ'
+        />
       </form>
     </CustomModal>
   );
