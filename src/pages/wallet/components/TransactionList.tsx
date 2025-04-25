@@ -6,7 +6,6 @@ import useWalletData from '@/data/services/api/wallet/useWalletData';
 import { WalletDTO } from '@/@types/dto/walletDTO';
 import { PARAM_FIELD } from '@/utils/enum/param-field.enum';
 import CustomTablePagination from '@/components/table/CustomTablePagination';
-import { useEffect } from 'react';
 
 export default function TransactionList() {
   const { WalletData, isLoading } = useWalletData();

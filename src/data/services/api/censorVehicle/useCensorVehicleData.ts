@@ -8,7 +8,7 @@ const useCensorVehicleData = () => {
   const location = useLocation();
   const params = queryString.parse(location.search);
   const page = +(params.page ?? 1);
-  
+
   const fetchCensorVehicleDataFunction = async () => {
     try {
       const response = await censorVehicleApi.getAll({
@@ -27,14 +27,7 @@ const useCensorVehicleData = () => {
   };
 
   // TODO: use debounce technique to prevent many calls at a short time
-  const queryKey = [
-    'CensorVehicles',
-    params.firstName, 
-    params.lastName, 
-    params.email, 
-    params.phone, 
-    page
-  ];
+  const queryKey = ['CensorVehicles', params.firstName, params.lastName, params.email, params.phone, page];
 
   const {
     data: CensorVehicleData,

@@ -1,7 +1,4 @@
 import CustomSearchInputQueryWithLabel from '@/components/form-related/CustomSearchInputQueryWithLabel';
-import CustomSelectQueryWithLabel from '@/components/form-related/CustomSelectQueryWithLabel';
-import { CENSOR_DRIVER_STATUS } from '@/utils/enum/censor-driver/censor-driver.enum';
-import { GENDER } from '@/utils/enum/common.enum';
 import { PARAM_FIELD } from '@/utils/enum/param-field.enum';
 
 export default function CensorDriverRequestFilter() {

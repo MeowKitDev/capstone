@@ -3,7 +3,6 @@ import { userApi } from './users.api';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import { PAGE_SIZE } from '@/utils/constants/shared.constant';
-import { useEffect } from 'react';
 
 const useUsersData = () => {
   const location = useLocation();

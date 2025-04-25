@@ -3,8 +3,8 @@ import { UserDetailDTO, UserGetAllDTO, UserGetMeDTO } from '@/@types/dto/userDTO
 import axiosClient from '../../axiosClient';
 
 export const userApi = {
-  getAll: async (params?: { 
-    firstName?: string; 
+  getAll: async (params?: {
+    firstName?: string;
     lastName?: string;
     page?: number;
     size?: number;

@@ -5,10 +5,6 @@ import { PackageColumn } from '../column/PackageColumn';
 import PackageFilter from './PackageFilter';
 import usePackageData from '@/data/services/api/package/usePackageData';
 import { PackageGetAllDTO } from '@/@types/dto/packageDTO';
-import { useAppSelector } from '@/hooks/reduxHook';
-import { RootState } from '@/data';
-import { GlobalState } from '@/data/global/global.slice';
-import { useEffect } from 'react';
 
 export default function PackageCardList() {
   const { PackageData, isFetching } = usePackageData();

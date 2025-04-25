@@ -8,14 +8,16 @@ import { PackageGetAllDTO } from '@/@types/dto/packageDTO';
 // }
 
 export const packageApi = {
-  getAll: async (params?: { 
-    name?: string; 
+  getAll: async (params?: {
+    name?: string;
     price?: number;
     time?: number;
     page?: number;
     size?: number;
   }): Promise<PagedResponse<PackageGetAllDTO>> => {
-    const response: PagedResponse<PackageGetAllDTO> = await axiosClient.get('manager/packages/getAllPackage', { params });
+    const response: PagedResponse<PackageGetAllDTO> = await axiosClient.get('manager/packages/getAllPackage', {
+      params,
+    });
     return response;
   },
 

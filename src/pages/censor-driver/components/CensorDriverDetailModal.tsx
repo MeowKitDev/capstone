@@ -128,53 +128,53 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                 </div>
               </div>
             </div>
-            
+
             <div>
-            <h3 className='text-2xl font-bold mt-4'>Thông Tin Phương Tiện</h3>
-            <Image
-              src={data?.vehicle?.vehicleImageUrl}
-              alt='vehicle'
-              width={400}
-              height={250}
-              className='object-contain'
-            />
-            <div className='mt-4 grid grid-cols-3 gap-4'>
-              {/* <InfoItem label='Vehicle Id' value={data?.vehicle?.vehicleID} /> */}
-              <InfoItem label='Vehicle Type' value={data?.vehicle?.vehicleType} />
-              <InfoItem label='Vehicle Number' value={data?.vehicle?.vehicleNumber} />
-              <InfoItem label='Vehicle Brand' value={data?.vehicle?.vehicleBrand} />
-              <InfoItem label='NumberOfSeats' value={data?.vehicle?.numberOfSeats} />
-              <InfoItem label='VehicleColor' value={data?.vehicle?.vehicleColor} />
-              <InfoItem label='Status' value={data?.vehicle?.status} />
-            </div>
-            <div className='mt-4'>
-              <div className='grid grid-cols-3 gap-4'>
-                <InfoItem
-                  label='Car Insurance'
-                  value={
-                    <Image
-                      // src={'https://www.policybazaar.com/pblife/assets/images/pb_life_1650972275.jpg'}
-                      src={data?.vehicle?.carInsuranceUrl}
-                      alt='carInsurance'
-                      width={100}
-                      height={100}
-                      className='object-contain'
-                    />
-                  }
-                />
-                <InfoItem
-                  label='Carregistration'
-                  value={
-                    <Image
-                      src={data?.vehicle?.carregistrationUrl}
-                      alt='carInsurance'
-                      width={100}
-                      height={100}
-                      className='object-contain'
-                    />
-                  }
-                />
-                {/* <InfoItem
+              <h3 className='mt-4 text-2xl font-bold'>Thông Tin Phương Tiện</h3>
+              <Image
+                src={data?.vehicle?.vehicleImageUrl}
+                alt='vehicle'
+                width={400}
+                height={250}
+                className='object-contain'
+              />
+              <div className='mt-4 grid grid-cols-3 gap-4'>
+                {/* <InfoItem label='Vehicle Id' value={data?.vehicle?.vehicleID} /> */}
+                <InfoItem label='Vehicle Type' value={data?.vehicle?.vehicleType} />
+                <InfoItem label='Vehicle Number' value={data?.vehicle?.vehicleNumber} />
+                <InfoItem label='Vehicle Brand' value={data?.vehicle?.vehicleBrand} />
+                <InfoItem label='NumberOfSeats' value={data?.vehicle?.numberOfSeats} />
+                <InfoItem label='VehicleColor' value={data?.vehicle?.vehicleColor} />
+                <InfoItem label='Status' value={data?.vehicle?.status} />
+              </div>
+              <div className='mt-4'>
+                <div className='grid grid-cols-3 gap-4'>
+                  <InfoItem
+                    label='Car Insurance'
+                    value={
+                      <Image
+                        // src={'https://www.policybazaar.com/pblife/assets/images/pb_life_1650972275.jpg'}
+                        src={data?.vehicle?.carInsuranceUrl}
+                        alt='carInsurance'
+                        width={100}
+                        height={100}
+                        className='object-contain'
+                      />
+                    }
+                  />
+                  <InfoItem
+                    label='Carregistration'
+                    value={
+                      <Image
+                        src={data?.vehicle?.carregistrationUrl}
+                        alt='carInsurance'
+                        width={100}
+                        height={100}
+                        className='object-contain'
+                      />
+                    }
+                  />
+                  {/* <InfoItem
                   label='Registration Certificate'
                   value={
                     <Image
@@ -188,8 +188,8 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                     />
                   }
                 /> */}
-              </div>
-              {/* <InfoItem
+                </div>
+                {/* <InfoItem
                 label='Vehicle Registration Certificate'
                 value={
                   <Image
@@ -203,20 +203,20 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                   />
                 }
               /> */}
-              <InfoItem
-                label='Vehicle Inspection Certificate'
-                value={
-                  <Image
-                    src={data?.vehicle?.vehicleInspectionCertificateUrl}
-                    alt='vehicle'
-                    width={100}
-                    height={100}
-                    className='object-contain'
-                  />
-                }
-              />
+                <InfoItem
+                  label='Vehicle Inspection Certificate'
+                  value={
+                    <Image
+                      src={data?.vehicle?.vehicleInspectionCertificateUrl}
+                      alt='vehicle'
+                      width={100}
+                      height={100}
+                      className='object-contain'
+                    />
+                  }
+                />
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </CustomModal>

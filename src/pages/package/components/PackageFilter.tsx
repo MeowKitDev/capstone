@@ -1,5 +1,4 @@
 import CustomSearchInputQueryWithLabel from '@/components/form-related/CustomSearchInputQueryWithLabel';
-import CustomSelectQueryWithLabel from '@/components/form-related/CustomSelectQueryWithLabel';
 import CirclePlusIcon from '@/components/icons/CirclePlusIcon';
 import { PARAM_FIELD } from '@/utils/enum/param-field.enum';
 import { Button } from 'antd';
