@@ -4,17 +4,17 @@
     "sidebar_group_title_code": {
       "dashboard": "dashboard",
       "user": "User",
-      "view-user-account": "View User Account",
-      "censor-driver-request": "Censor Driver Request",
+      "view-user-account": "Người Dùng",
+      "censor-driver-request": "Kiểm Duyệt Tài Xế",
       "trip": "Trip",
-      "feedback": "Feedback",
-      "package": "Package",
-      "wallet": "Wallet",
+      "feedback": "Phản Hồi",
+      "package": "Gói",
+      "wallet": "Ví",
       "report": "Report",
-      "transaction-history": "Transaction History",
-      "censor-vehicle": "Censor Vehicle",
+      "transaction-history": "Lợi Nhuận Hệ Thống",
+      "censor-vehicle": "Kiểm Duyệt Phương Tiện",
       "rate-driver": "Rate Driver",
-      "staff": "Staff"
+      "staff": "Nhân Viên"
     }
   }
 }
