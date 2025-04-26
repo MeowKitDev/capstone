@@ -5,17 +5,17 @@ import OverviewStatisticsCard from '@/pages/dashboard/components/OverviewStatist
 export default function WalletOverview() {
   const walletCardsData = [
     {
-      title: 'System Wallet',
+      title: 'Ví hệ thống',
       subTitle: '02410023xxx45',
       value: (500).toLocaleString('en-US'),
       icon: <SackDollarIcon className='size-6 text-primary-500' />,
     },
-    {
+    /* {
       title: 'Temporary wallet',
       subTitle: '02410023xxx45',
       value: (250).toLocaleString('en-US'),
       icon: <CardCreditIcon className='size-6 text-primary-500' />,
-    },
+    }, */
   ];
 
   return (

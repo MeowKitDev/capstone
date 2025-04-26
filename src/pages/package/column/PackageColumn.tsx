@@ -1,5 +1,6 @@
 import { PackageGetAllDTO } from '@/@types/dto/packageDTO';
 import { TableHeaderCell } from '@/components/table/TableHeaderCell';
+import { PackageDTO } from '@/data/package/dto/package.dto';
 import { ColumnsType } from 'antd/es/table';
 import { useState } from 'react';
 
@@ -22,14 +23,14 @@ export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
       },
     },
     {
-      title: () => <TableHeaderCell key='time' label={'Package Time'} sortKey='time' />,
+      title: () => <TableHeaderCell key='time' label={'Thời gian gói'} sortKey='time' />,
       key: 'time',
       render: ({ ...props }: PackageGetAllDTO) => {
         return <div>{props?.time}</div>;
       },
     },
     {
-      title: () => <TableHeaderCell key='bonus' label={'Package Bonus Time'} sortKey='bonus' />,
+      title: () => <TableHeaderCell key='bonus' label={'Thời gian tặng kèm cho gói'} sortKey='bonus' />,
       key: 'bonus',
       render: ({ ...props }: PackageGetAllDTO) => {
         return <div>{props?.bonus}</div>;
