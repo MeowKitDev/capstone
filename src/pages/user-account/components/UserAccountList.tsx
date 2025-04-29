@@ -14,7 +14,9 @@ export default function UserAccountList() {
       <TableBuilder<UserGetAllDTO>
         rowKey='userId'
         columns={UserColumn()}
-        data={UserData?.content.map((item, idx) => ({ ...item, index: UserData?.page * UserData?.size + idx + 1 })) ?? []}
+        data={
+          UserData?.content.map((item, idx) => ({ ...item, index: UserData?.page * UserData?.size + idx + 1 })) ?? []
+        }
         isLoading={isFetching}
       />
       <CustomTablePagination

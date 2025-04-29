@@ -1,19 +1,14 @@
 import { CensorVehicleDTO } from '@/@types/dto/censorVehicleDTO';
 import InfoItem from '@/components/common/InfoItem';
-import CustomTextFieldWithLabel from '@/components/form-related/CustomTextFieldWithLabel';
 import CustomConfirmModal from '@/components/modal/CustomConfirmModal';
 import CustomModal from '@/components/modal/CustomModal';
 import { censorVehicleApi } from '@/data/services/api/censorVehicle/censorVehicle.api';
 import queryClient from '@/data/services/queryClient';
-import { useGetTripDetailQuery, usePutAcceptTripMutation, usePutRejectTripMutation } from '@/data/trip/trip.api';
 import { baseSchema } from '@/helpers/form-schemas/AllFormSchema';
 import { CENSOR_VEHICLE_STATUS } from '@/utils/enum/censor-vehicle/censor-vehicle.enum';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Image } from 'antd';
 import { enqueueSnackbar } from 'notistack';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
 import * as yup from 'yup';
 
 type CensorVehicleModalProps = {
@@ -27,92 +22,97 @@ const reasonSchema = yup.object().shape({
 });
 
 export default function CensorVehicleModal({ open, setOpen, data }: CensorVehicleModalProps) {
-    const [isAccept, setIsAccept] = useState(false);
-    const [isReject, setIsReject] = useState(false);
+  const [isAccept, setIsAccept] = useState(false);
+  const [isReject, setIsReject] = useState(false);
 
-    // const [putAcceptTrip, { isLoading: isLoadingAccept }] = usePutAcceptTripMutation();
-    // const [putRejectTrip, { isLoading: isLoadingReject }] = usePutRejectTripMutation();
-    // const { handleSubmit, control } = useForm({
-    //   resolver: yupResolver(reasonSchema),
-    //   defaultValues: reasonSchema.getDefault(),
-    // });
-  
-    const handleApproveTrip = async () => {
-      try {
-        await censorVehicleApi.approve(data?.vehicle?.vehicleID ?? '');
-        // await putAcceptTrip(id as string).unwrap();
-        enqueueSnackbar('Duyệt kiểm phương tiện thành công', {
-          variant: 'success',
-          autoHideDuration: 2000,
-        });
-        setIsAccept(false);
-        await queryClient.invalidateQueries(['CensorVehicles']);
-      } catch (error) {
-        console.error('Error approving vehicle:', error);
-      }
-    };
+  // const [putAcceptTrip, { isLoading: isLoadingAccept }] = usePutAcceptTripMutation();
+  // const [putRejectTrip, { isLoading: isLoadingReject }] = usePutRejectTripMutation();
+  // const { handleSubmit, control } = useForm({
+  //   resolver: yupResolver(reasonSchema),
+  //   defaultValues: reasonSchema.getDefault(),
+  // });
 
-    const handleRejectTrip = async () => {
-      try {
-        await censorVehicleApi.reject(data?.vehicle?.vehicleID ?? '');
-        // await putAcceptTrip(id as string).unwrap();
-        enqueueSnackbar('Huỷ kiểm duyệt thành công', {
-          variant: 'success',
-          autoHideDuration: 2000,
-        });
-        setIsReject(false);
-        await queryClient.invalidateQueries(['CensorVehicles']);
-      } catch (error) {
-        console.error('Error approving vehicle:', error);
-      }
-    };
-  
-    // const onSubmit = async (reason: any) => {
-    //   try {
-    //     await censorVehicleApi.reject(data?.vehicle?.vehicleID ?? '');
-    //     enqueueSnackbar('Huỷ kiểm duyệt thành công', {
-    //       variant: 'success',
-    //       autoHideDuration: 2000,
-    //     });
-    //   setIsReject(false);
-    //   await queryClient.invalidateQueries(['CensorVehicles']);
-    //   } catch (error) {
-    //     console.error('Error rejecting vehicle:', error);
-    //   }
-      
-    //   // putRejectTrip({ tripId: id as string, reason: reason.reason })
-    //   //   .unwrap()
-    //   //   .then(() => {
-    //   //     enqueueSnackbar('Từ chối chuyến đi thành công', {
-    //   //       variant: 'success',
-    //   //       autoHideDuration: 2000,
-    //   //     });
-    //   //     setIsReject(false);
-    //   //   })
-    //   //   .catch(() => {
-    //   //     enqueueSnackbar('Từ chối chuyến đi thất bại', {
-    //   //       variant: 'error',
-    //   //       autoHideDuration: 2000,
-    //   //     });
-    //   //   });
-    // };
+  const handleApproveTrip = async () => {
+    try {
+      await censorVehicleApi.approve(data?.vehicle?.vehicleID ?? '');
+      // await putAcceptTrip(id as string).unwrap();
+      enqueueSnackbar('Duyệt kiểm phương tiện thành công', {
+        variant: 'success',
+        autoHideDuration: 2000,
+      });
+      setIsAccept(false);
+      await queryClient.invalidateQueries(['CensorVehicles']);
+    } catch (error) {
+      console.error('Error approving vehicle:', error);
+    }
+  };
+
+  const handleRejectTrip = async () => {
+    try {
+      await censorVehicleApi.reject(data?.vehicle?.vehicleID ?? '');
+      // await putAcceptTrip(id as string).unwrap();
+      enqueueSnackbar('Huỷ kiểm duyệt thành công', {
+        variant: 'success',
+        autoHideDuration: 2000,
+      });
+      setIsReject(false);
+      await queryClient.invalidateQueries(['CensorVehicles']);
+    } catch (error) {
+      console.error('Error approving vehicle:', error);
+    }
+  };
+
+  // const onSubmit = async (reason: any) => {
+  //   try {
+  //     await censorVehicleApi.reject(data?.vehicle?.vehicleID ?? '');
+  //     enqueueSnackbar('Huỷ kiểm duyệt thành công', {
+  //       variant: 'success',
+  //       autoHideDuration: 2000,
+  //     });
+  //   setIsReject(false);
+  //   await queryClient.invalidateQueries(['CensorVehicles']);
+  //   } catch (error) {
+  //     console.error('Error rejecting vehicle:', error);
+  //   }
+
+  //   // putRejectTrip({ tripId: id as string, reason: reason.reason })
+  //   //   .unwrap()
+  //   //   .then(() => {
+  //   //     enqueueSnackbar('Từ chối chuyến đi thành công', {
+  //   //       variant: 'success',
+  //   //       autoHideDuration: 2000,
+  //   //     });
+  //   //     setIsReject(false);
+  //   //   })
+  //   //   .catch(() => {
+  //   //     enqueueSnackbar('Từ chối chuyến đi thất bại', {
+  //   //       variant: 'error',
+  //   //       autoHideDuration: 2000,
+  //   //     });
+  //   //   });
+  // };
   return (
-    <CustomModal 
-    title='Thông tin kiểm duyệt phương tiện' open={open} setOpen={setOpen} className='!w-[1020px]'
-    footer={data?.vehicle?.status === CENSOR_VEHICLE_STATUS.CONFIRMING &&
-      <div className='mt-4'>
-        <Button className=' mr-2 bg-red-500 text-white' onClick={() => setIsReject(true)}>
-          Từ chối
-        </Button>
-        <Button
-          className='float-right mr-2 bg-blue-500 text-white'
-          onClick={() => setIsAccept(true)}
-          // loading={isLoadingAccept}
-          >
-          Chấp nhận
-        </Button>
-      </div>
-    }>
+    <CustomModal
+      title='Thông tin kiểm duyệt phương tiện'
+      open={open}
+      setOpen={setOpen}
+      className='!w-[1020px]'
+      footer={
+        data?.vehicle?.status === CENSOR_VEHICLE_STATUS.CONFIRMING && (
+          <div className='mt-4'>
+            <Button className='mr-2 bg-red-500 text-white' onClick={() => setIsReject(true)}>
+              Từ chối
+            </Button>
+            <Button
+              className='float-right mr-2 bg-blue-500 text-white'
+              onClick={() => setIsAccept(true)}
+              // loading={isLoadingAccept}
+            >
+              Chấp nhận
+            </Button>
+          </div>
+        )
+      }>
       <div>
         <div className='flex w-full gap-4'>
           <Image
@@ -205,12 +205,12 @@ export default function CensorVehicleModal({ open, setOpen, data }: CensorVehicl
         okText='Từ Chối Duyệt Kiểm'
         cancelText='Hủy'
       />
-      {/* <CustomModal 
+      {/* <CustomModal
         title='Từ chối duyệt kiểm' open={isReject} setOpen={() => setIsReject(false)} className='!w-[520px]'
         footer={
           <div className='mt-6 flex justify-end gap-3'>
             <Button onClick={() => setIsReject(false)}>Hủy</Button>
-            <Button type='primary' className='border-none bg-red-600 ' htmlType='submit' 
+            <Button type='primary' className='border-none bg-red-600 ' htmlType='submit'
             // loading={isLoadingReject}
             >
               Từ chối
@@ -227,10 +227,9 @@ export default function CensorVehicleModal({ open, setOpen, data }: CensorVehicl
             placeholder='Nhập lý do từ chối'
             className='w-full'
           />
-          
+
         </form>
       </CustomModal> */}
-
     </CustomModal>
   );
 }

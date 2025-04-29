@@ -15,7 +15,12 @@ export default function PackageCardList() {
       <TableBuilder<PackageGetAllDTO>
         rowKey='id'
         columns={PackageColumn()}
-        data={PackageData?.content.map((item, idx) => ({ ...item, index: PackageData?.page * PackageData?.size + idx + 1 })) ?? []}
+        data={
+          PackageData?.content.map((item, idx) => ({
+            ...item,
+            index: PackageData?.page * PackageData?.size + idx + 1,
+          })) ?? []
+        }
         isLoading={isFetching}
       />
       <CustomTablePagination

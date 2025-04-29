@@ -5,7 +5,6 @@ import queryClient from '@/data/services/queryClient';
 import { PACKAGE_STATUS } from '@/utils/enum/package/package.enum';
 import { Switch } from 'antd';
 import { ColumnsType } from 'antd/es/table';
-import { useState } from 'react';
 
 export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
   // const [isModalDetailOpen, setIsModalDetailOpen] = useState<number | null>(null);
@@ -13,18 +12,18 @@ export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
   const handleToggleStatus = async (packageId: string) => {
     try {
       await packageApi.toggleStatus(packageId);
-      queryClient.invalidateQueries(['packages'])
+      queryClient.invalidateQueries(['packages']);
     } catch (error) {
-      
+      console.log('error', error);
     }
-      // await putToggleStaffStatus(userId)
-      //   .unwrap()
-      //   .then(() => {
-      //     enqueueSnackbar('Cập nhật trạng thái thành công', {
-      //       variant: 'success',
-      //     });
-      //   });
-    };
+    // await putToggleStaffStatus(userId)
+    //   .unwrap()
+    //   .then(() => {
+    //     enqueueSnackbar('Cập nhật trạng thái thành công', {
+    //       variant: 'success',
+    //     });
+    //   });
+  };
 
   return [
     {
@@ -68,12 +67,12 @@ export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
       render: ({ ...props }: PackageGetAllDTO) => (
         <>
           <div className='flex w-full justify-start'>
-             <Switch
-                          className='ml-2'
-                          checked={props?.status == PACKAGE_STATUS.ACTIVE}
-                          // loading={isLoadingToggleStaffStatus}
-                          onChange={() => handleToggleStatus(props?.packageID ?? "")}
-                        />
+            <Switch
+              className='ml-2'
+              checked={props?.status == PACKAGE_STATUS.ACTIVE}
+              // loading={isLoadingToggleStaffStatus}
+              onChange={() => handleToggleStatus(props?.packageID ?? '')}
+            />
             {/* <Button>Inactive</Button>
             <CustomTableActionsButton label={'Inactive'} onClick={() => setIsModalDetailOpen(props.id ?? null)} /> */}
           </div>

@@ -65,7 +65,7 @@ export default function TransactionFilter() {
   return (
     <div>
       <div className='flex flex-wrap items-center justify-start gap-5'>
-      <CustomSelectQueryWithLabel
+        <CustomSelectQueryWithLabel
           label={'Loại'}
           queryKey={PARAM_FIELD.WALLET_TYPE}
           placeholder='Chọn loại'

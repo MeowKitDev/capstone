@@ -22,13 +22,9 @@ export const censorVehicleApi = {
     return response;
   },
   approve: async (id: string): Promise<void> => {
-    await axiosClient.put(`/manager/vehicles/confirming/${id}/approve`, {
-    });
+    await axiosClient.put(`/manager/vehicles/confirming/${id}/approve`, {});
   },
   reject: async (id: string): Promise<void> => {
-    await axiosClient.put(`/manager/vehicles/confirming/${id}/reject`, {
-    });
+    await axiosClient.put(`/manager/vehicles/confirming/${id}/reject`, {});
   },
-
-
 };
