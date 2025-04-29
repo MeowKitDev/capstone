@@ -2,7 +2,7 @@ import CustomSelectQueryWithLabel from '@/components/form-related/CustomSelectQu
 import { PARAM_FIELD } from '@/utils/enum/param-field.enum';
 import { WALLET_TYPE } from '@/utils/enum/wallet/wallet-type.enum';
 
-const WalletTypeList = [
+export const WalletTypeList = [
   {
     label: 'Tiền gửi',
     value: WALLET_TYPE.DEPOSIT,
@@ -65,12 +65,12 @@ export default function TransactionFilter() {
   return (
     <div>
       <div className='flex flex-wrap items-center justify-start gap-5'>
-        <CustomSelectQueryWithLabel
+      <CustomSelectQueryWithLabel
           label={'Loại'}
           queryKey={PARAM_FIELD.WALLET_TYPE}
           placeholder='Chọn loại'
           options={WalletTypeList}
-          className='w-100'
+          className='w-96'
         />
       </div>
     </div>
