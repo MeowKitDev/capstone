@@ -1,5 +1,10 @@
+import { useGetPassengerDriverStatisticsQuery } from '@/data/dashboard/dashboard.api';
+import { dateDashboardParamsToFilter } from '@/data/dashboard/dashboard.service';
 import { ApexOptions } from 'apexcharts';
+import queryString from 'query-string';
+import { useMemo } from 'react';
 import ReactApexChart from 'react-apexcharts';
+import { useLocation } from 'react-router-dom';
 
 const dataChart = [
   {
@@ -13,6 +18,17 @@ const dataChart = [
 ];
 
 export default function AccountChart() {
+  const location = useLocation();
+  const params = queryString.parse(location.search);
+
+  const { chartFilter } = useMemo(() => {
+    const chartFilter = dateDashboardParamsToFilter(params);
+    return { chartFilter };
+  }, [params]);
+  console.log('🚀 ~ file: AccountChart.tsx:34 ~ AccountChart ~ chartFilter:', chartFilter);
+
+  const { data: chartData } = useGetPassengerDriverStatisticsQuery(chartFilter);
+
   const chartOptions: ApexOptions = {
     chart: {
       type: 'bar',
@@ -40,7 +56,7 @@ export default function AccountChart() {
     },
     yaxis: {
       title: {
-        text: 'Account',
+        text: 'Tài Khoản',
       },
     },
     fill: {

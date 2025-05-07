@@ -35,4 +35,8 @@ export enum PARAM_FIELD {
   PRICE = 'price',
   TIME = 'time',
   TRIP_HANDLE_ID = 'tripHandleId',
+  TYPE = 'type',
+  TARGET_DATE = 'targetDate',
+  MONTH = 'month',
+  YEAR = 'year',
 }

@@ -19,6 +19,7 @@ export const TAG_TYPES = {
   TRIP_DETAIL: 'trip_detail',
   STAFF: 'staff',
   FEEDBACK: 'feedback',
+  DASHBOARD: 'dashboard',
 };
 
 export const apiBaseUrl = import.meta.env.VITE_API_ENDPOINT;
