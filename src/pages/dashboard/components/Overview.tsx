@@ -14,43 +14,12 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import OverviewStatisticsCard from './OverviewStatisticsCard';
+import CustomSelectDateQueryWithLabel from '@/components/form-related/CustomSelectDateQueryWithLabel';
 
 export default function Overview() {
   const { t: tCommon } = useTranslation('common');
-  const location = useLocation();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const params = queryString.parse(location.search);
 
-  /* FILTER STATES */
-  const initialStartDate = Number(searchParams.get(PARAM_FIELD.START_DATE)) || null;
-  const initialEndDate = Number(searchParams.get(PARAM_FIELD.END_DATE)) || null;
-  const [dateRange, setDateRange] = useState<[number | null, number | null]>([initialStartDate, initialEndDate]);
   const [isShowFilter, setIsShowFilter] = useState(false);
-
-  /* HANDLE DATE CHANGE */
-
-  const handleDateChange = (dates: [number | null, number | null]) => {
-    setDateRange(dates);
-    setSearchParams((prev) => {
-      const updatedParams = { ...Object.fromEntries(prev) };
-
-      if (dates[0]) {
-        updatedParams[PARAM_FIELD.START_DATE] = dates[0].toString();
-      } else {
-        delete updatedParams[PARAM_FIELD.START_DATE];
-      }
-
-      if (dates[1]) {
-        updatedParams[PARAM_FIELD.END_DATE] = dates[1].toString();
-      } else {
-        delete updatedParams[PARAM_FIELD.END_DATE];
-      }
-
-      return updatedParams;
-    });
-  };
-
-  const dashboardStatusOptions: SelectOptions[] = useMemo(() => getDashboardStatusOptions(tCommon), [tCommon]);
 
   const dashboardIntervalOptions: SelectOptions[] = useMemo(() => getDashboardIntervalOptions(tCommon), [tCommon]);
 
@@ -79,11 +48,6 @@ export default function Overview() {
     [],
   );
 
-  useLayoutEffect(() => {
-    delete params[PARAM_FIELD.START_DATE];
-    delete params[PARAM_FIELD.END_DATE];
-  }, [params]);
-
   return (
     <div>
       <div className='mb-5 flex w-full items-center gap-10 max-sm:flex-col max-sm:items-baseline max-sm:gap-4'>
@@ -110,27 +74,15 @@ export default function Overview() {
             !isShowFilter && 'max-sm:hidden',
           )}>
           <div className='max-sm:w-full'>
-            <CustomRangePicker
-              value={dateRange}
-              onChange={handleDateChange}
-              placeholder={[tCommon('label.start_date'), tCommon('label.end_date')]}
-              allowClear
-            />
+            <CustomSelectDateQueryWithLabel label='Thời gian' queryKey={PARAM_FIELD.DATE} placeholder='Chọn ngày' />
           </div>
 
-          <div className='flex items-center gap-5 max-sm:w-full max-sm:justify-between max-sm:gap-1'>
-            <CustomSelectQueryWithLabel
-              label={tCommon('label.status')}
-              queryKey={PARAM_FIELD.STATUS}
-              options={dashboardStatusOptions}
-              className='w-40'
-            />
-          </div>
           <CustomSelectQueryWithLabel
-            label={tCommon('label.interval')}
-            queryKey={PARAM_FIELD.INTERVAL}
+            label='Khoảng thời gian'
+            queryKey={PARAM_FIELD.TYPE}
+            placeholder='Chọn khoảng thời gian'
             options={dashboardIntervalOptions}
-            className='w-40 max-sm:w-full'
+            className='w-60 max-sm:w-full'
           />
         </div>
       </div>

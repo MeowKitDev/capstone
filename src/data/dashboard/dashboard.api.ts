@@ -2,19 +2,33 @@ import { TAG_TYPES } from '@/utils/constants/shared.constant';
 import { HTTP_METHOD } from '@/utils/enum/http-method.enum';
 import { CRMApi } from '../CRMApi.api';
 import { BaseDashboardFilter } from './request/dashboard.request';
-import { GetPassengerDriverStatisticRESP } from './response/dashboard.response';
+import {
+  GetBaseDashboardRESP,
+  GetPassengerDriverStatisticRESP,
+  GetTripStatisticsRESP,
+} from './response/dashboard.response';
 
-const dashboardApi = CRMApi.enhanceEndpoints({ addTagTypes: [TAG_TYPES.DASHBOARD] }).injectEndpoints({
+export const dashboardApi = CRMApi.enhanceEndpoints({ addTagTypes: [TAG_TYPES.DASHBOARD] }).injectEndpoints({
   endpoints: (build) => ({
-    getPassengerDriverStatistics: build.query<GetPassengerDriverStatisticRESP, BaseDashboardFilter>({
-      query: (params: BaseDashboardFilter) => ({
+    getUserStatistics: build.query<GetPassengerDriverStatisticRESP, BaseDashboardFilter>({
+      query: (filter: BaseDashboardFilter) => ({
         url: 'dashboard/passenger-driver',
         method: HTTP_METHOD.GET,
-        params,
+        params: { ...filter },
       }),
-      providesTags: [TAG_TYPES.DASHBOARD],
+      providesTags: [{ type: TAG_TYPES.DASHBOARD }],
+      transformResponse: (response: GetPassengerDriverStatisticRESP) => response,
+    }),
+
+    getTripStatistics: build.query<GetTripStatisticsRESP[], BaseDashboardFilter>({
+      query: (filter: BaseDashboardFilter) => ({
+        url: 'dashboard/trip-create-stats',
+        method: HTTP_METHOD.GET,
+        params: { ...filter },
+      }),
+      providesTags: [{ type: TAG_TYPES.DASHBOARD }],
     }),
   }),
 });
 
-export const { useGetPassengerDriverStatisticsQuery } = dashboardApi;
+export const { useGetUserStatisticsQuery, useGetTripStatisticsQuery } = dashboardApi;

@@ -74,9 +74,9 @@
       "ERROR": "Error"
     },
     "DASHBOARD_INTERVAL": {
-      "DAY": "Day",
-      "WEEK": "Week",
-      "MONTH": "Month"
+      "WEEK": "Tuần",
+      "MONTH": "Tháng",
+      "YEAR": "Năm"
     },
     "MEMBER_SEARCH_BY": {
       "ID": "ID",

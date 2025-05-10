@@ -3,6 +3,11 @@ export type GetBaseDashboardRESP = {
   value: number;
 };
 
+export type GetTripStatisticsRESP = {
+  dateTime: string;
+  count: number;
+};
+
 export type GetPassengerDriverStatisticRESP = {
   dataUser: GetBaseDashboardRESP[];
   dataDriver: GetBaseDashboardRESP[];

@@ -39,4 +39,5 @@ export enum PARAM_FIELD {
   TARGET_DATE = 'targetDate',
   MONTH = 'month',
   YEAR = 'year',
+  DATE = 'date',
 }

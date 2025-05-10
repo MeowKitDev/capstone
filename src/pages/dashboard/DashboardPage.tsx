@@ -3,6 +3,7 @@ import AccountChart from './components/AccountChart';
 import Overview from './components/Overview';
 import PackageChart from './components/PackageChart';
 import WalletChart from './components/WalletChart';
+import TripChart from './components/TripChart';
 
 export default function DashboardPage() {
   return (
@@ -11,6 +12,7 @@ export default function DashboardPage() {
         <Overview />
 
         <AccountChart />
+        <TripChart />
         <div className='flex w-full gap-6'>
           <div className='w-2/3'>
             <PackageChart />
