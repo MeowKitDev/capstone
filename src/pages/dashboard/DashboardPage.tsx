@@ -1,9 +1,11 @@
 import DefaultContainer from '@/layouts/DefaultContainer';
-import AccountChart from './components/AccountChart';
+import AccountChart from './components/charts/AccountChart';
 import Overview from './components/Overview';
 import PackageChart from './components/PackageChart';
 import WalletChart from './components/WalletChart';
-import TripChart from './components/TripChart';
+import TripChart from './components/charts/TripChart';
+import ProfitChart from './components/charts/ProfitChart';
+import PassengerJoinTripChart from './components/charts/PassengerJoinTripChart';
 
 export default function DashboardPage() {
   return (
@@ -13,6 +15,8 @@ export default function DashboardPage() {
 
         <AccountChart />
         <TripChart />
+        <ProfitChart />
+        <PassengerJoinTripChart />
         <div className='flex w-full gap-6'>
           <div className='w-2/3'>
             <PackageChart />

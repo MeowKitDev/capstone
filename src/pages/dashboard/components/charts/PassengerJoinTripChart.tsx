@@ -1,4 +1,4 @@
-import { useGetTripStatisticsQuery } from '@/data/dashboard/dashboard.api';
+import { useGetPassengerJoinTripStatisticsQuery, useGetTripStatisticsQuery } from '@/data/dashboard/dashboard.api';
 import { dateDashboardParamsToFilter } from '@/data/dashboard/dashboard.service';
 import { ApexOptions } from 'apexcharts';
 import queryString from 'query-string';
@@ -6,7 +6,7 @@ import { useMemo } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { useLocation } from 'react-router-dom';
 
-export default function TripChart() {
+export default function PassengerJoinTripChart() {
   const location = useLocation();
   const params = queryString.parse(location.search);
 
@@ -15,25 +15,23 @@ export default function TripChart() {
     return { chartFilter };
   }, [params]);
 
-  const { data: chartData } = useGetTripStatisticsQuery(chartFilter);
-  console.log('🚀 ~ file: TripChart.tsx:15 ~ TripChart ~ chartData:', chartData);
+  const { data: chartData } = useGetPassengerJoinTripStatisticsQuery(chartFilter);
+
   const dataChart = useMemo(() => {
     if (!chartData) return { dataLabel: [], dataTrip: [] };
 
     const dataLabel = chartData?.map((item) => item.dateTime);
-    const dataValue = chartData?.map((item) => item.count);
+    const dataValue = chartData?.map((item) => item.value);
     return {
       dataLabel,
       dataTrip: [
         {
-          name: 'Chuyến đi',
+          name: 'Số lượng khách đã tham gia chuyến đi',
           data: dataValue,
         },
       ],
     };
   }, [chartData]);
-
-  console.log('🚀 ~ file: TripChart.tsx:24 ~ TripChart ~ dataChart:', dataChart);
 
   const chartOptions: ApexOptions = {
     chart: {
@@ -61,7 +59,7 @@ export default function TripChart() {
       categories: dataChart.dataLabel,
     },
     yaxis: {
-      title: { text: 'Số lượng chuyến đi' },
+      title: { text: 'Khách hàng' },
     },
     fill: {
       opacity: 1,
@@ -69,7 +67,7 @@ export default function TripChart() {
     tooltip: {
       y: {
         formatter: function (val) {
-          return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+          return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' khách';
         },
       },
     },
@@ -78,7 +76,9 @@ export default function TripChart() {
   return (
     <div className='my-2 rounded-lg bg-white p-6 shadow-md'>
       <div className='mb-5 flex justify-between gap-4'>
-        <h3 className='text-xl font-semibold capitalize text-gray-900 max-sm:text-sm'>Thống kê chuyến đi</h3>
+        <h3 className='text-xl font-semibold capitalize text-gray-900 max-sm:text-sm'>
+          Thống kê khách hàng tham gia chuyến đi
+        </h3>
       </div>
 
       <ReactApexChart options={chartOptions} series={dataChart?.dataTrip} type='bar' height={480} width='100%' />

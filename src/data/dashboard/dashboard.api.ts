@@ -5,6 +5,7 @@ import { BaseDashboardFilter } from './request/dashboard.request';
 import {
   GetBaseDashboardRESP,
   GetPassengerDriverStatisticRESP,
+  GetProfitStatisticsRESP,
   GetTripStatisticsRESP,
 } from './response/dashboard.response';
 
@@ -17,7 +18,6 @@ export const dashboardApi = CRMApi.enhanceEndpoints({ addTagTypes: [TAG_TYPES.DA
         params: { ...filter },
       }),
       providesTags: [{ type: TAG_TYPES.DASHBOARD }],
-      transformResponse: (response: GetPassengerDriverStatisticRESP) => response,
     }),
 
     getTripStatistics: build.query<GetTripStatisticsRESP[], BaseDashboardFilter>({
@@ -28,7 +28,30 @@ export const dashboardApi = CRMApi.enhanceEndpoints({ addTagTypes: [TAG_TYPES.DA
       }),
       providesTags: [{ type: TAG_TYPES.DASHBOARD }],
     }),
+
+    getPassengerJoinTripStatistics: build.query<GetBaseDashboardRESP[], BaseDashboardFilter>({
+      query: (filter: BaseDashboardFilter) => ({
+        url: 'dashboard/passenger-joined-trips',
+        method: HTTP_METHOD.GET,
+        params: { ...filter },
+      }),
+      providesTags: [{ type: TAG_TYPES.DASHBOARD }],
+    }),
+
+    getProfitStatistics: build.query<GetProfitStatisticsRESP, BaseDashboardFilter>({
+      query: (filter: BaseDashboardFilter) => ({
+        url: 'dashboard/list-profit',
+        method: HTTP_METHOD.GET,
+        params: { ...filter },
+      }),
+      providesTags: [{ type: TAG_TYPES.DASHBOARD }],
+    }),
   }),
 });
 
-export const { useGetUserStatisticsQuery, useGetTripStatisticsQuery } = dashboardApi;
+export const {
+  useGetUserStatisticsQuery,
+  useGetTripStatisticsQuery,
+  useGetProfitStatisticsQuery,
+  useGetPassengerJoinTripStatisticsQuery,
+} = dashboardApi;
