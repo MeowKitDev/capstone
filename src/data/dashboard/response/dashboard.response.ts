@@ -17,3 +17,8 @@ export type GetProfitStatisticsRESP = {
   fromtrip: GetBaseDashboardRESP[];
   frompackage: GetBaseDashboardRESP[];
 };
+
+export type GetPackageStatisticsRESP = {
+  packageName: string;
+  totalSold: number;
+};

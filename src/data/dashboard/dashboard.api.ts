@@ -4,6 +4,7 @@ import { CRMApi } from '../CRMApi.api';
 import { BaseDashboardFilter } from './request/dashboard.request';
 import {
   GetBaseDashboardRESP,
+  GetPackageStatisticsRESP,
   GetPassengerDriverStatisticRESP,
   GetProfitStatisticsRESP,
   GetTripStatisticsRESP,
@@ -46,6 +47,15 @@ export const dashboardApi = CRMApi.enhanceEndpoints({ addTagTypes: [TAG_TYPES.DA
       }),
       providesTags: [{ type: TAG_TYPES.DASHBOARD }],
     }),
+
+    getPackageStatistics: build.query<GetPackageStatisticsRESP[], BaseDashboardFilter>({
+      query: (filter: BaseDashboardFilter) => ({
+        url: 'dashboard/dashboard/package-sales/pie',
+        method: HTTP_METHOD.GET,
+        params: { ...filter },
+      }),
+      providesTags: [{ type: TAG_TYPES.DASHBOARD }],
+    }),
   }),
 });
 
@@ -54,4 +64,5 @@ export const {
   useGetTripStatisticsQuery,
   useGetProfitStatisticsQuery,
   useGetPassengerJoinTripStatisticsQuery,
+  useGetPackageStatisticsQuery,
 } = dashboardApi;
