@@ -22,3 +22,9 @@ export type GetPackageStatisticsRESP = {
   packageName: string;
   totalSold: number;
 };
+
+export type GetDashboardSummaryRESP = {
+  totalUsers: number;
+  totalRevenue: number;
+  totalPackagesSold: number;
+};

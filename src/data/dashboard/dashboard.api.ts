@@ -4,6 +4,7 @@ import { CRMApi } from '../CRMApi.api';
 import { BaseDashboardFilter } from './request/dashboard.request';
 import {
   GetBaseDashboardRESP,
+  GetDashboardSummaryRESP,
   GetPackageStatisticsRESP,
   GetPassengerDriverStatisticRESP,
   GetProfitStatisticsRESP,
@@ -12,6 +13,14 @@ import {
 
 export const dashboardApi = CRMApi.enhanceEndpoints({ addTagTypes: [TAG_TYPES.DASHBOARD] }).injectEndpoints({
   endpoints: (build) => ({
+    getDashboardSummary: build.query<GetDashboardSummaryRESP, void>({
+      query: () => ({
+        url: 'dashboard/dashboard/summary',
+        method: HTTP_METHOD.GET,
+      }),
+      providesTags: [{ type: TAG_TYPES.DASHBOARD }],
+    }),
+
     getUserStatistics: build.query<GetPassengerDriverStatisticRESP, BaseDashboardFilter>({
       query: (filter: BaseDashboardFilter) => ({
         url: 'dashboard/passenger-driver',
@@ -60,6 +69,7 @@ export const dashboardApi = CRMApi.enhanceEndpoints({ addTagTypes: [TAG_TYPES.DA
 });
 
 export const {
+  useGetDashboardSummaryQuery,
   useGetUserStatisticsQuery,
   useGetTripStatisticsQuery,
   useGetProfitStatisticsQuery,

@@ -1,4 +1,4 @@
-import { CustomRangePicker } from '@/components/form-related/CustomRangePicker';
+import CustomSelectDateQueryWithLabel from '@/components/form-related/CustomSelectDateQueryWithLabel';
 import CustomSelectQueryWithLabel from '@/components/form-related/CustomSelectQueryWithLabel';
 import ChevronDownIcon from '@/components/icons/ChevronDownIcon';
 import CircleDollarIcon from '@/components/icons/CircleDollarIcon';
@@ -6,15 +6,13 @@ import CubesIcon from '@/components/icons/CubesIcon';
 import UserGroupIcon from '@/components/icons/UserGroupIcon';
 import { SelectOptions } from '@/components/types/Selects.type';
 import { PARAM_FIELD } from '@/utils/enum/param-field.enum';
-import { getDashboardIntervalOptions, getDashboardStatusOptions } from '@/utils/form.helper';
+import { getDashboardIntervalOptions } from '@/utils/form.helper';
 import { Button } from 'antd';
-import queryString from 'query-string';
-import { useLayoutEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useSearchParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import OverviewStatisticsCard from './OverviewStatisticsCard';
-import CustomSelectDateQueryWithLabel from '@/components/form-related/CustomSelectDateQueryWithLabel';
+import { useGetDashboardSummaryQuery } from '@/data/dashboard/dashboard.api';
 
 export default function Overview() {
   const { t: tCommon } = useTranslation('common');
@@ -22,30 +20,30 @@ export default function Overview() {
   const [isShowFilter, setIsShowFilter] = useState(false);
 
   const dashboardIntervalOptions: SelectOptions[] = useMemo(() => getDashboardIntervalOptions(tCommon), [tCommon]);
-
+  const { data } = useGetDashboardSummaryQuery();
   /* CARD DATA */
   const statisticsCards = useMemo(
     () => [
       {
-        title: 'Weekly Totals Account',
-        subTitle: 'Total users increased 60%',
-        value: (250).toLocaleString('en-US'),
+        title: 'Tổng người dùng',
+        subTitle: 'Bao gồm tài xế và khách hàng',
+        value: data?.totalUsers.toLocaleString('en-US'),
         icon: <UserGroupIcon className='size-6 text-primary-500' />,
       },
       {
-        title: 'Weekly Totals Money',
-        subTitle: 'Total amount of money created in the last 7 days',
-        value: (2000000).toLocaleString('en-US') + ' VND',
+        title: 'Tổng doanh thu',
+        subTitle: 'Tổng số tiền tạo ra từ các gói hàng và chuyến đi',
+        value: data?.totalRevenue.toLocaleString('en-US') + ' VND',
         icon: <CircleDollarIcon className='size-6 text-primary-500' />,
       },
       {
-        title: 'Weekly Totals Package',
-        subTitle: 'Total packages sold in the last 7 days',
-        value: (500).toLocaleString('en-US'),
+        title: 'Tổng gói hàng',
+        subTitle: 'Tổng số gói hàng đã được bán',
+        value: data?.totalPackagesSold.toLocaleString('en-US'),
         icon: <CubesIcon className='size-6 text-primary-500' />,
       },
     ],
-    [],
+    [data],
   );
 
   return (
@@ -89,7 +87,12 @@ export default function Overview() {
       <div className='hover-scrollbar flex h-full w-full max-w-pc gap-6 p-2'>
         {statisticsCards.map((card, index) => (
           <div key={index} className='flex-shrink-0'>
-            <OverviewStatisticsCard title={card.title} value={card.value} subTitle={card.subTitle} icon={card.icon} />
+            <OverviewStatisticsCard
+              title={card.title}
+              value={card.value ?? 0}
+              subTitle={card.subTitle}
+              icon={card.icon}
+            />
           </div>
         ))}
       </div>
