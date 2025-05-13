@@ -1,0 +1,5 @@
+export enum WALLET_STATUS {
+  PENDING = 'PENDING',
+  SUCCESS = 'SUCCESS',
+  FAILED = 'FAILED',
+}

@@ -1,6 +1,7 @@
 export interface WalletDTO {
   transactionId?: string;
   type?: string;
+  status?: string;
   amount?: number;
   fromOwner?: string;
   toOwner?: string;

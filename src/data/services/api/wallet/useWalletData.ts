@@ -12,6 +12,7 @@ const useWalletData = () => {
     try {
       const response = await walletApi.getAll({
         walletType: params.walletType as string,
+        walletStatus: params.walletStatus as string,
         page: page - 1,
         size: PAGE_SIZE,
       });
@@ -22,7 +23,7 @@ const useWalletData = () => {
     }
   };
 
-  const queryKey = ['walletData', params.walletType as string, page];
+  const queryKey = ['walletData', params.walletType as string,params.walletStatus as string, page];
 
   const {
     data: WalletData,

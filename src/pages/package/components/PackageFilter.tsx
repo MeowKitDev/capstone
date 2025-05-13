@@ -4,6 +4,8 @@ import { PARAM_FIELD } from '@/utils/enum/param-field.enum';
 import { Button } from 'antd';
 import { useState } from 'react';
 import CreatePakageModal from './CreatePakageModal';
+import RoleBasedComponent from '@/components/condition/RoleBasedComponent';
+import { Role } from '@/@types/dto/entity/role';
 
 export default function PackageFilter() {
   const [isModalCreatePackageOpen, setIsModalCreatePackageOpen] = useState(false);
@@ -81,13 +83,16 @@ export default function PackageFilter() {
             className='w-40'
           /> */}
         </div>
-        <Button
-          type='primary'
-          icon={<CirclePlusIcon className='size-5 text-white' />}
-          className='flex items-center gap-2'
-          onClick={() => setIsModalCreatePackageOpen(true)}>
-          Tạo Gói
-        </Button>
+        <RoleBasedComponent allowedRoles={[Role.ADMIN]} > 
+          <Button
+            type='primary'
+            icon={<CirclePlusIcon className='size-5 text-white' />}
+            className='flex items-center gap-2'
+            onClick={() => setIsModalCreatePackageOpen(true)}>
+            Tạo Gói
+          </Button>
+        </RoleBasedComponent>
+        
       </div>
       {isModalCreatePackageOpen && (
         <CreatePakageModal open={isModalCreatePackageOpen} setOpen={setIsModalCreatePackageOpen} />
