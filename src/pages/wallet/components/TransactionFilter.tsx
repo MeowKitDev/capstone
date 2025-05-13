@@ -1,5 +1,6 @@
 import CustomSelectQueryWithLabel from '@/components/form-related/CustomSelectQueryWithLabel';
 import { PARAM_FIELD } from '@/utils/enum/param-field.enum';
+import { WALLET_STATUS } from '@/utils/enum/wallet/wallet-status.enum';
 import { WALLET_TYPE } from '@/utils/enum/wallet/wallet-type.enum';
 
 export const WalletTypeList = [
@@ -61,6 +62,26 @@ export const WalletTypeList = [
   },
 ];
 
+
+export const WalletStatusList = [
+  {
+    label: 'Đang Xử Lý',
+    value: WALLET_STATUS.PENDING,
+  },
+  {
+    label: 'Thành Công',
+    value: WALLET_STATUS.SUCCESS,
+  },
+  {
+    label: 'Thất Bại',
+    value: WALLET_STATUS.FAILED,
+  },
+];
+
+export const getWalletStatusLabel = (status: string): string => {
+  return WalletStatusList.find(item => item.value === status)?.label || ''
+}
+
 export default function TransactionFilter() {
   return (
     <div>
@@ -71,6 +92,13 @@ export default function TransactionFilter() {
           placeholder='Chọn loại'
           options={WalletTypeList}
           className='w-96'
+        />
+         <CustomSelectQueryWithLabel
+          label={'Trạng Thái'}
+          queryKey={PARAM_FIELD.WALLET_STATUS}
+          placeholder='Chọn trạng thái'
+          options={WalletStatusList}
+          className='w-40'
         />
       </div>
     </div>

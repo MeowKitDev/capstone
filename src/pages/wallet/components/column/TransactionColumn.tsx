@@ -3,6 +3,7 @@ import { TableHeaderCell } from '@/components/table/TableHeaderCell';
 import { ColumnsType } from 'antd/es/table';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
+import { getWalletStatusLabel } from '../TransactionFilter';
 
 export const TransactionColumn = (): ColumnsType<WalletDTO> => {
   const navigate = useNavigate();
@@ -49,6 +50,13 @@ export const TransactionColumn = (): ColumnsType<WalletDTO> => {
       key: 'createdDate',
       render: ({ ...props }: WalletDTO) => {
         return <div>{dayjs(props?.createdDate).format('DD/MM/YYYY HH:mm')}</div>;
+      },
+    },
+    {
+      title: () => <TableHeaderCell key='status' label={'Trạng Thái'} sortKey='status' />,
+      key: 'status',
+      render: ({ ...props }: WalletDTO) => {
+        return <div>{getWalletStatusLabel(props?.status ?? "")}</div>;
       },
     },
     {
