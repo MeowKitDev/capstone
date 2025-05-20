@@ -19,6 +19,7 @@ export interface UserDetailDTO {
   gender?: string;
   dob?: Date;
   email?: string;
+  averageRating?: number;
   driverLicenseUrl?: string;
   identityCardFaceUpUrl?: string;
   identityCardFaceDownUrl?: string;

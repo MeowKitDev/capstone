@@ -2,9 +2,11 @@ import { PackageGetAllDTO } from '@/@types/dto/packageDTO';
 import { TableHeaderCell } from '@/components/table/TableHeaderCell';
 import { packageApi } from '@/data/services/api/package/package.api';
 import queryClient from '@/data/services/queryClient';
+import { DATE_FORMAT_DOT, TIME_24H_FORMAT } from '@/utils/constants/date.constant';
 import { PACKAGE_STATUS } from '@/utils/enum/package/package.enum';
 import { Switch } from 'antd';
 import { ColumnsType } from 'antd/es/table';
+import dayjs from 'dayjs';
 
 export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
   // const [isModalDetailOpen, setIsModalDetailOpen] = useState<number | null>(null);
@@ -59,6 +61,27 @@ export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
       key: 'bonus',
       render: ({ ...props }: PackageGetAllDTO) => {
         return <div>{props?.bonus}</div>;
+      },
+    },
+    {
+      title: () => <TableHeaderCell key='bonus' label={'Ngày bắt đầu'} sortKey='bonus' />,
+      key: 'bonus',
+      render: ({ ...props }: PackageGetAllDTO) => {
+        return <div>{ 
+          props?.createdDate ?
+          dayjs(props?.createdDate).format(DATE_FORMAT_DOT) + ' - ' + dayjs(props?.createdDate).format(TIME_24H_FORMAT) :
+          "__"
+        }</div>;
+      },
+    },
+    {
+      title: () => <TableHeaderCell key='bonus' label={'Ngày hết hạn'} sortKey='bonus' />,
+      key: 'bonus',
+      render: ({ ...props }: PackageGetAllDTO) => {
+        return <div>{ props?.expireDate ?
+          dayjs(props?.expireDate).format(DATE_FORMAT_DOT) + ' - ' + dayjs(props?.expireDate).format(TIME_24H_FORMAT) :
+          "__"
+          }</div>;
       },
     },
     {
