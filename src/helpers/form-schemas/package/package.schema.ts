@@ -7,4 +7,5 @@ export const createPackageSchema = yup.object().shape({
   packageBonusTime: allFormSchema.packageBonusTime,
   packagePrice: allFormSchema.packagePrice,
   packageDescription: yup.string().optional(),
+  expiredDate: yup.date().required('Vui lòng chọn ngày hết hạn'),
 });

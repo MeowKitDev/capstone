@@ -5,8 +5,9 @@ import queryClient from '@/data/services/queryClient';
 import { CreatePackageInput } from '@/helpers/form-schemas/package/package.input';
 import { createPackageSchema } from '@/helpers/form-schemas/package/package.schema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, message } from 'antd';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { Button, DatePicker, message } from 'antd';
+import dayjs from 'dayjs';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 type CreatePakageModalProps = {
   open: boolean;
@@ -14,11 +15,6 @@ type CreatePakageModalProps = {
 };
 
 export default function CreatePakageModal({ open, setOpen }: CreatePakageModalProps) {
-  // const { handleSubmit, control } = useForm<CreatePackageInput>({
-  //   resolver: yupResolver(createPackageSchema),
-  //   defaultValues: createPackageSchema.getDefault(),
-  // });
-
   const { handleSubmit, control, reset } = useForm<CreatePackageInput>({
     resolver: yupResolver(createPackageSchema),
     defaultValues: createPackageSchema.getDefault(),
@@ -32,6 +28,7 @@ export default function CreatePakageModal({ open, setOpen }: CreatePakageModalPr
         time: data.packageTime,
         bonus: data.packageBonusTime,
         description: data.packageDescription || '',
+        expireDate: data.expiredDate, 
       });
       message.success('Tạo gói thành công!');
       setOpen(false);
@@ -88,6 +85,26 @@ export default function CreatePakageModal({ open, setOpen }: CreatePakageModalPr
           min={1000}
           max={1000000000}
           step={1000}
+        />
+        
+        <Controller
+          control={control}
+          name='expiredDate'
+          render={({ field, fieldState }) => (
+            <div className='flex flex-col gap-1'>
+              <label className='font-medium'>Ngày hết hạn</label>
+              <DatePicker
+                className='w-full'
+                format='DD/MM/YYYY'
+                placeholder='Chọn ngày hết hạn'
+                value={field.value ? dayjs(field.value) : null}
+                onChange={(date) => field.onChange(date ? date.toDate() : null)} // ✅ sửa tại đây
+              />
+              {fieldState.error && (
+                <span className='text-red-500 text-sm'>{fieldState.error.message}</span>
+              )}
+            </div>
+          )}
         />
       </form>
     </CustomModal>

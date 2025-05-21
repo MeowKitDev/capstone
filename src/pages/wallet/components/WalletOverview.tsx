@@ -25,7 +25,7 @@ export default function WalletOverview() {
   const walletCardsData = [
     {
       title: 'Ví hệ thống',
-      subTitle: '02410023xxx45',
+      subTitle: '',
       value: systemBalance !== null ? systemBalance.toLocaleString('en-US') : '...',
       icon: <SackDollarIcon className='size-6 text-primary-500' />,
     },
