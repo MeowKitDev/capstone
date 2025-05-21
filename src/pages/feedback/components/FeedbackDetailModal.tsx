@@ -1,7 +1,10 @@
 import InfoItem from '@/components/common/InfoItem';
+import CustomTextFieldWithLabel from '@/components/form-related/CustomTextFieldWithLabel';
 import StarIcon from '@/components/icons/StarIcon';
 import CustomModal from '@/components/modal/CustomModal';
 import { FeedbackDTO } from '@/data/feedback/dto/feedback.dto';
+import { DriverPointApi } from '@/data/services/api/driver-point/driver-point.api';
+import queryClient from '@/data/services/queryClient';
 import {
   DATE_FORMAT,
   DATE_FORMAT_DOT,
@@ -11,8 +14,12 @@ import {
 import { GENDER } from '@/utils/enum/common.enum';
 import { TRIP_STATUS } from '@/utils/enum/trip/trip-status.enum';
 import { formatPhoneNumber } from '@/utils/string.helper';
-import { Divider, Tag } from 'antd';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, Divider, Tag } from 'antd';
 import dayjs from 'dayjs';
+import { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import * as yup from 'yup';
 
 type FeedbackDetailModalProps = {
   open: boolean;
@@ -20,9 +27,31 @@ type FeedbackDetailModalProps = {
   data: FeedbackDTO;
 };
 
+type ReasonModalProps = {
+  openReasonModal: boolean;
+  setOpenReasonModal: (open: boolean) => void;
+  feedbackID: string;
+};
+
 export default function FeedbackDetailModal({ open, setOpen, data }: FeedbackDetailModalProps) {
+    const [isShownReasonModal, setIsShownReasonModal] = useState(false);
   return (
-    <CustomModal title='Chi tiết phản hồi' open={open} setOpen={setOpen} className='!w-[820px]'>
+    <>
+    <CustomModal  title='Chi tiết phản hồi' open={open} setOpen={setOpen} className='!w-[820px]'
+    footer={
+              <div className='mt-6 flex justify-end gap-3'>
+                <Button
+                  onClick={() => {setOpen(false)}}
+                >Đóng
+                </Button>
+                <Button
+                  className='border-none bg-orange-500 text-white'
+                  onClick={()=>{setIsShownReasonModal(true)}}
+                >Báo Cáo
+                </Button>
+              </div>
+          }
+    >
       <div className='space-y-5'>
         <div>
           <div>
@@ -158,5 +187,52 @@ export default function FeedbackDetailModal({ open, setOpen, data }: FeedbackDet
         </div>
       </div>
     </CustomModal>
+    {isShownReasonModal && (
+      <ReasonModal openReasonModal={isShownReasonModal} setOpenReasonModal={setIsShownReasonModal} feedbackID={data?.feedbackID} />
+    )}
+  </>
   );
 }
+
+const ReasonModal = ({ openReasonModal, setOpenReasonModal, feedbackID }: ReasonModalProps) => {
+  const reasonSchema = yup.object().shape({
+    reason: yup.string().default(''),
+  });
+
+  const { control, handleSubmit } = useForm<{ reason: string }>({
+    resolver: yupResolver(reasonSchema),
+    defaultValues: reasonSchema.getDefault(),
+  });
+
+  const onSubmit: SubmitHandler<{ reason: string }> = async(data) => {
+    await DriverPointApi.penalize(feedbackID, { reason: data.reason });
+    await queryClient.invalidateQueries(['CensorVehicles']);
+    setOpenReasonModal(false);
+  };
+
+  return (
+    <CustomModal
+      open={openReasonModal}
+      setOpen={setOpenReasonModal}
+      title={"Lý do cảnh báo"}
+      footer={
+        <div className='mt-6 flex justify-end gap-3'>
+          <Button onClick={() => setOpenReasonModal(false)}>Đóng</Button>
+          <Button type='primary' className='border-none' onClick={handleSubmit(onSubmit)}>
+            Gửi
+          </Button>
+        </div>
+      }>
+      <form className='mt-10 space-y-4'>
+        <CustomTextFieldWithLabel
+          control={control}
+          name='reason'
+          label='Lý Do'
+          placeholder='Enter reason'
+          type={'textarea'}
+          className='w-full'
+        />
+      </form>
+    </CustomModal>
+  );
+};
