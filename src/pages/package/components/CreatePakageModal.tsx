@@ -28,7 +28,7 @@ export default function CreatePakageModal({ open, setOpen }: CreatePakageModalPr
         time: data.packageTime,
         bonus: data.packageBonusTime,
         description: data.packageDescription || '',
-        expireDate: data.expiredDate, 
+        expireDate: data.expiredDate,
       });
       message.success('Tạo gói thành công!');
       setOpen(false);
@@ -86,7 +86,7 @@ export default function CreatePakageModal({ open, setOpen }: CreatePakageModalPr
           max={1000000000}
           step={1000}
         />
-        
+
         <Controller
           control={control}
           name='expiredDate'
@@ -100,9 +100,7 @@ export default function CreatePakageModal({ open, setOpen }: CreatePakageModalPr
                 value={field.value ? dayjs(field.value) : null}
                 onChange={(date) => field.onChange(date ? date.toDate() : null)} // ✅ sửa tại đây
               />
-              {fieldState.error && (
-                <span className='text-red-500 text-sm'>{fieldState.error.message}</span>
-              )}
+              {fieldState.error && <span className='text-sm text-red-500'>{fieldState.error.message}</span>}
             </div>
           )}
         />

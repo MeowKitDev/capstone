@@ -7,12 +7,11 @@ import StarIcon from '@/components/icons/StarIcon';
 import CustomModal from '@/components/modal/CustomModal';
 import { censorDriverRequestApi } from '@/data/services/api/censorDriverRequest/censorDriverRequest.api';
 import { DriverPointApi } from '@/data/services/api/driver-point/driver-point.api';
-import useDriverPointData from '@/data/services/api/driver-point/useDriverPointData';
 import queryClient from '@/data/services/queryClient';
 import { MY_ROUTE } from '@/helpers/router/route.constant';
 import { DATE_FORMAT_DOT } from '@/utils/constants/date.constant';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Drawer, Image } from 'antd';
+import { Button, Image } from 'antd';
 import dayjs from 'dayjs';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -28,35 +27,35 @@ type CensorDriverDetailModalProps = {
 const mockData: PagedResponse<DriverPointDTO> = {
   content: [
     {
-      pointId: "1",
+      pointId: '1',
       point: 0,
-      reason: "string",
-      date: new Date("2025-05-23T08:31:51.248Z"),
-      status: "DONE",
-      userName: "string"
+      reason: 'string',
+      date: new Date('2025-05-23T08:31:51.248Z'),
+      status: 'DONE',
+      userName: 'string',
     },
     {
-      pointId: "2",
+      pointId: '2',
       point: 0,
-      reason: "string",
-      date: new Date("2025-05-23T08:31:51.248Z"),
-      status: "DONE",
-      userName: "string"
+      reason: 'string',
+      date: new Date('2025-05-23T08:31:51.248Z'),
+      status: 'DONE',
+      userName: 'string',
     },
     {
-      pointId: "3",
+      pointId: '3',
       point: 0,
-      reason: "string",
-      date: new Date("2025-05-23T08:31:51.248Z"),
-      status: "DONE",
-      userName: "string"
-    }
+      reason: 'string',
+      date: new Date('2025-05-23T08:31:51.248Z'),
+      status: 'DONE',
+      userName: 'string',
+    },
   ],
   page: 0,
   size: 0,
   totalPages: 0,
-  totalElements: 0
-}
+  totalElements: 0,
+};
 
 type ReasonModalProps = {
   openReasonModal: boolean;
@@ -119,16 +118,17 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
         footer={
           <div className='mt-6 flex justify-end gap-3'>
             <Button
-            onClick={()=>{setOpen(false)}}
-            >Đóng</Button>
-            <Button onClick={() => setViolationDrawerOpen(true)}>
-              Lịch sử lỗi vi phạm
+              onClick={() => {
+                setOpen(false);
+              }}>
+              Đóng
             </Button>
+            <Button onClick={() => setViolationDrawerOpen(true)}>Lịch sử lỗi vi phạm</Button>
             <Button
               onClick={async () => {
                 await censorDriverRequestApi.rejectDriver(data?.driverId ?? '');
                 setOpen(false);
-                await queryClient.invalidateQueries(['censorDriverRequests']); 
+                await queryClient.invalidateQueries(['censorDriverRequests']);
                 // setIsShownReasonModal(true)
               }}
               className='bg-red-600 text-white'>
@@ -138,12 +138,11 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
               onClick={async () => {
                 await censorDriverRequestApi.approveDriver(data?.driverId ?? '');
                 setOpen(false);
-                await queryClient.invalidateQueries(['censorDriverRequests']); 
+                await queryClient.invalidateQueries(['censorDriverRequests']);
               }}
               className='border-none bg-green-500 text-white'>
               Duyệt
             </Button>
-            
           </div>
         }>
         <div className=''>
@@ -277,60 +276,59 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
           setOpen={setViolationDrawerOpen}
           footer={
             <div className='mt-6 flex justify-end gap-3'>
-                <Button
-                  onClick={async () => {
-                    setViolationDrawerOpen(false);
-                  }}
-                >
-                  Đóng
-                </Button>
-                
-              </div>
+              <Button
+                onClick={async () => {
+                  setViolationDrawerOpen(false);
+                }}>
+                Đóng
+              </Button>
+            </div>
           }
-          className='!w-[900px]'
-        >
-        <div className="flex flex-col gap-3">
-          <table className="table-auto w-full">
-            <thead>
-              <tr className="text-left border-b">
-                <th className="p-2">STT</th>
-                <th className="p-2">Tên</th>
-                <th className="p-2">Điểm</th>
-                <th className="p-2">Lý do</th>
-                <th className="p-2">Thời gian</th>
-                <th className="p-2">Trạng thái</th>
-                <th className="p-2">Hành động</th>
-              </tr>
-            </thead>
-            <tbody>
-              {mockData?.content?.map((violation, idx) => (
-                <tr key={violation.pointId} className="border-b">
-                  <td className="p-2">{mockData?.page * 10 + idx + 1}</td>
-                  <td className="p-2">{violation.userName}</td>
-                  <td className="p-2">{violation.point}</td>
-                  <td className="p-2">{violation.reason}</td>
-                  <td className="p-2">{dayjs(violation.date).format(DATE_FORMAT_DOT)}</td>
-                  <td className="p-2">{violation.status}</td>
-                  <td className="p-2"><Button
-                  onClick={async () => {
-                    await DriverPointApi.refund(violation?.pointId ?? '');
-                    await queryClient.invalidateQueries(['driverpoints']); 
-                    // setOpen(false);
-                  }}
-                  className='border-none bg-green-500 text-white'>
-                  Hoàn điểm
-                </Button></td>
+          className='!w-[900px]'>
+          <div className='flex flex-col gap-3'>
+            <table className='w-full table-auto'>
+              <thead>
+                <tr className='border-b text-left'>
+                  <th className='p-2'>STT</th>
+                  <th className='p-2'>Tên</th>
+                  <th className='p-2'>Điểm</th>
+                  <th className='p-2'>Lý do</th>
+                  <th className='p-2'>Thời gian</th>
+                  <th className='p-2'>Trạng thái</th>
+                  <th className='p-2'>Hành động</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {mockData?.content?.map((violation, idx) => (
+                  <tr key={violation.pointId} className='border-b'>
+                    <td className='p-2'>{mockData?.page * 10 + idx + 1}</td>
+                    <td className='p-2'>{violation.userName}</td>
+                    <td className='p-2'>{violation.point}</td>
+                    <td className='p-2'>{violation.reason}</td>
+                    <td className='p-2'>{dayjs(violation.date).format(DATE_FORMAT_DOT)}</td>
+                    <td className='p-2'>{violation.status}</td>
+                    <td className='p-2'>
+                      <Button
+                        onClick={async () => {
+                          await DriverPointApi.refund(violation?.pointId ?? '');
+                          await queryClient.invalidateQueries(['driverpoints']);
+                          // setOpen(false);
+                        }}
+                        className='border-none bg-green-500 text-white'>
+                        Hoàn điểm
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
 
-          {/* <CustomTablePagination
+            {/* <CustomTablePagination
             totalItems={data?.totalElements || 0}
             queryKey={PARAM_FIELD.CURRENT_PAGE}
           /> */}
-        </div>
-    </CustomModal>
+          </div>
+        </CustomModal>
       </CustomModal>
       {isShownReasonModal && (
         <ReasonModal openReasonModal={isShownReasonModal} setOpenReasonModal={setIsShownReasonModal} />

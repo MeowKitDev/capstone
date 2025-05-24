@@ -12,7 +12,22 @@ const notificationApi = CRMApi.enhanceEndpoints({}).injectEndpoints({
       }),
       transformResponse: (data: GetNotificationRESP[]) => data,
     }),
+    getNotificationList: build.query<GetNotificationDTO, void>({
+      query: () => ({
+        url: 'notification/notifications/system',
+        method: HTTP_METHOD.GET,
+      }),
+      transformResponse: (data: GetNotificationRESP[]) => data,
+    }),
+    patchNotificationRead: build.mutation<void, { id: number }>({
+      query: ({ id }) => ({
+        url: `notification/${id}/read`,
+        method: HTTP_METHOD.PATCH,
+      }),
+      invalidatesTags: ['Notification'],
+    }),
   }),
 });
 
-export const { useGetNotificationQuery } = notificationApi;
+export const { useGetNotificationQuery, useGetNotificationListQuery, usePatchNotificationReadMutation } =
+  notificationApi;

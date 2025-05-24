@@ -67,21 +67,30 @@ export const PackageColumn = (): ColumnsType<PackageGetAllDTO> => {
       title: () => <TableHeaderCell key='bonus' label={'Ngày bắt đầu'} sortKey='bonus' />,
       key: 'bonus',
       render: ({ ...props }: PackageGetAllDTO) => {
-        return <div>{ 
-          props?.createdDate ?
-          dayjs(props?.createdDate).format(DATE_FORMAT_DOT) + ' - ' + dayjs(props?.createdDate).format(TIME_24H_FORMAT) :
-          "__"
-        }</div>;
+        return (
+          <div>
+            {props?.createdDate
+              ? dayjs(props?.createdDate).format(DATE_FORMAT_DOT) +
+                ' - ' +
+                dayjs(props?.createdDate).format(TIME_24H_FORMAT)
+              : '__'}
+          </div>
+        );
       },
     },
     {
       title: () => <TableHeaderCell key='bonus' label={'Ngày hết hạn'} sortKey='bonus' />,
       key: 'bonus',
       render: ({ ...props }: PackageGetAllDTO) => {
-        return <div>{ props?.expireDate ?
-          dayjs(props?.expireDate).format(DATE_FORMAT_DOT) + ' - ' + dayjs(props?.expireDate).format(TIME_24H_FORMAT) :
-          "__"
-          }</div>;
+        return (
+          <div>
+            {props?.expireDate
+              ? dayjs(props?.expireDate).format(DATE_FORMAT_DOT) +
+                ' - ' +
+                dayjs(props?.expireDate).format(TIME_24H_FORMAT)
+              : '__'}
+          </div>
+        );
       },
     },
     {

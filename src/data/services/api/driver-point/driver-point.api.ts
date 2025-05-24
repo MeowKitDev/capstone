@@ -8,8 +8,8 @@ import { PagedResponse } from '@/@types/dto/pagedResponse';
 // }
 
 export const DriverPointApi = {
-  getListPoint: async (params:{
-    driveruuId: string
+  getListPoint: async (params: {
+    driveruuId: string;
     page?: number;
     size?: number;
   }): Promise<PagedResponse<DriverPointDTO>> => {
@@ -21,7 +21,7 @@ export const DriverPointApi = {
   penalize: async (feedbackID: string, body: { reason: string }): Promise<void> => {
     await axiosClient.post(`/manager/driver-point/${feedbackID}/penalize`, body);
   },
-  refund: async (pointId : string): Promise<void> => {
+  refund: async (pointId: string): Promise<void> => {
     await axiosClient.post(`/manager/driver-point/${pointId}/refund`);
   },
 };

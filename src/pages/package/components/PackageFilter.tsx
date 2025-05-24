@@ -83,7 +83,7 @@ export default function PackageFilter() {
             className='w-40'
           /> */}
         </div>
-        <RoleBasedComponent allowedRoles={[Role.ADMIN]} > 
+        <RoleBasedComponent allowedRoles={[Role.ADMIN]}>
           <Button
             type='primary'
             icon={<CirclePlusIcon className='size-5 text-white' />}
@@ -92,7 +92,6 @@ export default function PackageFilter() {
             Tạo Gói
           </Button>
         </RoleBasedComponent>
-        
       </div>
       {isModalCreatePackageOpen && (
         <CreatePakageModal open={isModalCreatePackageOpen} setOpen={setIsModalCreatePackageOpen} />

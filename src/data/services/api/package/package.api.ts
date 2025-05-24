@@ -21,15 +21,14 @@ export const packageApi = {
     return response;
   },
 
-  create: async (
-    data: { 
-      name: string; 
-      price: number; 
-      time: number; 
-      bonus: number; 
-      description: string;
-      expireDate: Date;
-     }) => {
+  create: async (data: {
+    name: string;
+    price: number;
+    time: number;
+    bonus: number;
+    description: string;
+    expireDate: Date;
+  }) => {
     const response = await axiosClient.post('/manager/packages/createPackage', {
       id: 0,
       // packageID: crypto.randomUUID(),

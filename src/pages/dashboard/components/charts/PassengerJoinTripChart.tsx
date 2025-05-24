@@ -1,4 +1,4 @@
-import { useGetPassengerJoinTripStatisticsQuery, useGetTripStatisticsQuery } from '@/data/dashboard/dashboard.api';
+import { useGetPassengerJoinTripStatisticsQuery } from '@/data/dashboard/dashboard.api';
 import { dateDashboardParamsToFilter } from '@/data/dashboard/dashboard.service';
 import { ApexOptions } from 'apexcharts';
 import queryString from 'query-string';

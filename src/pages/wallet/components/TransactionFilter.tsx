@@ -62,7 +62,6 @@ export const WalletTypeList = [
   // },
 ];
 
-
 export const WalletStatusList = [
   {
     label: 'Đang Xử Lý',
@@ -79,8 +78,8 @@ export const WalletStatusList = [
 ];
 
 export const getWalletStatusLabel = (status: string): string => {
-  return WalletStatusList.find(item => item.value === status)?.label || ''
-}
+  return WalletStatusList.find((item) => item.value === status)?.label || '';
+};
 
 export default function TransactionFilter() {
   return (
@@ -93,7 +92,7 @@ export default function TransactionFilter() {
           options={WalletTypeList}
           className='w-96'
         />
-         <CustomSelectQueryWithLabel
+        <CustomSelectQueryWithLabel
           label={'Trạng Thái'}
           queryKey={PARAM_FIELD.WALLET_STATUS}
           placeholder='Chọn trạng thái'

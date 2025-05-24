@@ -49,14 +49,14 @@ export const TransactionColumn = (): ColumnsType<WalletDTO> => {
       title: () => <TableHeaderCell key='toOwner' label={'Trước GD'} sortKey='toOwner' />,
       key: 'toOwner',
       render: ({ ...props }: WalletDTO) => {
-        return <div>{props?.before ?? "__"}</div>;
+        return <div>{props?.before ?? '__'}</div>;
       },
     },
     {
       title: () => <TableHeaderCell key='toOwner' label={'Sau GD'} sortKey='toOwner' />,
       key: 'toOwner',
       render: ({ ...props }: WalletDTO) => {
-        return <div>{props?.current ?? "__"}</div>;
+        return <div>{props?.current ?? '__'}</div>;
       },
     },
     {
@@ -70,7 +70,7 @@ export const TransactionColumn = (): ColumnsType<WalletDTO> => {
       title: () => <TableHeaderCell key='status' label={'Trạng Thái'} sortKey='status' />,
       key: 'status',
       render: ({ ...props }: WalletDTO) => {
-        return <div>{getWalletStatusLabel(props?.status ?? "")}</div>;
+        return <div>{getWalletStatusLabel(props?.status ?? '')}</div>;
       },
     },
     {

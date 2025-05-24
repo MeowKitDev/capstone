@@ -23,7 +23,7 @@ const useWalletData = () => {
     }
   };
 
-  const queryKey = ['walletData', params.walletType as string,params.walletStatus as string, page];
+  const queryKey = ['walletData', params.walletType as string, params.walletStatus as string, page];
 
   const {
     data: WalletData,

@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { DatePicker, Select, Skeleton } from 'antd';
+import { DatePicker } from 'antd';
 import queryString from 'query-string';
 import { ReactNode, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { SelectOptions } from '../types/Selects.type';
 import CustomLabel from './CustomLabel';
 import dayjs from 'dayjs';
 
