@@ -9,6 +9,8 @@ export interface PackageGetAllDTO {
   bonus?: number;
   status?: string;
   payments?: Payment[];
+  createdDate?: Date;
+  expireDate?: Date;
   driverPackageSubscriptions?: DriverPackageSubscription[];
 }
 

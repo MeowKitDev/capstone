@@ -1,5 +1,5 @@
 import InfoItem from '@/components/common/InfoItem';
-import { Divider, Image } from 'antd';
+import { Divider, Image, Rate } from 'antd';
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { UserAccountData } from '../mocks/UserData';
@@ -57,6 +57,10 @@ export const UserAccountDetail = () => {
             />
           }
         />
+        <div>
+          <Rate allowHalf disabled defaultValue={userDetailData?.averageRating} />
+          {/* <span style={{ marginLeft: 8 }}>{averageRating.toFixed(1)} / 5</span> */}
+        </div>
       </div>
       <Divider />
 
