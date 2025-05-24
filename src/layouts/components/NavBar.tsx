@@ -7,6 +7,7 @@ import UserPenIcon from '@/components/icons/UserPenIcon';
 import { RootState } from '@/data';
 import { logoutThunk } from '@/data/auth/auth.thunk';
 import { GlobalState } from '@/data/global/global.slice';
+import { useGetNotificationQuery } from '@/data/notification/notification.api';
 import { MY_ROUTE } from '@/helpers/router/route.constant';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { Popover } from 'antd';
@@ -17,14 +18,20 @@ export default function NavBar() {
   const navigate = useNavigate();
   const { userInfo }: GlobalState = useAppSelector((state: RootState) => state.global);
   // console.log('userInfo', userInfo);
+  const { data } = useGetNotificationQuery(undefined, {
+    pollingInterval: 5000,
+    refetchOnFocus: true,
+  });
+
+  console.log('data', data);
   const contentPopover = (
     <div className='flex w-[150px] flex-col gap-2'>
-      <button
+      <div
         className='flex w-full items-center justify-between rounded-md px-1.5 py-2 hover:bg-gray-100'
         onClick={() => navigate(MY_ROUTE.PROFILE)}>
         <span className='text-xs font-semibold text-gray-900'>Profile</span>
         <UserOutlineIcon className='size-3 cursor-pointer text-gray-900 lg:size-4' />
-      </button>
+      </div>
       <div className='h-px w-full bg-gray-200' />
       <button
         className='flex w-full items-center justify-between rounded-md px-1.5 py-2 hover:bg-gray-100'
@@ -43,11 +50,20 @@ export default function NavBar() {
   );
 
   const contentPopoverBell = (
-    <div className='flex w-[150px] flex-col gap-2'>
-      <span className='text-xs font-semibold text-gray-900'>
-        <span className='text-red-500'>1</span>
-        notification
-      </span>
+    <div className='flex w-[350px] flex-col gap-2'>
+      <button
+        className='flex w-full items-center justify-between rounded-md px-1.5 py-2 hover:bg-gray-100'
+        onClick={() => {}}>
+        <span className='text-xs font-semibold text-gray-900'>Notification</span>
+        <BellIcon className='size-3 cursor-pointer text-gray-900 lg:size-4' />
+      </button>
+      <div className='h-px w-full bg-gray-200' />
+      {data?.map((item) => (
+        <div key={item.id} className='flex items-center gap-2'>
+          <p className='text-xs font-semibold text-gray-900'>{item.content}</p>
+        </div>
+      ))}
+      <div className='h-px w-full bg-gray-200' />
     </div>
   );
 
