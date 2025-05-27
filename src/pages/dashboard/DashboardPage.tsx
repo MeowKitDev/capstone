@@ -11,7 +11,6 @@ export default function DashboardPage() {
     <DefaultContainer title='Dashboard'>
       <div className='flex max-w-full flex-col gap-6'>
         <Overview />
-
         <PackageChart />
         <AccountChart />
         <TripChart />
