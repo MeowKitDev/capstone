@@ -5,3 +5,10 @@ export enum Role {
   STAFF = 'ROLE_STAFF',
   USER = 'ROLE_USER',
 }
+export const roleMap: Record<string, string> = {
+  ROLE_ADMIN: 'Quản trị viên',
+  ROLE_PASSENGER: 'Hành khách',
+  ROLE_DRIVER: 'Tài xế',
+  ROLE_STAFF: 'Nhân viên',
+  ROLE_USER: 'Người dùng',
+};

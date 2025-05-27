@@ -1,3 +1,4 @@
+import { roleMap } from '@/@types/dto/entity/role';
 import { UserGetAllDTO } from '@/@types/dto/userDTO';
 import CustomTableActionsButton from '@/components/table/CustomTableActionsButton';
 import { TableHeaderCell } from '@/components/table/TableHeaderCell';
@@ -99,13 +100,17 @@ export const UserColumn = (): ColumnsType<UserGetAllDTO> => {
     //     );
     //   },
     // },
-    // {
-    //   title: () => <TableHeaderCell key='role' label={'Role'} />,
-    //   key: 'role',
-    //   render: ({ ...props }: UserGetAllDTO) => {
-    //     return <div className='capitalize'>{props?.role}</div>;
-    //   },
-    // },
+    {
+      title: () => <TableHeaderCell key='role' label={'Vai Trò'} />,
+      key: 'role',
+      render: ({ ...props }: UserGetAllDTO) => {
+        return <div className='capitalize'>{
+          props?.roles
+          ?.map((role:string)=>roleMap[role] || role)
+          .join(', ')
+        }</div>;
+      },
+    },
     {
       title: () => <TableHeaderCell key='action' label={'Hành Động'} />,
       key: 'action',
