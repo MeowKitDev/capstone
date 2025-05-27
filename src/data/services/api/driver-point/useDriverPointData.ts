@@ -8,6 +8,7 @@ const useDriverPointData = (driveruuId: string) => {
   const location = useLocation();
   const params = queryString.parse(location.search, { parseNumbers: true });
   const page = +(params.page ?? 1);
+
   const fetchUserDataFunction = async () => {
     try {
       const response = await DriverPointApi.getListPoint({
@@ -22,14 +23,14 @@ const useDriverPointData = (driveruuId: string) => {
     }
   };
 
-  // TODO: use debounce technique to prevent many calls at a short time
-  const queryKey = ['driverpoints', params];
+  const queryKey = ['driverpoints', driveruuId, params];
 
   const {
     data: DriverPointData,
     refetch: refreshDriverPointData,
     ...rest
   } = useQuery(queryKey, fetchUserDataFunction, {
+    enabled: !!driveruuId, 
     onError: (err) => console.log('error at hook', err),
     keepPreviousData: true,
     staleTime: 1000 * 60 * 5,
@@ -39,14 +40,8 @@ const useDriverPointData = (driveruuId: string) => {
   });
 
   return {
-    DriverPointData,
+    DriverPointData,  
     refreshDriverPointData,
-    // setSortState,
-    // setKeyword,
-    // setPagination,
-    // setFilter,
-    // keyword,
-    // totalRows,
     ...rest,
   };
 };
