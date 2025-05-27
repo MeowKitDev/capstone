@@ -104,11 +104,9 @@ export const UserColumn = (): ColumnsType<UserGetAllDTO> => {
       title: () => <TableHeaderCell key='role' label={'Vai Trò'} />,
       key: 'role',
       render: ({ ...props }: UserGetAllDTO) => {
-        return <div className='capitalize'>{
-          props?.roles
-          ?.map((role:string)=>roleMap[role] || role)
-          .join(', ')
-        }</div>;
+        return (
+          <div className='capitalize'>{props?.roles?.map((role: string) => roleMap[role] || role).join(', ')}</div>
+        );
       },
     },
     {

@@ -18,7 +18,7 @@ export const UserAccountDetail = () => {
   const { id } = useParams();
   const { userDetailData } = useUserDetailData(id);
   const dataAccount = useMemo(() => UserAccountData.find((item) => item.id === Number(id)), [id]);
-  const { DriverPointData, isFetching } = useDriverPointData(userDetailData?.driverId ?? "", );
+  const { DriverPointData, isFetching } = useDriverPointData(userDetailData?.driverId ?? '');
   const [violationDrawerOpen, setViolationDrawerOpen] = useState(false);
 
   return (
@@ -66,15 +66,7 @@ export const UserAccountDetail = () => {
             />
           }
         />
-        <div>
-          {userDetailData && (
-            <Rate
-              allowHalf
-              disabled
-              defaultValue={Number(userDetailData.averageRating)}
-            />
-          )}
-        </div>
+        <div>{userDetailData && <Rate allowHalf disabled defaultValue={Number(userDetailData.averageRating)} />}</div>
       </div>
       <Divider />
 
@@ -160,13 +152,12 @@ export const UserAccountDetail = () => {
         ) : (
           <p className='ml-4 text-gray-500'>Chưa có phương tiện nào</p>
         )}
-        {DriverPointData && 
-        <div className="flex justify-end">
-          <Button onClick={() => setViolationDrawerOpen(true)}>Lịch sử lỗi vi phạm</Button>
-        </div>
-        }
+        {DriverPointData && (
+          <div className='flex justify-end'>
+            <Button onClick={() => setViolationDrawerOpen(true)}>Lịch sử lỗi vi phạm</Button>
+          </div>
+        )}
 
-        
         <CustomModal
           title='Lịch sử lỗi vi phạm'
           open={violationDrawerOpen}
@@ -230,8 +221,6 @@ export const UserAccountDetail = () => {
     </div>
   );
 };
-
-
 
 const mockData: PagedResponse<DriverPointDTO> = {
   content: [

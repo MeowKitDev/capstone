@@ -30,7 +30,7 @@ const useDriverPointData = (driveruuId: string) => {
     refetch: refreshDriverPointData,
     ...rest
   } = useQuery(queryKey, fetchUserDataFunction, {
-    enabled: !!driveruuId, 
+    enabled: !!driveruuId,
     onError: (err) => console.log('error at hook', err),
     keepPreviousData: true,
     staleTime: 1000 * 60 * 5,
@@ -40,7 +40,7 @@ const useDriverPointData = (driveruuId: string) => {
   });
 
   return {
-    DriverPointData,  
+    DriverPointData,
     refreshDriverPointData,
     ...rest,
   };
