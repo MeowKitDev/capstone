@@ -157,7 +157,6 @@ export const UserAccountDetail = () => {
             <Button onClick={() => setViolationDrawerOpen(true)}>Lịch sử lỗi vi phạm</Button>
           </div>
         )}
-
         <CustomModal
           title='Lịch sử lỗi vi phạm'
           open={violationDrawerOpen}
