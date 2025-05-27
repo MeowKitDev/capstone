@@ -12,6 +12,7 @@ const useCensorVehicleData = () => {
   const fetchCensorVehicleDataFunction = async () => {
     try {
       const response = await censorVehicleApi.getAll({
+        driverId: params.driverId as string,
         lastName: params.lastName as string,
         // firstName: params.firstName as string,
         // email: params.email as string,

@@ -17,6 +17,7 @@ export const censorDriverRequestApi = {
     phone?: string;
     page?: number;
     size?: number;
+    driverId?: string;
   }): Promise<PagedResponse<CensorDriverRequestDTO>> => {
     const response: PagedResponse<CensorDriverRequestDTO> = await axiosClient.get('manager/drivers/confirming/getAll', {
       params,

@@ -38,7 +38,7 @@ export default function NavBar() {
         navigate(MY_ROUTE.TRIP.detail(relatedId));
         break;
       case TYPE_NOTIFICATION.VEHICLE_REQUEST:
-        navigate(MY_ROUTE.CENSOR_VEHICLE.self + `?vehicleId=${relatedId}`);
+        navigate(MY_ROUTE.CENSOR_VEHICLE.self + `?driverId=${relatedId}`);
         break;
       case TYPE_NOTIFICATION.DRIVER_REGISTER:
         navigate(MY_ROUTE.USER.CENSOR_DRIVER_REQUEST.self + `?driverId=${relatedId}`);

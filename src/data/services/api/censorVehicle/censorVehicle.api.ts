@@ -9,6 +9,7 @@ import { PagedResponse } from '@/@types/dto/pagedResponse';
 
 export const censorVehicleApi = {
   getAll: async (params?: {
+    driverId?: string;
     firstName?: string;
     lastName?: string;
     email?: string;

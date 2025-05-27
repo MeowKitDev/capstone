@@ -11,6 +11,7 @@ const useCensorDriverRequestData = () => {
   const fetchCensorDriverRequestDataFunction = async () => {
     try {
       const response = await censorDriverRequestApi.getAll({
+        driverId: params.driverId as string,
         firstName: params.firstName as string,
         lastName: params.lastName as string,
         email: params.email as string,
