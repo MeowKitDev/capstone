@@ -35,7 +35,13 @@ export const TransactionColumn = (): ColumnsType<WalletDTO> => {
       title: () => <TableHeaderCell key='amount' label={'Khoản tiền (Vnd)'} sortKey='amount' />,
       key: 'amount',
       render: ({ ...props }: WalletDTO) => {
-        return <div>{props?.amount}</div>;
+        return <div>{props?.amount
+                      ?.toLocaleString('vi-VN', {
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 2,
+                    })
+                    
+                }</div>;
       },
     },
     {
@@ -49,14 +55,20 @@ export const TransactionColumn = (): ColumnsType<WalletDTO> => {
       title: () => <TableHeaderCell key='toOwner' label={'Trước GD'} sortKey='toOwner' />,
       key: 'toOwner',
       render: ({ ...props }: WalletDTO) => {
-        return <div>{props?.before ?? '__'}</div>;
+        return <div>{props?.before?.toLocaleString('vi-VN', {
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 2,
+                    }) ?? '__'}</div>;
       },
     },
     {
       title: () => <TableHeaderCell key='toOwner' label={'Sau GD'} sortKey='toOwner' />,
       key: 'toOwner',
       render: ({ ...props }: WalletDTO) => {
-        return <div>{props?.current ?? '__'}</div>;
+        return <div>{props?.current?.toLocaleString('vi-VN', {
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 2,
+                    }) ?? '__'}</div>;
       },
     },
     {

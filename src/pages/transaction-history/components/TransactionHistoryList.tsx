@@ -7,7 +7,7 @@ import CustomTablePagination from '@/components/table/CustomTablePagination';
 import { PARAM_FIELD } from '@/utils/enum/param-field.enum';
 
 export default function TransactionHistoryList() {
-  const { TransactionHistoryData, isLoading } = useTransactionHistoryData();
+  const { TransactionHistoryData, isFetching } = useTransactionHistoryData();
   return (
     <div className='flex max-w-full flex-col gap-5'>
       <TransactionFilter />
@@ -15,7 +15,7 @@ export default function TransactionHistoryList() {
         rowKey='transactionId'
         columns={TransactionColumn()}
         data={TransactionHistoryData?.content ?? []}
-        isLoading={isLoading}
+        isLoading={isFetching}
       />
       <CustomTablePagination
         totalItems={TransactionHistoryData?.totalElements || 1}
