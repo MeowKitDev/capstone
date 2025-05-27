@@ -27,19 +27,20 @@ export default function Overview() {
       {
         title: 'Tổng người dùng',
         subTitle: 'Bao gồm tài xế và khách hàng',
-        value: data?.totalUsers.toLocaleString('en-US'),
+        value: data?.totalUsers.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) ?? 0,
         icon: <UserGroupIcon className='size-6 text-primary-500' />,
       },
       {
         title: 'Tổng doanh thu',
         subTitle: 'Tổng số tiền tạo ra từ các gói hàng và chuyến đi',
-        value: data?.totalRevenue.toLocaleString('en-US') + ' VND',
+        value: `${data?.totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) ?? 0} VND`,
         icon: <CircleDollarIcon className='size-6 text-primary-500' />,
       },
       {
         title: 'Tổng gói hàng',
         subTitle: 'Tổng số gói hàng đã được bán',
-        value: data?.totalPackagesSold.toLocaleString('en-US'),
+        value:
+          data?.totalPackagesSold.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) ?? 0,
         icon: <CubesIcon className='size-6 text-primary-500' />,
       },
     ],

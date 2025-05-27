@@ -89,7 +89,7 @@ export default function NavBar() {
   );
 
   const contentPopoverBell = (
-    <div className='hover-scrollbar flex h-[500px] w-[350px] flex-col gap-2 overflow-y-auto'>
+    <div className='hover-scrollbar flex h-[500px] w-[380px] flex-col gap-2 overflow-y-auto pr-1'>
       <div className='flex w-full items-center justify-between rounded-md py-2'>
         <span className='text-xl font-semibold text-primary-500'>Notification</span>
       </div>
@@ -98,17 +98,18 @@ export default function NavBar() {
         <button
           key={item.id}
           className={twMerge(
-            'flex flex-col items-start gap-2 rounded-sm px-2 py-1.5',
+            'relative flex flex-col items-start gap-2 rounded-sm px-2 py-1.5',
             !item.isRead ? 'bg-primary-50 hover:bg-primary-100' : 'bg-gray-50 hover:bg-gray-100',
           )}
           onClick={() => handleClickNotification(item.type, item.relatedId, item.id)}>
-          <div className='flex w-full items-center justify-between'>
+          <div className='flex w-full items-center justify-between text-start'>
             <span className='text-base font-semibold text-gray-900'>{item.title}</span>
-            <span className='text-sm font-normal text-gray-500'>
+            <span className='text-xs font-normal text-gray-500'>
               {dayjs(item.createdDate).format(DATE_SHORT_TIME_FORMAT_DOT)}
             </span>
           </div>
-          <p className='text-start text-sm font-semibold text-gray-700'>{item.content}</p>
+          <p className='text-start text-xs font-semibold text-gray-700'>{item.content}</p>
+          {!item.isRead && <div className='absolute right-1 top-1 h-1 w-1 rounded bg-primary-500' />}
         </button>
       ))}
       <div className='h-px w-full bg-gray-200' />
