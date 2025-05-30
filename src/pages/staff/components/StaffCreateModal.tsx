@@ -11,6 +11,7 @@ import { GENDER } from '@/utils/enum/common.enum';
 import { yupResolver } from '@hookform/resolvers/yup';
 import dayjs from 'dayjs';
 import { enqueueSnackbar } from 'notistack';
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 type StaffCreateModalProps = {
@@ -19,7 +20,7 @@ type StaffCreateModalProps = {
 };
 
 export const StaffCreateModal = ({ open, setOpen }: StaffCreateModalProps) => {
-  const { handleSubmit, control } = useForm<StaffCreateInput>({
+  const { handleSubmit, control, reset, setValue } = useForm<StaffCreateInput>({
     resolver: yupResolver(staffCreateSchema),
     defaultValues: staffCreateSchema.getDefault(),
   });
@@ -54,9 +55,14 @@ export const StaffCreateModal = ({ open, setOpen }: StaffCreateModalProps) => {
       });
   };
 
+  useEffect(() => {
+    // Reset form when modal is opened
+    reset(staffCreateSchema.getDefault());
+  }, [reset]);
+
   return (
     <CustomModal
-      title='Cập nhật thông tin nhân viên'
+      title='Thêm nhân viên'
       open={open}
       setOpen={setOpen}
       className='!w-[850px]'

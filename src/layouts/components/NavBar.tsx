@@ -91,7 +91,7 @@ export default function NavBar() {
   const contentPopoverBell = (
     <div className='hover-scrollbar flex h-[500px] w-[380px] flex-col gap-2 overflow-y-auto pr-1'>
       <div className='flex w-full items-center justify-between rounded-md py-2'>
-        <span className='text-xl font-semibold text-primary-500'>Notification</span>
+        <span className='text-2xl font-semibold text-primary-500'>Thông báo</span>
       </div>
       <div className='h-px w-full bg-gray-200' />
       {data?.map((item) => (
