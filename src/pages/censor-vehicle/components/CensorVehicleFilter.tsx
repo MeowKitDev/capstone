@@ -5,7 +5,7 @@ export default function CensorVehicleFilter() {
   return (
     <div>
       <div className='flex flex-wrap items-center justify-start gap-5'>
-        <CustomSearchInputQueryWithLabel label={'Tên Tài Xế'} searchParamName={PARAM_FIELD.LAST_NAME} />
+        <CustomSearchInputQueryWithLabel label={'Tên Tài Xế'} placeholder='Nhập tên tài xế' searchParamName={PARAM_FIELD.LAST_NAME} />
         {/* <CustomSearchInputQueryWithLabel label={'Loại phương tiện'} searchParamName={PARAM_FIELD.VEHICLE_TYPE} />
         <CustomSearchInputQueryWithLabel label={'Hãng phương tiện'} searchParamName={PARAM_FIELD.VEHICLE_BRAND} />
         <CustomSearchInputQueryWithLabel label={'Biển số xe'} searchParamName={PARAM_FIELD.NUMBER_INSEAD} />

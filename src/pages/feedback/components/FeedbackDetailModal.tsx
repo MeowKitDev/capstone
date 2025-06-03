@@ -239,7 +239,7 @@ const ReasonModal = ({ openReasonModal, setOpenReasonModal, feedbackID }: Reason
           control={control}
           name='reason'
           label='Lý Do'
-          placeholder='Enter reason'
+          placeholder='Nhập lí do'
           type={'textarea'}
           className='w-full'
         />

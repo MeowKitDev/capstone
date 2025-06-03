@@ -8,7 +8,7 @@ import PackageChart from './components/PackageChart';
 
 export default function DashboardPage() {
   return (
-    <DefaultContainer title='Dashboard'>
+    <DefaultContainer title='Bảng điều khiển'>
       <div className='flex max-w-full flex-col gap-6'>
         <Overview />
         <PackageChart />

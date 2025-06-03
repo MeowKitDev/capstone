@@ -14,9 +14,9 @@ export default function PackageFilter() {
     <>
       <div className='flex items-center justify-between gap-5'>
         <div className='flex flex-wrap items-center justify-start gap-5'>
-          <CustomSearchInputQueryWithLabel label={'Tên gói'} searchParamName={PARAM_FIELD.NAME} />
-          <CustomSearchInputQueryWithLabel label={'Giá'} searchParamName={PARAM_FIELD.PRICE} />
-          <CustomSearchInputQueryWithLabel label={'Thời Gian'} searchParamName={PARAM_FIELD.TIME} />
+          <CustomSearchInputQueryWithLabel label={'Tên gói'} placeholder='Nhập tên gói' searchParamName={PARAM_FIELD.NAME} />
+          <CustomSearchInputQueryWithLabel label={'Giá'} placeholder='Nhập giá' searchParamName={PARAM_FIELD.PRICE} />
+          <CustomSearchInputQueryWithLabel label={'Thời Gian'} placeholder='Nhập thời gian' searchParamName={PARAM_FIELD.TIME} />
           {/* <CustomSelectQueryWithLabel
             label={'Search by'}
             queryKey={PARAM_FIELD.SEARCH_BY}

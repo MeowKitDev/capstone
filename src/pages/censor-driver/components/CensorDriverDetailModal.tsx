@@ -94,7 +94,7 @@ const ReasonModal = ({ openReasonModal, setOpenReasonModal }: ReasonModalProps) 
           control={control}
           name='reason'
           label='Reason'
-          placeholder='Enter reason'
+          placeholder='Nhập lí do'
           type={'textarea'}
           className='w-full'
         />

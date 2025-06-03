@@ -68,21 +68,21 @@ export default function NavBar() {
       <div
         className='flex w-full items-center justify-between rounded-md px-1.5 py-2 hover:bg-gray-100'
         onClick={() => navigate(MY_ROUTE.PROFILE)}>
-        <span className='text-xs font-semibold text-gray-900'>Profile</span>
+        <span className='text-xs font-semibold text-gray-900'>Trang cá nhân</span>
         <UserOutlineIcon className='size-3 cursor-pointer text-gray-900 lg:size-4' />
       </div>
       <div className='h-px w-full bg-gray-200' />
       <button
         className='flex w-full items-center justify-between rounded-md px-1.5 py-2 hover:bg-gray-100'
         onClick={() => navigate(MY_ROUTE.CHANGE_PASSWORD)}>
-        <span className='text-xs font-semibold text-gray-900'>Change Password</span>
+        <span className='text-xs font-semibold text-gray-900'>Đổi mật khẩu</span>
         <UserPenIcon className='size-3 cursor-pointer text-gray-900 lg:size-4' />
       </button>
       <div className='h-px w-full bg-gray-200' />
       <button
         className='flex w-full items-center justify-between rounded-md px-1.5 py-2 hover:bg-gray-100'
         onClick={() => dispatch(logoutThunk())}>
-        <span className='text-xs font-semibold text-red-500'>Log Out</span>
+        <span className='text-xs font-semibold text-red-500'>Đăng xuất</span>
         <BracketRightIcon className='size-3 cursor-pointer text-red-500 lg:size-4' />
       </button>
     </div>

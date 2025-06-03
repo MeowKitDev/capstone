@@ -68,7 +68,7 @@ export const StaffCreateModal = ({ open, setOpen }: StaffCreateModalProps) => {
       className='!w-[850px]'
       onConfirm={handleSubmit(onSubmit)}
       loading={isLoadingCreateStaff}
-      okText='Cập nhật'>
+      okText='Thêm'>
       <form className='mt-10 space-y-4'>
         <div className='grid grid-cols-2 gap-4'>
           <CustomTextFieldWithLabel

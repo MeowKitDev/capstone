@@ -1,36 +1,36 @@
 {
   "text": {
-    "login": "Login",
-    "reset_password": "Reset Password",
-    "change_password": "Change Password",
-    "forgot_password": "Forgot Password",
-    "email_sent": "An email has been sent, if you did not receive an email. Please check your spam mailbox.",
-    "stay_signed_in": "Stay signed in",
-    "have_you_forgotten": "Have you forgotten your password?",
-    "reset_password_description": "Please enter a new password to change password",
-    "verify_password": "Verify Password"
+    "login": "Đăng nhập",
+    "reset_password": "Đặt lại mật khẩu",
+    "change_password": "Đổi mật khẩu",
+    "forgot_password": " Quên mật khẩu",
+    "email_sent": "Email đã được gửi. Nếu bạn chưa nhận được email, hãy kiểm tra mục thư rác.",
+    "stay_signed_in": "Duy trì đăng nhập",
+    "have_you_forgotten": "Bạn đã quên mật khẩu ?",
+    "reset_password_description": "Vui lòng nhập mật khẩu mới để thay đổi",
+    "verify_password": "Xác nhận mật khẩu"
   },
   "button": {
-    "login": "Login",
-    "forgot_password": "Forgot password?",
-    "continue_with_google": "Continue with Google",
-    "first_time": "First time in HMM?",
-    "start": "START",
-    "send_email": "Send Email",
-    "reset_password": "Reset Password",
-    "back": "Back",
-    "change_password": "Change Password",
-    "confirm": "Confirm"
+    "login": "Đăng nhập",
+    "forgot_password": "Quên mật khẩu ?",
+    "continue_with_google": "Tiếp tục với Google",
+    "first_time": "Lần đầu ở HMM?",
+    "start": "Bắt đầu",
+    "send_email": "Gửi email",
+    "reset_password": "Đặt lại mật khẩu",
+    "back": "Quay lại",
+    "change_password": "Đổi mật khẩu",
+    "confirm": "Chấp nhận"
   },
   "toast": {
-    "bad_credential": "The ID or password is wrong, please try again",
-    "user_not_found": "User not found with ID: {{username}}",
-    "not_verified": "User with email has not been verified",
-    "email_not_found": "User not found with email: {{email}}",
-    "password_change": "Password has been changed successfully",
-    "invalid_token": "Your token is invalid or expired. Please resend a new forgot password request",
-    "otp_verified_successfully": "OTP verified successfully!",
-    "invalid_otp": "Invalid OTP. Please try again",
-    "otp_digit": "OTP must be exactly 6 digits."
+    "bad_credential": "Id hoặc mật khẩu đã sai, xin hãy thử lại",
+    "user_not_found": "Không tìm thấy người dùng với ID: {{username}}",
+    "not_verified": "Người dùng có email chưa được xác minh.",
+    "email_not_found": "Không tìm thấy người dùng với email: {{email}}",
+    "password_change": "Mật khẩu đã được thay đổi thành công!",
+    "invalid_token": "Token của bạn không hợp lệ hoặc đã quá hạn. Xin hãy gửi lại yêu cầu quên mật khẩu mới.",
+    "otp_verified_successfully": "Xác minh OTP thành công!",
+    "invalid_otp": "OTP không hợp lệ. Xin hãy thử lại.",
+    "otp_digit": "OTP phải đúng 6 ký tự."
   }
 }
