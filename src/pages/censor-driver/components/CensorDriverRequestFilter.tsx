@@ -5,10 +5,18 @@ export default function CensorDriverRequestFilter() {
   return (
     <div>
       <div className='flex flex-wrap items-center justify-start gap-5'>
-        <CustomSearchInputQueryWithLabel label={'Tên'} placeholder='Nhập tên' searchParamName={PARAM_FIELD.FIRST_NAME} />
+        <CustomSearchInputQueryWithLabel
+          label={'Tên'}
+          placeholder='Nhập tên'
+          searchParamName={PARAM_FIELD.FIRST_NAME}
+        />
         <CustomSearchInputQueryWithLabel label={'Họ'} placeholder='Nhập họ' searchParamName={PARAM_FIELD.LAST_NAME} />
         <CustomSearchInputQueryWithLabel label={'Email'} placeholder='Nhập email' searchParamName={PARAM_FIELD.EMAIL} />
-        <CustomSearchInputQueryWithLabel label={'Số Điện Thoại'} placeholder='Nhập số điện thoại' searchParamName={PARAM_FIELD.PHONE} />
+        <CustomSearchInputQueryWithLabel
+          label={'Số Điện Thoại'}
+          placeholder='Nhập số điện thoại'
+          searchParamName={PARAM_FIELD.PHONE}
+        />
         {/* <CustomSelectQueryWithLabel
           label={'Gender'}
           queryKey={PARAM_FIELD.SEARCH_BY}
