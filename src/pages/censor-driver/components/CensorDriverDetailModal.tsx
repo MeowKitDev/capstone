@@ -169,13 +169,13 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
                     </div>
                   }
                 />
-                <div>
+                {/* <div>
                   <Link
                     to={`${MY_ROUTE.TRIP.self}?driverId=${data?.driverId}`}
                     className='mt-4 flex w-fit items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-primary-500'>
                     <span>Lịch sử chuyến đi</span>
                   </Link>
-                </div>
+                </div> */}
               </div>
             </div>
 
