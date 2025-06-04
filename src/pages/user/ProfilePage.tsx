@@ -157,11 +157,11 @@ export default function ProfilePage() {
               <p className='text-gray-700'>{userInfo?.email}</p>
             </div>
             <div className='grid grid-cols-2 gap-6'>
-              <InfoItem label='Name' value={userInfo?.firstName + ' ' + userInfo?.lastName} />
-              <InfoItem label='Phone' value={userInfo?.phone} />
-              <InfoItem label='Address' value={userInfo?.address} />
-              <InfoItem label='Date of Birth' value={dayjs(userInfo?.dob).format(DATE_FORMAT)} />
-              <InfoItem label='Gender' value={userInfo?.gender === GENDER.MALE ? 'Nam' : 'Nữ'} />
+              <InfoItem label='Tên' value={userInfo?.firstName + ' ' + userInfo?.lastName} />
+              <InfoItem label='Số điện thoại' value={userInfo?.phone} />
+              <InfoItem label='Địa chỉ' value={userInfo?.address} />
+              <InfoItem label='Ngày sinh' value={dayjs(userInfo?.dob).format(DATE_FORMAT)} />
+              <InfoItem label='Giới tính' value={userInfo?.gender === GENDER.MALE ? 'Nam' : 'Nữ'} />
               <InfoItem
                 label='Role'
                 value={
