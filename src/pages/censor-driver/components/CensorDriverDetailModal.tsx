@@ -123,7 +123,7 @@ export default function CensorDriverDetailModal({ open, setOpen, data }: CensorD
               }}>
               Đóng
             </Button>
-            <Button onClick={() => setViolationDrawerOpen(true)}>Lịch sử lỗi vi phạm</Button>
+            {/* <Button onClick={() => setViolationDrawerOpen(true)}>Lịch sử lỗi vi phạm</Button> */}
             <Button
               onClick={async () => {
                 await censorDriverRequestApi.rejectDriver(data?.driverId ?? '');
